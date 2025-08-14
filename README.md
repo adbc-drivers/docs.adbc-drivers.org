@@ -14,7 +14,7 @@ This project uses [Sphinx](https://sphinx-doc.org) and can be built with [Pixi](
 Build the site with:
 
 ```console
-$ pixi build
+$ pixi run build
 ```
 
 To preview the site you built, run:

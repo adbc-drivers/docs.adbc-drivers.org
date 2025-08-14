@@ -54,7 +54,7 @@ suppress_warnings = ["myst.header"]
 
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
-html_title = "ADBC Drivers"
+html_title = "ADBC Driver Foundry Driver Documentation"
 html_theme_options = {
     "features": [
         "content.code.copy",

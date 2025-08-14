@@ -1,4 +1,4 @@
-docs.adbc-drivers.org documentation
+ADBC Driver Foundry Driver Documentation
 ===================================
 
 Add your content using Markdown.

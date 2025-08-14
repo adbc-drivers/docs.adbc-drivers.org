@@ -8,6 +8,7 @@ version = "0.1.0"
 [tasks]
 build = "sphinx-build . _build -W"
 clean = "rm -rf _build"
+serve = "python -m http.server -d _build"
 
 [dependencies]
 python = ">=3.13.5,<3.14"

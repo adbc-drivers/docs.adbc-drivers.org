@@ -52,6 +52,7 @@ suppress_warnings = ["myst.header"]
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
+html_css_files = ["custom.css"]
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
 html_title = "ADBC Driver Foundry Driver Documentation"

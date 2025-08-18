@@ -27,9 +27,16 @@ sphinx-immaterial = ">=0.13.6, <0.14"
 
 [environments]
 lint = ["lint"]
+watch = ["default", "watch"]
 
 [feature.lint.dependencies]
 pre-commit = "*"
 
 [feature.lint.tasks]
 pre-commit = "pre-commit run --all-files --color=always --show-diff-on-failure --verbose"
+
+[feature.watch.dependencies]
+sphinx-autobuild = ">=2024.10.3,<2025"
+
+[feature.watch.tasks]
+watch = "sphinx-autobuild . _build"

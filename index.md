@@ -15,26 +15,10 @@
 hide-navigation: true
 hide-toc: true
 ---
-:::::{div} .landing-box
-:style: "color: #FFF; background: var(--columnar); margin-bottom: 2.5em; padding: 1em; box-shadow: 0 0 .2rem rgba(0,0,0,.1),0 .2rem .4rem rgba(0,0,0,.2);"
 
-::::{grid}
-:margin: 0
-:padding: 0
+```{include} _static/adbc-drivers-logo.svg
 
-:::{grid-item}
-:columns: 12 12 12 12
-:class: sd-fs-1 rainbow
-Fast universal data connectivity.
-:::
-
-:::{grid-item}
-:columns: 12 12 12 12
-:class: sd-fs-4
-Powered by Apache Arrow.
-:::
-::::
-:::::
+```
 
 ## ADBC Drivers
 

@@ -1,0 +1,29 @@
+---
+# Copyright (c) 2025 ADBC Drivers Contributors
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#         http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+hero: Fast access to all your data, wherever it is
+---
+
+# ADBC Drivers
+
+The ADBC Drivers organization provides a set of ADBC drivers for different
+vendors.  All drivers implement the ADBC 1.1 interface and can be used from
+different languages including Go, Python, Rust, and more.
+
+:::{toctree}
+:maxdepth: 1
+:hidden:
+
+bigquery.md
+:::

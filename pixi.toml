@@ -1,0 +1,42 @@
+[workspace]
+authors = ["David Li <li.davidm96@gmail.com>"]
+channels = ["conda-forge"]
+name = "ADBC Driver Foundry Driver Documentation"
+platforms = ["linux-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+build = "sphinx-build . _build -W"
+clean = "rm -rf _build"
+serve = "python -m http.server -d _build"
+
+[dependencies]
+python = ">=3.13.5,<3.14"
+sphinx = ">=8.2.3,<9"
+myst-parser = ">=4.0.1,<5"
+sphinx-copybutton = ">=0.5.2,<0.6"
+sphinx-design = ">=0.6.1,<0.7"
+
+sphinx-inline-tabs = ">=2023.4.21,<2024"
+sphinx-notfound-page = ">=1.1.0,<2"
+sphinxext-opengraph = ">=0.12.0,<0.13"
+linkify-it-py = ">=2.0.3,<3"
+
+[pypi-dependencies]
+sphinx-immaterial = ">=0.13.6, <0.14"
+
+[environments]
+lint = ["lint"]
+watch = ["default", "watch"]
+
+[feature.lint.dependencies]
+pre-commit = "*"
+
+[feature.lint.tasks]
+pre-commit = "pre-commit run --all-files --color=always --show-diff-on-failure --verbose"
+
+[feature.watch.dependencies]
+sphinx-autobuild = ">=2024.10.3,<2025"
+
+[feature.watch.tasks]
+watch = "sphinx-autobuild . _build"

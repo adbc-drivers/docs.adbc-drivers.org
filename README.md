@@ -23,4 +23,15 @@ To preview the site you built, run:
 $ pixi run serve
 ```
 
-Then open your web browser to <https://localhost:8000>.
+Then open your web browser to <http://localhost:8000>.
+
+For development, you can instead use the development server which will automatically rebuild the site when changes are made:
+
+```console
+$ pixi run watch
+```
+
+Then visit <http://localhost:8000>.
+
+Note that the theme used does not always work well with incremental builds.
+You may need to remove `_build` and start again, especially when changing theme options.

@@ -25,5 +25,5 @@ different languages including Go, Python, Rust, and more.
 :maxdepth: 1
 :hidden:
 
-bigquery.md
+bigquery/index.md
 :::

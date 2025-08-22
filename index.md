@@ -17,10 +17,7 @@ hide-toc: true
 ---
 
 ```{include} _static/adbc-drivers-logo.svg
-
 ```
-
-## ADBC Drivers
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
@@ -31,7 +28,7 @@ hide-toc: true
 Work with [Google BigQuery](https://cloud.google.com/bigquery), a data
 warehouse offered by Google Cloud.
 +++
-:::{button-ref} drivers/bigquery
+:::{button-ref} drivers/bigquery/index
 Documentation
 :::
 ::::

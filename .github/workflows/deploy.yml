@@ -46,7 +46,7 @@ jobs:
         run: |
           pixi run build
       - name: Upload built site as artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: ./_build
 

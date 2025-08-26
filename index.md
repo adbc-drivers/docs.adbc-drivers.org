@@ -17,10 +17,7 @@ hide-toc: true
 ---
 
 ```{include} _static/adbc-drivers-logo.svg
-
 ```
-
-## ADBC Drivers
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
@@ -28,10 +25,10 @@ hide-toc: true
 ::::{grid-item-card}
 **Google BigQuery**
 ^^^
-Work with [Google BigQuery](https://cloud.google.com/bigquery), a data
-warehouse offered by Google Cloud.
+Work with BigQuery, a data warehouse offered by Google Cloud.
 +++
-:::{button-ref} drivers/bigquery
+:::{button-ref} drivers/bigquery/index
+:click-parent:
 Documentation
 :::
 ::::
@@ -49,6 +46,7 @@ Documentation
 Official documentation for the ADBC specification and project.
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/index.html
+:click-parent:
 Documentation {octicon}`link-external`
 :::
 ::::
@@ -58,7 +56,8 @@ Documentation {octicon}`link-external`
 ^^^
 Install and manage drivers easily with a CLI from Columnar.
 +++
-:::{button-link} https://columar.tech
+:::{button-link} https://columnar.tech
+:click-parent:
 Download {octicon}`link-external`
 :::
 ::::

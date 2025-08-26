@@ -60,6 +60,7 @@ jobs:
       actions: read
       pages: write
       id-token: write
+    if: github.event_name != 'pull_request'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

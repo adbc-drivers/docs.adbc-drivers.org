@@ -30,8 +30,9 @@ You are reading the documentation for the latest version.
 
 {bdg-ref-primary}`Version v0.1.1 <driver-bigquery-v0.1.1>` ({ref}`permalink to this version <driver-bigquery-v0.1.1>`)
 
-This driver provides access to [Google BigQuery][bigquery]{target=_blank}, a data warehouse
-offered by Google Cloud.
+This driver provides access to [Google BigQuery
+{octicon}`link-external`][bigquery]{target=_blank}, a data warehouse offered
+by Google Cloud.
 
 ## Installation & Quickstart
 

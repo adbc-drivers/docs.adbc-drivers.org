@@ -16,7 +16,10 @@ hide-navigation: true
 hide-toc: true
 ---
 
-```{include} _static/adbc-drivers-logo.svg
+```{image} _static/adbc-drivers-logo.svg
+:alt: ADBC Drivers
+:height: 140px
+:align: center
 ```
 
 :::::{grid} 1 2 3 3
@@ -25,8 +28,8 @@ hide-toc: true
 ::::{grid-item-card}
 **Google BigQuery**
 ^^^
-Work with [Google BigQuery](https://cloud.google.com/bigquery), a data
-warehouse offered by Google Cloud.
+Work with [Google BigQuery {octicon}`link-external`](https://cloud.google.com/bigquery){target=_blank},
+a data warehouse offered by Google Cloud.
 +++
 :::{button-ref} drivers/bigquery/index
 Documentation

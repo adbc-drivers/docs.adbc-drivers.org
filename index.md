@@ -58,7 +58,7 @@ Official documentation for the ADBC specification and project.
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/index.html
 :click-parent:
-Documentation {octicon}`link-external`
+Documentation
 :::
 ::::
 
@@ -69,7 +69,7 @@ Install and manage drivers easily with a CLI from Columnar.
 +++
 :::{button-link} https://columnar.tech
 :click-parent:
-Download {octicon}`link-external`
+Download
 :::
 ::::
 

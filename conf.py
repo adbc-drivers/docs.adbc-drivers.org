@@ -55,6 +55,7 @@ suppress_warnings = ["myst.header"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_css_files = ["custom.css"]
+html_logo = "_static/adbc-drivers-logo.png"
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
 html_title = "ADBC Driver Foundry Driver Documentation"
@@ -113,6 +114,16 @@ intersphinx_mapping = {
 # -- Options for MyST --------------------------------------------------------
 
 myst_enable_extensions = ["attrs_block", "attrs_inline", "colon_fence", "linkify"]
+
+# -- Options for OpenGraph ---------------------------------------------------
+
+ogp_description_length = 400
+ogp_site_url = "https://docs.adbc-drivers.org"
+ogp_site_name = "ADBC Driver Foundry Documentation"
+ogp_social_cards = {
+    "image": "_static/opengraph-logo.png",
+    "line_color": "#434343",
+}
 
 # -- Customization -----------------------------------------------------------
 

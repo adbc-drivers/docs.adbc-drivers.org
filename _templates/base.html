@@ -1,0 +1,7 @@
+{% extends "sphinx_immaterial/base.html" %}
+{# TODO(lidavidm): this is a problem with the base theme, it should include the meta tags. #}
+
+{% block site_meta %}
+{{ super() }}
+{{- metatags }}
+{% endblock %}

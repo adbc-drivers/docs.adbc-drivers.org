@@ -67,9 +67,20 @@ Documentation
 ^^^
 Install and manage drivers easily with a CLI from Columnar.
 +++
-:::{button-link} https://columnar.tech
+:::{button-link} https://docs.columnar.tech/dbc/
 :click-parent:
-Download
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+**ADBC Quickstarts**
+^^^
+Simple examples showing how to use ADBC with various databases, query engines, and data platforms.
++++
+:::{button-link} https://github.com/columnar-tech/adbc-quickstarts
+:click-parent:
+Repository
 :::
 ::::
 

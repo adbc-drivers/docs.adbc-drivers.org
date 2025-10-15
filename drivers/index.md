@@ -17,9 +17,9 @@ hero: Fast access to all your data, wherever it is
 
 # ADBC Drivers
 
-The ADBC Drivers organization provides a set of ADBC drivers for different
+The ADBC Driver Foundry provides a set of ADBC drivers for different
 vendors.  All drivers implement the ADBC 1.1 interface and can be used from
-different languages including Go, Python, Rust, and more.
+different languages including Go, Python, R, Rust, and more.
 
 :::{toctree}
 :maxdepth: 1

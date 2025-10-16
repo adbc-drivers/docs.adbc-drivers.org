@@ -44,6 +44,17 @@ Documentation
 :::
 ::::
 
+::::{grid-item-card}
+**Trino**
+^^^
+Work with Trino, a distributed SQL query engine.
++++
+:::{button-ref} drivers/trino/index
+:click-parent:
+Documentation
+:::
+::::
+
 :::::
 
 ## ADBC Resources

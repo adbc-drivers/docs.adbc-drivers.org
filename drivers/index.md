@@ -27,4 +27,5 @@ different languages including Go, Python, R, Rust, and more.
 
 bigquery/index.md
 mysql/index.md
+trino/index.md
 :::

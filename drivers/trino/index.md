@@ -20,10 +20,10 @@
 :::{toctree}
 :maxdepth: 1
 
-v1.0.0.md
+v0.1.0.md
 :::
 
-Driver Version {bdg-ref-primary}`v1.0.0 <driver-trino-v1.0.0>` ({ref}`permalink to this version <driver-trino-v1.0.0>`)
+Driver Version {bdg-ref-primary}`v0.1.0 <driver-trino-v0.1.0>` ({ref}`permalink to this version <driver-trino-v0.1.0>`)
 <br/>Tested With Trino: {bdg-secondary}`4nn`
 
 This driver provides access to [Trino][trino], a free and

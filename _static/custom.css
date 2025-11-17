@@ -64,6 +64,13 @@
     padding: 0;
 }
 
+/* Fix text wrapping in highlighted code blocks. Very long, unbroken strings
+   will break out of their box without this.
+*/
+.md-typeset pre {
+    text-wrap: inherit;
+}
+
 /***********************************************************************
  Custom shields.io style badges. See conf.py. sphinx-design badges are too
  simple and this lets us customize our badges exactly as we need.

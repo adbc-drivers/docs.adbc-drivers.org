@@ -192,7 +192,7 @@ def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
             <span class="custom-badge-value">{value}</span>
         </span>'''
     else:
-        badge_content = f'''<span class="custom-badge custom-badge-{variant}>
+        badge_content = f'''<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-value">{value}</span>
         </span>'''
 

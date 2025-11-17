@@ -17,6 +17,7 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+from docutils import nodes
 from sphinx.writers.html import HTMLTranslator
 
 # -- Project information -----------------------------------------------------
@@ -127,6 +128,83 @@ ogp_social_cards = {
 
 # -- Customization -----------------------------------------------------------
 
+# Custom shields.io style badges. See custom.css for corresponding css.
+custom_badge_variants = ["primary", "secondary", "success", "warning", "danger", "info"]
+
+def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
+    """
+    Custom badge role that creates one or two-part badges with a value, optional
+    label, and optional URL.
+
+    Examples:
+
+    - {badge-primary}[label|value]
+    - {badge-primary}[value]
+    - {badge-primary}[label|value|url]
+    - {badge-primary}[value|url]
+
+    If a URL is provided as the last parameter, the badge is wrapped in an a
+    tag.
+    """
+    from html import escape
+
+    # Extract color variant from role name (e.g., "badge-primary" -> "primary")
+    variant = name.split("-", 1)[-1] if "-" in name else "primary"
+
+    # Parse label, value, and optional URL
+    parts = [p.strip() for p in text.split("|")]
+
+    if len(parts) == 1:
+        # {badge-foo}[just value]
+        label = ""
+        value = parts[0]
+        url = None
+    elif len(parts) == 2 and parts[1].startswith(("http://", "https://", "#", "/")):
+        # {badge-foo}[value|url]
+        label = ""
+        value = parts[0]
+        url = parts[1]
+    elif len(parts) == 2:
+        # {badge-foo}[label|value]
+        label = parts[0]
+        value = parts[1]
+        url = None
+    elif len(parts) >= 3:
+        # {badge-foo}[label|value|url]
+        label = parts[0]
+        value = parts[1]
+        url = parts[2]
+    else:
+        label = ""
+        value = ""
+        url = None
+
+    # Escape HTML
+    label = escape(label)
+    value = escape(value)
+    if url:
+        url = escape(url)
+
+    # Build HTML
+    if label:
+        badge_content = f'''<span class="custom-badge custom-badge-{variant}">
+            <span class="custom-badge-label">{label}</span>
+            <span class="custom-badge-value">{value}</span>
+        </span>'''
+    else:
+        badge_content = f'''<span class="custom-badge custom-badge-{variant}>
+            <span class="custom-badge-value">{value}</span>
+        </span>'''
+
+    # Wrap in link if URL provided
+    if url:
+        html = f'<a href="{url}" class="custom-badge-link">{badge_content}</a>'
+    else:
+        html = badge_content
+
+    node = nodes.raw("", html, format="html")
+    return [node], []
+
 
 class ExternalLinkHtmlTranslator(HTMLTranslator):
     _external_icon = """ <svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-link-external" viewBox="0 0 16 16" aria-hidden="true"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"></path></svg>"""
@@ -146,3 +224,8 @@ class ExternalLinkHtmlTranslator(HTMLTranslator):
 
 def setup(app):
     app.set_translator("html", ExternalLinkHtmlTranslator)
+
+    # Register custom badge roles with Sphinx
+    for variant in custom_badge_variants:
+        role_name = f"badge-{variant}"
+        app.add_role(role_name, badge_role)

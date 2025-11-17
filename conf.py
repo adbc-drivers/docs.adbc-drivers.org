@@ -198,7 +198,7 @@ def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
 
     # Wrap in link if URL provided
     if url:
-        html = f'<a href="{url}" class="custom-badge-link">{badge_content}</a>'
+        html = f'<a href="{url}" class="custom-badge-link" target="_blank">{badge_content}</a>'
     else:
         html = badge_content
 

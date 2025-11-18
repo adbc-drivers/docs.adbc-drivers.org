@@ -102,14 +102,14 @@
     padding: 0.25em 0.5em;
 }
 
-/* primary */
+/* primary material-blue-800 */
 .custom-badge-primary .custom-badge-label {
-    background-color: #1565c0;
+    background-color: #0277BD;
     color: #ffffff;
 }
 
 .custom-badge-primary .custom-badge-value {
-    background-color: #e3f2fd;
+    background-color: #B3E5FC;
     color: #0d47a1;
 }
 
@@ -184,16 +184,16 @@
 
 /* info */
 .custom-badge-info .custom-badge-label {
-    background-color: #0277bd;
+    background-color: #616161;
     color: #ffffff;
 }
 
 .custom-badge-info .custom-badge-value {
-    background-color: #e1f5fe;
-    color: #01579b;
+    background-color: #bdbdbd80;
+    color: #424242;
 }
 
 [data-md-color-scheme="slate"] .custom-badge-info .custom-badge-value {
-    background-color: #1a3d5c;
-    color: #81d4fa;
+    background-color: #bdbdbd47;
+    color: #edededa0;
 }

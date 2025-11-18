@@ -133,74 +133,47 @@ custom_badge_variants = ["primary", "secondary", "success", "warning", "danger",
 
 def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """
-    Custom badge role that creates one or two-part badges with a value, optional
-    label, and optional URL.
+    Custom badge role that creates shields.io-style badges with one or two
+    parts.
+
+    Variants include: primary, secondary, success, warning, danger, info
 
     Examples:
 
-    - {badge-primary}[label|value]
-    - {badge-primary}[value]
-    - {badge-primary}[label|value|url]
-    - {badge-primary}[value|url]
+    - {badge-primary}`Hello World`
+    - {badge-secondary}`Driver Version|v0.1.0`
 
-    If a URL is provided as the last parameter, the badge is wrapped in an a
-    tag.
+    To use URLs or refs, wrap the badge up in `[]()`:
+
+    - [{badge-primary}`Website|example.com`](http://example.com)
+    - [{badge-primary}`Permalink`](#driver-mysql-v0.1.0)
+
     """
     from html import escape
 
-    # Extract color variant from role name (e.g., "badge-primary" -> "primary")
     variant = name.split("-", 1)[-1] if "-" in name else "primary"
-
-    # Parse label, value, and optional URL
     parts = [p.strip() for p in text.split("|")]
 
+    label = ""
+    value = ""
     if len(parts) == 1:
-        # {badge-foo}[just value]
-        label = ""
         value = parts[0]
-        url = None
-    elif len(parts) == 2 and parts[1].startswith(("http://", "https://", "#", "/")):
-        # {badge-foo}[value|url]
-        label = ""
-        value = parts[0]
-        url = parts[1]
-    elif len(parts) == 2:
-        # {badge-foo}[label|value]
+    elif len(parts) >= 2:
         label = parts[0]
         value = parts[1]
-        url = None
-    elif len(parts) >= 3:
-        # {badge-foo}[label|value|url]
-        label = parts[0]
-        value = parts[1]
-        url = parts[2]
-    else:
-        label = ""
-        value = ""
-        url = None
 
-    # Escape HTML
     label = escape(label)
     value = escape(value)
-    if url:
-        url = escape(url)
 
-    # Build HTML
     if label:
-        badge_content = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f'''<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-label">{label}</span>
             <span class="custom-badge-value">{value}</span>
         </span>'''
     else:
-        badge_content = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f'''<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-value">{value}</span>
         </span>'''
-
-    # Wrap in link if URL provided
-    if url:
-        html = f'<a href="{url}" class="custom-badge-link" target="_blank">{badge_content}</a>'
-    else:
-        html = badge_content
 
     node = nodes.raw("", html, format="html")
     return [node], []

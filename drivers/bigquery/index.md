@@ -25,7 +25,7 @@ versions.md
 :::
 
 
-{badge-primary}`Driver Version|v0.1.1`
+[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1)
 
 This driver provides access to [Google BigQuery][bigquery], a data warehouse offered by Google Cloud.
 

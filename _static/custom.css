@@ -68,7 +68,7 @@
    will break out of their box without this.
 */
 .md-typeset pre {
-    text-wrap: inherit;
+    overflow-x: auto;
 }
 
 /***********************************************************************

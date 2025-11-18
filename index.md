@@ -36,7 +36,7 @@ Documentation
 ::::{grid-item-card}
 **MySQL**
 ^^^
-Work with MySQL, a free and open-source relational database management system.
+Work with MySQL, a free and open source relational database management system.
 +++
 :::{button-ref} drivers/mysql/index
 :click-parent:

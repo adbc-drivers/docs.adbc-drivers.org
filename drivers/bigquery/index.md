@@ -37,7 +37,7 @@ The BigQuery driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 dbc install bigquery
 ```
 
-## Pre-requisites
+## Prerequisites
 
 Using the BigQuery driver requires some setup before you can connect:
 

@@ -15,25 +15,87 @@
 {}
 ---
 
-# Trino
+# Trino Driver
 
 :::{toctree}
 :maxdepth: 1
+:hidden:
 
-v0.1.0.md
+versions.md
 :::
 
-Driver Version {bdg-ref-primary}`v0.1.0 <driver-trino-v0.1.0>` ({ref}`permalink to this version <driver-trino-v0.1.0>`)
-<br/>Tested With Trino: {bdg-secondary}`4nn`
+{badge-primary}`Driver Version|v0.1.0` {badge-success}`Tested With|Trino 4nn`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
 
-## Installation & Quickstart
+## Installation
 
-The driver can be installed with `dbc`.
+The Trino driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
-To use the driver, provide the Trino DSN as the `url` option.
+```bash
+dbc install trino
+
+```
+
+## Connecting
+
+To use the driver, provide a Trino connection string as the `uri` option. The driver supports URI format and DSN-style connection strings, but URIs are recommended.
+
+```python
+from adbc_driver_manager import dbapi
+
+dbapi.connect(
+  driver="trino",
+  db_kwargs={
+      "uri": "http://user@localhost:8080?catalog=tcph&schema=tiny"
+  }
+)
+```
+
+Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
+
+## Connection String Format
+
+```
+trino://[user[:password]@]host[:port][/catalog[/schema]][?attribute1=value1&attribute2=value2...]
+```
+
+Components:
+- Scheme: trino:// (required)
+- User: Optional (for authentication)
+- Password: Optional (for authentication, requires user)
+- Host: Required (no default)
+- Port: Optional (defaults to 8080 for HTTP, 8443 for HTTPS)
+- Catalog: Optional (Trino catalog name)
+- Schema: Optional (schema within catalog)
+- Query params: Trino connection attributes
+
+:::{note}
+Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
+:::
+
+### HTTPS/SSL Configuration
+
+HTTP Basic authentication is only supported on encrypted connections over HTTPS.
+
+By default, connections use HTTPS. To connect using HTTP, add `SSL=false` as a query parameter:
+
+- `trino://localhost:8080/catalog?SSL=false` → Uses HTTP on port 8080
+- `trino://localhost/catalog?SSL=false` → Uses HTTP on default port 8080
+- `trino://localhost:8443/catalog?SSL=true` → Uses HTTPS on port 8443
+- `trino://localhost:8080/catalog` → Uses HTTPS on port 8080
+- `trino://localhost/catalog` → Uses HTTPS on default port 8443
+
+See [Trino JDBC Documentation](https://trino.io/docs/current/client/jdbc.html#parameter-reference) for complete parameter reference and [Trino Concepts](https://trino.io/docs/current/overview/concepts.html#catalog) for more information.
+
+Examples:
+- trino://localhost:8080/hive/default
+- trino://user:pass@trino.example.com:8080/postgresql/public
+- trino://trino.example.com/hive/sales?SSL=true
+- trino://user@localhost:8443/memory/default?SSL=true&source=myapp
+
+The driver also supports the Trino DSN format (see [Go Trino Client documentation](https://github.com/trinodb/trino-go-client?tab=readme-ov-file#dsn-data-source-name)), but URIs are recommended.
 
 ## Feature & Type Support
 
@@ -137,7 +199,7 @@ To use the driver, provide the Trino DSN as the `url` option.
 * - DATE
   - date32[day]
 * - DECIMAL
-  - decimal64(10, 2)
+  - fixed_size_binary
 * - DOUBLE PRECISION
   - double
 * - INT
@@ -177,6 +239,8 @@ To use the driver, provide the Trino DSN as the `url` option.
   - SQL Type
 * - binary
   - VARBINARY
+* - binary_view
+  - VARBINARY
 * - bool
   - BOOLEAN
 * - date32[day]
@@ -187,6 +251,8 @@ To use the driver, provide the Trino DSN as the `url` option.
   - DOUBLE PRECISION
 * - extension&lt;arrow.uuid&gt;
   - UUID
+* - fixed_size_binary
+  - VARBINARY
 * - float
   - REAL
 * - int16
@@ -195,9 +261,15 @@ To use the driver, provide the Trino DSN as the `url` option.
   - INT
 * - int64
   - BIGINT
+* - large_binary
+  - VARBINARY
+* - large_string
+  - VARCHAR
 * - string
   - IPADDRESS
 * - string
+  - VARCHAR
+* - string_view
   - VARCHAR
 * - time64[us]
   - TIME
@@ -218,14 +290,18 @@ To use the driver, provide the Trino DSN as the `url` option.
   - SQL Type
 * - binary
   - VARBINARY
+* - binary_view
+  - VARBINARY
 * - bool
   - BOOLEAN
 * - date32[day]
   - DATE
-* - decimal64(10, 2)
-  - NUMERIC
 * - double
   - DOUBLE PRECISION
+* - fixed_size_binary
+  - NUMERIC
+* - fixed_size_binary
+  - VARBINARY
 * - float
   - REAL
 * - int16
@@ -234,7 +310,13 @@ To use the driver, provide the Trino DSN as the `url` option.
   - INT
 * - int64
   - BIGINT
+* - large_binary
+  - VARBINARY
+* - large_string
+  - VARCHAR
 * - string
+  - VARCHAR
+* - string_view
   - VARCHAR
 * - time64[us]
   - TIME
@@ -247,3 +329,11 @@ To use the driver, provide the Trino DSN as the `url` option.
 
 
 [trino]: https://trino.io/
+
+## Versions Tested
+
+
+
+This driver was tested on the following versions of Trino:
+
+- Trino 478

@@ -15,25 +15,79 @@
 {}
 ---
 
-# MySQL
+(driver-mysql-prerelease)=
+# MySQL Driver
 
 :::{toctree}
 :maxdepth: 1
+:hidden:
 
-v0.1.0.md
+versions.md
 :::
 
-Driver Version {bdg-ref-primary}`v0.1.0 <driver-mysql-v0.1.0>` ({ref}`permalink to this version <driver-mysql-v0.1.0>`)
-<br/>Tested With MySQL: {bdg-secondary}`9.4`
+{badge-primary}`Driver Version|v0.1.0` {badge-success}`Tested With|MySQL 9.4`
 
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
 open-source relational database management system.
 
-## Installation & Quickstart
+## Installation
 
-The driver can be installed with `dbc`.
+The MySQL driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
-To use the driver, provide the MySQL DSN as the `url` option.
+```bash
+dbc install mysql
+```
+
+## Connecting
+
+To connect, you'll need to edit the `uri` to match the DSN (Data Source Name) format used by the [Go MySQL driver](https://pkg.go.dev/github.com/go-sql-driver/mysql#section-readme).
+
+```python
+from adbc_driver_manager import dbapi
+
+conn = dbapi.connect(
+  driver="mysql",
+  db_kwargs = {
+    "uri": "root@tcp(localhost:3306)/demo"
+  }
+)
+```
+
+Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
+
+### Connection String Format
+
+MySQL's standard URI syntax:
+
+```
+mysql://[user[:[password]]@]host[:port][/schema][?attribute1=value1&attribute2=value2...]
+```
+
+This follows MySQL's official [URI-like connection string format](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connecting-using-uri). Also see [MySQL Connection Parameters](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connection-parameters-base) for the complete specification.
+
+Components:
+- Scheme: mysql:// (required)
+- User: Optional (for authentication)
+- Password: Optional (for authentication, requires user)
+- Host: Required (must be explicitly specified)
+- Port: Optional (defaults to 3306)
+- Schema: Optional (can be empty, MySQL database name)
+- Query params: MySQL connection attributes
+
+:::{note}
+Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
+:::
+
+When connecting via Unix domain sockets, use the parentheses syntax to wrap the socket path: `(/path/to/socket.sock)`.
+
+Examples:
+- mysql://localhost/mydb
+- mysql://user:pass@localhost:3306/mydb
+- mysql://user:pass@host/db?charset=utf8mb4&timeout=30s
+- mysql://user@(/path/to/socket.sock)/db (Unix domain socket)
+- mysql://user@localhost/mydb (no password)
+
+The driver also supports the MySQL DSN format (see [Go MySQL Driver documentation](https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name)), but standard URIs are recommended.
 
 ## Feature & Type Support
 
@@ -132,6 +186,8 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - Arrow Type
 * - BIGINT
   - int64
+* - BIT
+  - binary
 * - BOOLEAN
   - int64, int8 ⚠️ [^1]
 * - DATE
@@ -142,8 +198,10 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - double
 * - INT
   - int32
+* - JSON
+  - extension&lt;arrow.json&gt;
 * - NUMERIC
-  - decimal64(10, 2)
+  - fixed_size_binary
 * - REAL
   - ❌
 * - SMALLINT
@@ -169,6 +227,8 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - SQL Type
 * - binary
   - VARBINARY
+* - binary_view
+  - VARBINARY
 * - bool
   - BOOLEAN
 * - date32[day]
@@ -177,6 +237,8 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - DECIMAL
 * - double
   - DOUBLE PRECISION
+* - fixed_size_binary
+  - VARBINARY
 * - float
   - ❌
 * - int16
@@ -185,7 +247,13 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - INT
 * - int64
   - BIGINT
+* - large_binary
+  - VARBINARY
+* - large_string
+  - VARCHAR
 * - string
+  - VARCHAR
+* - string_view
   - VARCHAR
 * - time64[us]
   - TIME
@@ -206,6 +274,8 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - SQL Type
 * - binary
   - VARBINARY
+* - binary_view
+  - VARBINARY
 * - bool
   - BOOLEAN
 * - date32[day]
@@ -214,13 +284,21 @@ To use the driver, provide the MySQL DSN as the `url` option.
   - NUMERIC
 * - double
   - DOUBLE PRECISION
+* - fixed_size_binary
+  - VARBINARY
 * - int16
   - SMALLINT
 * - int32
   - INT
 * - int64
   - BIGINT
+* - large_binary
+  - VARBINARY
+* - large_string
+  - VARCHAR
 * - string
+  - VARCHAR
+* - string_view
   - VARCHAR
 * - time64[us]
   - TIME
@@ -233,3 +311,11 @@ To use the driver, provide the MySQL DSN as the `url` option.
 [^1]: Return type is inconsistent depending on how the query was written
 
 [mysql]: https://www.mysql.com/
+
+## Versions Tested
+
+
+
+This driver was tested on the following versions of MySQL:
+
+- 9.4.0 (MySQL Community Server - GPL)

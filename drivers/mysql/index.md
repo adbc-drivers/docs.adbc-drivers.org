@@ -15,20 +15,19 @@
 {}
 ---
 
-(driver-mysql-prerelease)=
 # MySQL Driver
 
 :::{toctree}
 :maxdepth: 1
 :hidden:
 
-versions.md
+v0.1.0.md
 :::
 
 [{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0) {badge-success}`Tested With|MySQL 9.4`
 
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
-open source relational database management system.
+open-source relational database management system.
 
 ## Installation
 
@@ -309,14 +308,18 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   - DATETIME
 :::
 
-[^1]: Return type is inconsistent depending on how the query was written
-
-[mysql]: https://www.mysql.com/
-
-## Versions Tested
-
-
+## Compatibility
 
 This driver was tested on the following versions of MySQL:
 
 - 9.4.0 (MySQL Community Server - GPL)
+
+## Previous Versions
+
+To see documentation for previous versions of this driver, see the following:
+
+- [v0.1.0](./v0.1.0.md)
+
+[^1]: Return type is inconsistent depending on how the query was written
+
+[mysql]: https://www.mysql.com/

@@ -21,13 +21,13 @@
 :maxdepth: 1
 :hidden:
 
-versions.md
+v0.1.0.md
 :::
 
 [{badge-primary}`Driver Version|v0.1.0`](#driver-trino-v0.1.0) {badge-success}`Tested With|Trino 4nn`
 
 This driver provides access to [Trino][trino], a free and
-open source distributed SQL query engine.
+open-source distributed SQL query engine.
 
 ## Installation
 
@@ -326,14 +326,18 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
   - TIMESTAMP
 :::
 
-
-
-[trino]: https://trino.io/
-
-## Versions Tested
-
-
+## Compatibility
 
 This driver was tested on the following versions of Trino:
 
 - Trino 478
+
+## Previous Versions
+
+To see documentation for previous versions of this driver, see the following:
+
+- [v0.1.0](./v0.1.0.md)
+
+
+
+[trino]: https://trino.io/

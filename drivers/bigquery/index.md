@@ -21,13 +21,18 @@
 :maxdepth: 1
 :hidden:
 
-versions.md
+v0.1.1.md
+prerelease.md
 :::
 
+[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1) {badge-success}`Tested With|Google BigQuery 1.72.0`
 
-[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1)
+:::{note}
+This project is not associated with Google.
+:::
 
-This driver provides access to [Google BigQuery][bigquery], a data warehouse offered by Google Cloud.
+This driver provides access to [Google BigQuery][bigquery], a data warehouse
+offered by Google Cloud.
 
 ## Installation
 
@@ -37,7 +42,7 @@ The BigQuery driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 dbc install bigquery
 ```
 
-## Prerequisites
+## Pre-requisites
 
 Using the BigQuery driver requires some setup before you can connect:
 
@@ -45,7 +50,7 @@ Using the BigQuery driver requires some setup before you can connect:
 1. Install the [Google Cloud CLI](https://cloud.google.com/cli) (for managing credentials)
 1. Authenticate with Google Cloud
     - Run `gcloud auth application-default login`
-1. Create, find, or re-use a project and dataset (record these for later)
+1. Create, find, or reuse a project and dataset (record these for later)
 
 ## Connecting
 
@@ -124,11 +129,11 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td>Get Parameter Schema</td>
@@ -151,7 +156,6 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ### Types
 
-
 #### SELECT (SQL to Arrow) type mapping
 
 :::{list-table}
@@ -163,6 +167,8 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - Arrow Type
 * - ARRAY
   - list [^1]
+* - BIGNUMERIC
+  - decimal256(76, 38)
 * - BOOL
   - bool
 * - BOOLEAN
@@ -212,6 +218,8 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - SQL Type
 * - binary
   - BYTES
+* - binary_view
+  - BYTES
 * - bool
   - BOOLEAN
 * - date32[day]
@@ -220,9 +228,17 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - NUMERIC
 * - double
   - FLOAT64
+* - fixed_size_binary
+  - BYTES
 * - int64
   - INT64
+* - large_binary
+  - BYTES
+* - large_string
+  - STRING
 * - string
+  - STRING
+* - string_view
   - STRING
 * - time64[us]
   - TIME
@@ -243,6 +259,8 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - SQL Type
 * - binary
   - BYTES
+* - binary_view
+  - ❌ [^7]
 * - bool
   - BOOLEAN
 * - date32[day]
@@ -251,6 +269,8 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - NUMERIC
 * - double
   - FLOAT64
+* - fixed_size_binary
+  - VARBINARY
 * - float
   - FLOAT64
 * - int16
@@ -259,16 +279,31 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - INT64
 * - int64
   - INT64
+* - large_binary
+  - VARBINARY
+* - large_string
+  - VARCHAR
+* - list
+  - ARRAY [^8] [^9] [^10]
 * - string
   - STRING
+* - string_view
+  - ❌ [^11]
+* - struct
+  - STRUCT
 * - time64[us]
   - TIME
 * - timestamp[us, tz=UTC]
   - TIMESTAMP
 * - timestamp[us]
-  - ❌ [^7]
+  - ❌ [^12]
 :::
 
+## Previous Versions
+
+To see documentation for previous versions of this driver, see the following:
+
+- [v0.1.1](./v0.1.1.md)
 
 [^1]: BigQuery treats NULL arrays as empty arrays in result sets, even though you can differentiate between them during query execution.  See https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#array_nulls for more details.
 
@@ -282,6 +317,16 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 [^6]: BigQuery's timestamp is effectively an Instant; use DATETIME for naive timestamps
 
-[^7]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
+[^7]: arrow-go does not support writing binary view to Parquet
+
+[^8]: BigQuery does not support NULL lists; it will instead return an empty list
+
+[^9]: BigQuery does not support NULL list elements; it will instead raise an error
+
+[^10]: See the BigQuery documentation for the [ARRAY type](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#array_type)
+
+[^11]: arrow-go does not support writing string view to Parquet
+
+[^12]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
 
 [bigquery]: https://cloud.google.com/bigquery/

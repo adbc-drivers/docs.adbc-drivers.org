@@ -25,7 +25,7 @@ v0.1.1.md
 prerelease.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1) {badge-success}`Tested With|Google BigQuery 1.72.0`
+[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1 "Permalink") {badge-success}`Tested With|Google BigQuery 1.72.0`
 
 :::{note}
 This project is not associated with Google.

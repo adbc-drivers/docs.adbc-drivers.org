@@ -21,6 +21,7 @@ hide-toc: true
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
+:gutter: 3
 
 ::::{grid-item-card}
 **Google BigQuery**

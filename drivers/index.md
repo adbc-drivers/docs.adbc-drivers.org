@@ -14,7 +14,7 @@
 # limitations under the License.
 ---
 
-# ADBC Drivers
+# Drivers
 
 The ADBC Driver Foundry provides a set of ADBC drivers for different
 vendors.  All drivers implement the ADBC 1.1 interface and can be used from

@@ -15,7 +15,7 @@
 {}
 ---
 
-# Trino Driver
+# Trino
 
 :::{toctree}
 :maxdepth: 1
@@ -24,7 +24,7 @@
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.0`](#driver-trino-v0.1.0 "Permalink") {badge-success}`Tested With|Trino 4nn`
+[{badge-primary}`Driver Version|v0.1.0`](#driver-trino-v0.1.0) {badge-success}`Tested With|Trino 4nn`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
@@ -40,7 +40,7 @@ dbc install trino
 
 ## Connecting
 
-To use the driver, provide a Trino connection string as the `uri` option. The driver supports URI format and DSN-style connection strings, but URIs are recommended.
+To use the driver, provide a Trino connection string as the `url` option.
 
 ```python
 from adbc_driver_manager import dbapi
@@ -48,55 +48,13 @@ from adbc_driver_manager import dbapi
 dbapi.connect(
   driver="trino",
   db_kwargs={
-      "uri": "http://user@localhost:8080?catalog=tcph&schema=tiny"
+      "url": "http://user@localhost:8080?catalog=tcph&schema=tiny"
   }
 )
 ```
 
 Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
 
-## Connection String Format
-
-```
-trino://[user[:password]@]host[:port][/catalog[/schema]][?attribute1=value1&attribute2=value2...]
-```
-
-Components:
-- Scheme: trino:// (required)
-- `user`: Optional (for authentication)
-- `password`: Optional (for authentication, requires user)
-- `host`: Required (no default)
-- `port`: Optional (defaults to 8080 for HTTP, 8443 for HTTPS)
-- `catalog`: Optional (Trino catalog name)
-- `schema`: Optional (schema within catalog)
-- Query params: Trino connection attributes
-
-:::{note}
-Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
-:::
-
-### HTTPS/SSL Configuration
-
-HTTP Basic authentication is only supported on encrypted connections over HTTPS.
-
-By default, connections use HTTPS. To connect using HTTP, add `SSL=false` as a query parameter:
-
-- `trino://localhost:8080/catalog?SSL=false` → Uses HTTP on port 8080
-- `trino://localhost/catalog?SSL=false` → Uses HTTP on default port 8080
-- `trino://localhost:8443/catalog?SSL=true` → Uses HTTPS on port 8443
-- `trino://localhost:8080/catalog` → Uses HTTPS on port 8080
-- `trino://localhost/catalog` → Uses HTTPS on default port 8443
-
-See [Trino JDBC Documentation](https://trino.io/docs/current/client/jdbc.html#parameter-reference) for complete parameter reference and [Trino Concepts](https://trino.io/docs/current/overview/concepts.html#catalog) for more information.
-
-Examples:
-
-- `trino://localhost:8080/hive/default`
-- `trino://user:pass@trino.example.com:8080/postgresql/public`
-- `trino://trino.example.com/hive/sales?SSL=true`
-- `trino://user@localhost:8443/memory/default?SSL=true&source=myapp`
-
-The driver also supports the Trino DSN format (see [Go Trino Client documentation](https://github.com/trinodb/trino-go-client?tab=readme-ov-file#dsn-data-source-name)), but URIs are recommended.
 
 ## Feature & Type Support
 
@@ -184,7 +142,7 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
 
 ### Types
 
-#### SELECT (SQL to Arrow) type mapping
+#### Trino to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -200,7 +158,7 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
 * - DATE
   - date32[day]
 * - DECIMAL
-  - fixed_size_binary
+  - decimal64(10, 2)
 * - DOUBLE PRECISION
   - double
 * - INT
@@ -229,116 +187,85 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
   - string
 :::
 
-#### Bind parameter (Arrow to SQL) type mapping
+#### Arrow to Trino
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - binary_view
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - DECIMAL
-* - double
-  - DOUBLE PRECISION
-* - extension&lt;arrow.uuid&gt;
-  - UUID
-* - fixed_size_binary
-  - VARBINARY
-* - float
-  - REAL
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - large_binary
-  - VARBINARY
-* - large_string
-  - VARCHAR
-* - string
-  - IPADDRESS
-* - string
-  - VARCHAR
-* - string_view
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP WITH TIME ZONE
-* - timestamp[us]
-  - TIMESTAMP
-:::
-
-#### Bulk ingest (Arrow to SQL) type mapping
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - binary_view
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - double
-  - DOUBLE PRECISION
-* - fixed_size_binary
-  - NUMERIC
-* - fixed_size_binary
-  - VARBINARY
-* - float
-  - REAL
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - large_binary
-  - VARBINARY
-* - large_string
-  - VARCHAR
-* - string
-  - VARCHAR
-* - string_view
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP WITH TIME ZONE
-* - timestamp[us]
-  - TIMESTAMP
-:::
-
-## Compatibility
-
-This driver was tested on the following versions of Trino:
-
-- Trino 478
+<table class="docutils data align-default" style="width: 100%;">
+  <tr>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th colspan="2" style="text-align: center;">Trino Type</th>
+  </tr>
+  <tr>
+    <th style="text-align: center;">Bind</th>
+    <th style="text-align: center;">Ingest</th>
+  </tr>
+  <tr>
+    <td>binary</td>
+    <td colspan="2" style="text-align: center;">VARBINARY</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td colspan="2" style="text-align: center;">BOOLEAN</td>
+  </tr>
+  <tr>
+    <td>date32[day]</td>
+    <td colspan="2" style="text-align: center;">DATE</td>
+  </tr>
+  <tr>
+    <td>decimal64(10, 2)</td>
+    <td style="text-align: center;">DECIMAL</td>
+    <td style="text-align: center;">NUMERIC</td>
+  </tr>
+  <tr>
+    <td>decimal128</td>
+    <td colspan="2" style="text-align: center;">DECIMAL</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td colspan="2" style="text-align: center;">DOUBLE PRECISION</td>
+  </tr>
+  <tr>
+    <td>extension&lt;arrow.uuid&gt;</td>
+    <td colspan="2" style="text-align: center;">UUID</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td colspan="2" style="text-align: center;">REAL</td>
+  </tr>
+  <tr>
+    <td>int16</td>
+    <td colspan="2" style="text-align: center;">SMALLINT</td>
+  </tr>
+  <tr>
+    <td>int32</td>
+    <td colspan="2" style="text-align: center;">INT</td>
+  </tr>
+  <tr>
+    <td>int64</td>
+    <td colspan="2" style="text-align: center;">BIGINT</td>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td style="text-align: center;">IPADDRESS, VARCHAR</td>
+    <td style="text-align: center;">VARCHAR</td>
+  </tr>
+  <tr>
+    <td>time64[us]</td>
+    <td colspan="2" style="text-align: center;">TIME</td>
+  </tr>
+  <tr>
+    <td>timestamp[us, tz=UTC]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP WITH TIME ZONE</td>
+  </tr>
+  <tr>
+    <td>timestamp[us]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
+  </tr>
+</table>
 
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
 - [v0.1.0](./v0.1.0.md)
-
-
 
 [trino]: https://trino.io/

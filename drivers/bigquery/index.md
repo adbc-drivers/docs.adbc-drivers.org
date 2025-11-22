@@ -15,7 +15,7 @@
 {}
 ---
 
-# Google BigQuery Driver
+# BigQuery
 
 :::{toctree}
 :maxdepth: 1
@@ -25,14 +25,13 @@ v0.1.1.md
 prerelease.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1 "Permalink") {badge-success}`Tested With|Google BigQuery 1.72.0`
+[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1)
+
+This driver provides access to [BigQuery][bigquery], a data warehouse offered by Google Cloud.
 
 :::{note}
-This project is not associated with Google.
+This project is not affiliated with Google.
 :::
-
-This driver provides access to [Google BigQuery][bigquery], a data warehouse
-offered by Google Cloud.
 
 ## Installation
 
@@ -129,11 +128,11 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Get Parameter Schema</td>
@@ -156,7 +155,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ### Types
 
-#### SELECT (SQL to Arrow) type mapping
+#### BigQuery to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -167,8 +166,6 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - Arrow Type
 * - ARRAY
   - list [^1]
-* - BIGNUMERIC
-  - decimal256(76, 38)
 * - BOOL
   - bool
 * - BOOLEAN
@@ -207,97 +204,72 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - timestamp[us, tz=UTC] [^6]
 :::
 
-#### Bind parameter (Arrow to SQL) type mapping
+#### Arrow to BigQuery
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
+<table class="docutils data align-default" style="width: 100%;">
+  <tr>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th colspan="2" style="text-align: center;">BigQuery Type</th>
+  </tr>
+  <tr>
+    <th style="text-align: center;">Bind</th>
+    <th style="text-align: center;">Ingest</th>
+  </tr>
+  <tr>
+    <td>binary</td>
+    <td colspan="2" style="text-align: center;">BYTES</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td colspan="2" style="text-align: center;">BOOLEAN</td>
+  </tr>
+  <tr>
+    <td>date32[day]</td>
+    <td colspan="2" style="text-align: center;">DATE</td>
+  </tr>
+  <tr>
+    <td>decimal128</td>
+    <td colspan="2" style="text-align: center;">NUMERIC</td>
+    </tr>
+  <tr>
+    <td>float</td>
+    <td colspan="2" style="text-align: center;">FLOAT64</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td colspan="2" style="text-align: center;">FLOAT64</td>
+  </tr>
+  <tr>
+    <td>int16</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+  </tr>
+  <tr>
+    <td>int32</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+    </tr>
+  <tr>
+    <td>int64</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+    </tr>
+  <tr>
+    <td>string</td>
+    <td colspan="2" style="text-align: center;">STRING</td>
+  </tr>
+  <tr>
+    <td>time64[us]</td>
+    <td colspan="2" style="text-align: center;">TIME</td>
+  </tr>
+  <tr>
+    <td>timestamp[us, tz=UTC]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
+  </tr>
+  <tr>
+    <td>timestamp[us]</td>
+    <td style="text-align: center;">DATETIME</td>
+    <td style="text-align: center;">❌ <a class="footnote-reference brackets" href="#id12" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a></td>
 
-* - Arrow Type
-  - SQL Type
-* - binary
-  - BYTES
-* - binary_view
-  - BYTES
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - NUMERIC
-* - double
-  - FLOAT64
-* - fixed_size_binary
-  - BYTES
-* - int64
-  - INT64
-* - large_binary
-  - BYTES
-* - large_string
-  - STRING
-* - string
-  - STRING
-* - string_view
-  - STRING
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - DATETIME
-:::
-
-#### Bulk ingest (Arrow to SQL) type mapping
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - BYTES
-* - binary_view
-  - ❌ [^7]
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - NUMERIC
-* - double
-  - FLOAT64
-* - fixed_size_binary
-  - VARBINARY
-* - float
-  - FLOAT64
-* - int16
-  - INT64
-* - int32
-  - INT64
-* - int64
-  - INT64
-* - large_binary
-  - VARBINARY
-* - large_string
-  - VARCHAR
-* - list
-  - ARRAY [^8] [^9] [^10]
-* - string
-  - STRING
-* - string_view
-  - ❌ [^11]
-* - struct
-  - STRUCT
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - ❌ [^12]
-:::
+  </tr>
+</table>
 
 ## Previous Versions
 
@@ -317,16 +289,7 @@ To see documentation for previous versions of this driver, see the following:
 
 [^6]: BigQuery's timestamp is effectively an Instant; use DATETIME for naive timestamps
 
-[^7]: arrow-go does not support writing binary view to Parquet
+[^7]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
 
-[^8]: BigQuery does not support NULL lists; it will instead return an empty list
-
-[^9]: BigQuery does not support NULL list elements; it will instead raise an error
-
-[^10]: See the BigQuery documentation for the [ARRAY type](https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#array_type)
-
-[^11]: arrow-go does not support writing string view to Parquet
-
-[^12]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
 
 [bigquery]: https://cloud.google.com/bigquery/

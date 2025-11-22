@@ -15,7 +15,7 @@
 {}
 ---
 
-# MySQL Driver
+# MySQL
 
 :::{toctree}
 :maxdepth: 1
@@ -24,7 +24,8 @@
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0 "Permalink") {badge-success}`Tested With|MySQL 9.4`
+[{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0) {badge-success}`Tested With|MySQL 9.4`
+
 
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
 open-source relational database management system.
@@ -39,7 +40,7 @@ dbc install mysql
 
 ## Connecting
 
-To connect, you'll need to edit the `uri` to match the DSN (Data Source Name) format used by the [Go MySQL driver](https://pkg.go.dev/github.com/go-sql-driver/mysql#section-readme).
+To connect, edit the `uri` option below to match your environment and run the following:
 
 ```python
 from adbc_driver_manager import dbapi
@@ -53,41 +54,6 @@ conn = dbapi.connect(
 ```
 
 Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
-
-### Connection String Format
-
-Connection strings are passed with the `uri` option which uses the following format:
-
-```text
-mysql://[user[:[password]]@]host[:port][/schema][?attribute1=value1&attribute2=value2...]
-```
-
-Examples:
-
-- `mysql://localhost/mydb`
-- `mysql://user:pass@localhost:3306/mydb`
-- `mysql://user:pass@host/db?charset=utf8mb4&timeout=30s`
-- `mysql://user@(/path/to/socket.sock)/db` (Unix domain socket)
-- `mysql://user@localhost/mydb` (no password)
-
-This follows MySQL's official [URI-like connection string format](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connecting-using-uri). Also see [MySQL Connection Parameters](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connection-parameters-base) for the complete specification.
-
-Components:
-- `scheme`: `mysql://` (optional)
-- `user`: Optional (for authentication)
-- `password`: Optional (for authentication, requires user)
-- `host`: Required (must be explicitly specified)
-- `port`: Optional (defaults to 3306)
-- `schema`: Optional (can be empty, MySQL database name)
-- Query params: MySQL connection attributes
-
-:::{note}
-Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
-:::
-
-When connecting via Unix domain sockets, use the parentheses syntax to wrap the socket path: `(/path/to/socket.sock)`.
-
-The driver also supports the MySQL DSN format (see [Go MySQL Driver documentation](https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name)), but standard URIs are recommended.
 
 ## Feature & Type Support
 
@@ -175,7 +141,7 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
 
 ### Types
 
-#### SELECT (SQL to Arrow) type mapping
+#### MySQL to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -186,8 +152,6 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   - Arrow Type
 * - BIGINT
   - int64
-* - BIT
-  - binary
 * - BOOLEAN
   - int64, int8 ⚠️ [^1]
 * - DATE
@@ -198,10 +162,8 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   - double
 * - INT
   - int32
-* - JSON
-  - extension&lt;arrow.json&gt;
 * - NUMERIC
-  - fixed_size_binary
+  - decimal64(10, 2)
 * - REAL
   - ❌
 * - SMALLINT
@@ -216,103 +178,70 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   - string
 :::
 
-#### Bind parameter (Arrow to SQL) type mapping
+#### Arrow to MySQL
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - binary_view
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - DECIMAL
-* - double
-  - DOUBLE PRECISION
-* - fixed_size_binary
-  - VARBINARY
-* - float
-  - ❌
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - large_binary
-  - VARBINARY
-* - large_string
-  - VARCHAR
-* - string
-  - VARCHAR
-* - string_view
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - DATETIME
-:::
-
-#### Bulk ingest (Arrow to SQL) type mapping
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - binary_view
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - NUMERIC
-* - double
-  - DOUBLE PRECISION
-* - fixed_size_binary
-  - VARBINARY
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - large_binary
-  - VARBINARY
-* - large_string
-  - VARCHAR
-* - string
-  - VARCHAR
-* - string_view
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - DATETIME
-:::
-
-## Compatibility
-
-This driver was tested on the following versions of MySQL:
-
-- 9.4.0 (MySQL Community Server - GPL)
+<table class="docutils data align-default" style="width: 100%;">
+  <tr>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th colspan="2" style="text-align: center;">MySQL Type</th>
+  </tr>
+  <tr>
+    <th style="text-align: center;">Bind</th>
+    <th style="text-align: center;">Ingest</th>
+  </tr>
+  <tr>
+    <td>binary</td>
+    <td colspan="2" style="text-align: center;">VARBINARY</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td colspan="2" style="text-align: center;">BOOLEAN</td>
+  </tr>
+  <tr>
+    <td>date32[day]</td>
+    <td colspan="2" style="text-align: center;">DATE</td>
+  </tr>
+  <tr>
+    <td>decimal128</td>
+    <td colspan="2" style="text-align: center;">DECIMAL</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td colspan="2" style="text-align: center;">DOUBLE PRECISION</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td colspan="2" style="text-align: center;">❌</td>
+  </tr>
+  <tr>
+    <td>int16</td>
+    <td colspan="2" style="text-align: center;">SMALLINT</td>
+  </tr>
+  <tr>
+    <td>int32</td>
+    <td colspan="2" style="text-align: center;">INT</td>
+  </tr>
+  <tr>
+    <td>int64</td>
+    <td colspan="2" style="text-align: center;">BIGINT</td>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td colspan="2" style="text-align: center;">VARCHAR</td>
+  </tr>
+  <tr>
+    <td>time64[us]</td>
+    <td colspan="2" style="text-align: center;">TIME</td>
+  </tr>
+  <tr>
+    <td>timestamp[us, tz=UTC]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
+  </tr>
+  <tr>
+    <td>timestamp[us]</td>
+    <td colspan="2" style="text-align: center;">DATETIME</td>
+  </tr>
+</table>
 
 ## Previous Versions
 

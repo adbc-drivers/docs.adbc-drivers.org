@@ -21,11 +21,11 @@
 :maxdepth: 1
 :hidden:
 
-v0.1.1.md
+v1.0.0.md
 prerelease.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.1`](#driver-bigquery-v0.1.1)
+[{badge-primary}`Driver Version|v1.0.0`](#driver-bigquery-v1.0.0)
 
 This driver provides access to [BigQuery][bigquery], a data warehouse offered by Google Cloud.
 
@@ -275,7 +275,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 To see documentation for previous versions of this driver, see the following:
 
-- [v0.1.1](./v0.1.1.md)
+- [v1.0.0](./v1.0.0.md)
 
 [^1]: BigQuery treats NULL arrays as empty arrays in result sets, even though you can differentiate between them during query execution.  See https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#array_nulls for more details.
 

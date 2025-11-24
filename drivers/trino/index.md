@@ -19,21 +19,42 @@
 
 :::{toctree}
 :maxdepth: 1
+:hidden:
 
 v0.1.0.md
 :::
 
-Driver Version {bdg-ref-primary}`v0.1.0 <driver-trino-v0.1.0>` ({ref}`permalink to this version <driver-trino-v0.1.0>`)
-<br/>Tested With Trino: {bdg-secondary}`4nn`
+[{badge-primary}`Driver Version|v0.1.0`](#driver-trino-v0.1.0) {badge-success}`Tested With|Trino 4nn`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
 
-## Installation & Quickstart
+## Installation
 
-The driver can be installed with `dbc`.
+The Trino driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
-To use the driver, provide the Trino DSN as the `url` option.
+```bash
+dbc install trino
+
+```
+
+## Connecting
+
+To use the driver, provide a Trino connection string as the `url` option.
+
+```python
+from adbc_driver_manager import dbapi
+
+dbapi.connect(
+  driver="trino",
+  db_kwargs={
+      "url": "http://user@localhost:8080?catalog=tcph&schema=tiny"
+  }
+)
+```
+
+Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
+
 
 ## Feature & Type Support
 
@@ -121,7 +142,7 @@ To use the driver, provide the Trino DSN as the `url` option.
 
 ### Types
 
-#### SELECT (SQL to Arrow) type mapping
+#### Trino to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -166,84 +187,85 @@ To use the driver, provide the Trino DSN as the `url` option.
   - string
 :::
 
-#### Bind parameter (Arrow to SQL) type mapping
+#### Arrow to Trino
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
+<table class="docutils data align-default" style="width: 100%;">
+  <tr>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th colspan="2" style="text-align: center;">Trino Type</th>
+  </tr>
+  <tr>
+    <th style="text-align: center;">Bind</th>
+    <th style="text-align: center;">Ingest</th>
+  </tr>
+  <tr>
+    <td>binary</td>
+    <td colspan="2" style="text-align: center;">VARBINARY</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td colspan="2" style="text-align: center;">BOOLEAN</td>
+  </tr>
+  <tr>
+    <td>date32[day]</td>
+    <td colspan="2" style="text-align: center;">DATE</td>
+  </tr>
+  <tr>
+    <td>decimal64(10, 2)</td>
+    <td style="text-align: center;">DECIMAL</td>
+    <td style="text-align: center;">NUMERIC</td>
+  </tr>
+  <tr>
+    <td>decimal128</td>
+    <td colspan="2" style="text-align: center;">DECIMAL</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td colspan="2" style="text-align: center;">DOUBLE PRECISION</td>
+  </tr>
+  <tr>
+    <td>extension&lt;arrow.uuid&gt;</td>
+    <td colspan="2" style="text-align: center;">UUID</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td colspan="2" style="text-align: center;">REAL</td>
+  </tr>
+  <tr>
+    <td>int16</td>
+    <td colspan="2" style="text-align: center;">SMALLINT</td>
+  </tr>
+  <tr>
+    <td>int32</td>
+    <td colspan="2" style="text-align: center;">INT</td>
+  </tr>
+  <tr>
+    <td>int64</td>
+    <td colspan="2" style="text-align: center;">BIGINT</td>
+  </tr>
+  <tr>
+    <td>string</td>
+    <td style="text-align: center;">IPADDRESS, VARCHAR</td>
+    <td style="text-align: center;">VARCHAR</td>
+  </tr>
+  <tr>
+    <td>time64[us]</td>
+    <td colspan="2" style="text-align: center;">TIME</td>
+  </tr>
+  <tr>
+    <td>timestamp[us, tz=UTC]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP WITH TIME ZONE</td>
+  </tr>
+  <tr>
+    <td>timestamp[us]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
+  </tr>
+</table>
 
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - DECIMAL
-* - double
-  - DOUBLE PRECISION
-* - extension&lt;arrow.uuid&gt;
-  - UUID
-* - float
-  - REAL
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - string
-  - IPADDRESS
-* - string
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP WITH TIME ZONE
-* - timestamp[us]
-  - TIMESTAMP
-:::
+## Previous Versions
 
-#### Bulk ingest (Arrow to SQL) type mapping
+To see documentation for previous versions of this driver, see the following:
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Arrow Type
-  - SQL Type
-* - binary
-  - VARBINARY
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal64(10, 2)
-  - NUMERIC
-* - double
-  - DOUBLE PRECISION
-* - float
-  - REAL
-* - int16
-  - SMALLINT
-* - int32
-  - INT
-* - int64
-  - BIGINT
-* - string
-  - VARCHAR
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP WITH TIME ZONE
-* - timestamp[us]
-  - TIMESTAMP
-:::
-
-
+- [v0.1.0](./v0.1.0.md)
 
 [trino]: https://trino.io/

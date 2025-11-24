@@ -12,18 +12,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-hero: Fast access to all your data, wherever it is
+{}
 ---
 
-# ADBC Drivers
+# Drivers
 
 The ADBC Driver Foundry provides a set of ADBC drivers for different
 vendors.  All drivers implement the ADBC 1.1 interface and can be used from
 different languages including Go, Python, R, Rust, and more.
 
+See the individual driver pages for information on each driver:
+
 :::{toctree}
 :maxdepth: 1
-:hidden:
 
 bigquery/index.md
 mysql/index.md

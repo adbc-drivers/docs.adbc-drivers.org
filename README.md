@@ -5,7 +5,7 @@ This project uses [Sphinx](https://sphinx-doc.org) and can be built with [Pixi](
 
 ## Building
 
-## Pre-requisites
+## Prerequisites
 
 - [Pixi](https://pixi.sh) (see [Pixi Installation](https://pixi.sh/latest/installation/))
 

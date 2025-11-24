@@ -15,33 +15,59 @@
 {}
 ---
 
-# Google BigQuery
+# BigQuery
 
 :::{toctree}
 :maxdepth: 1
+:hidden:
 
+v1.0.0.md
 prerelease.md
-v0.1.1.md
 :::
 
-You are reading the documentation for the latest version.
+[{badge-primary}`Driver Version|v1.0.0`](#driver-bigquery-v1.0.0)
 
----
+This driver provides access to [BigQuery][bigquery], a data warehouse offered by Google Cloud.
 
-{bdg-ref-primary}`Version v0.1.1 <driver-bigquery-v0.1.1>` ({ref}`permalink to this version <driver-bigquery-v0.1.1>`)
+:::{note}
+This project is not affiliated with Google.
+:::
 
-This driver provides access to [Google BigQuery][bigquery], a data warehouse offered by Google Cloud.
+## Installation
 
-## Installation & Quickstart
+The BigQuery driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
-The BigQuery driver can be installed with `dbc`.
+```bash
+dbc install bigquery
+```
 
-To use the driver:
+## Pre-requisites
 
-1. Authenticate with Google Cloud (e.g. via `gcloud auth application-default
-   login`).
-1. Provide the database options `adbc.bigquery.sql.project_id` and
-   `adbc.bigquery.sql.dataset_id`.
+Using the BigQuery driver requires some setup before you can connect:
+
+1. Create a [Google Cloud account](http://console.cloud.google.com)
+1. Install the [Google Cloud CLI](https://cloud.google.com/cli) (for managing credentials)
+1. Authenticate with Google Cloud
+    - Run `gcloud auth application-default login`
+1. Create, find, or reuse a project and dataset (record these for later)
+
+## Connecting
+
+To connect, replace `my-gcp-project` and `my-gcp-dataset` below with the appropriate values for your situation and run the following:
+
+```python
+from adbc_driver_manager import dbapi
+
+conn = dbapi.connect(
+  driver="bigquery",
+  db_kwargs={
+      "adbc.bigquery.sql.project_id": "my-gcp-project",
+      "adbc.bigquery.sql.dataset_id": "my-gcp-datase"
+  }
+)
+```
+
+Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
 
 ## Feature & Type Support
 
@@ -129,8 +155,7 @@ To use the driver:
 
 ### Types
 
-
-#### SELECT (SQL to Arrow) type mapping
+#### BigQuery to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -179,74 +204,78 @@ To use the driver:
   - timestamp[us, tz=UTC] [^6]
 :::
 
-#### Bind parameter (Arrow to SQL) type mapping
+#### Arrow to BigQuery
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
+<table class="docutils data align-default" style="width: 100%;">
+  <tr>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th colspan="2" style="text-align: center;">BigQuery Type</th>
+  </tr>
+  <tr>
+    <th style="text-align: center;">Bind</th>
+    <th style="text-align: center;">Ingest</th>
+  </tr>
+  <tr>
+    <td>binary</td>
+    <td colspan="2" style="text-align: center;">BYTES</td>
+  </tr>
+  <tr>
+    <td>bool</td>
+    <td colspan="2" style="text-align: center;">BOOLEAN</td>
+  </tr>
+  <tr>
+    <td>date32[day]</td>
+    <td colspan="2" style="text-align: center;">DATE</td>
+  </tr>
+  <tr>
+    <td>decimal128</td>
+    <td colspan="2" style="text-align: center;">NUMERIC</td>
+    </tr>
+  <tr>
+    <td>float</td>
+    <td colspan="2" style="text-align: center;">FLOAT64</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td colspan="2" style="text-align: center;">FLOAT64</td>
+  </tr>
+  <tr>
+    <td>int16</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+  </tr>
+  <tr>
+    <td>int32</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+    </tr>
+  <tr>
+    <td>int64</td>
+    <td colspan="2" style="text-align: center;">INT64</td>
+    </tr>
+  <tr>
+    <td>string</td>
+    <td colspan="2" style="text-align: center;">STRING</td>
+  </tr>
+  <tr>
+    <td>time64[us]</td>
+    <td colspan="2" style="text-align: center;">TIME</td>
+  </tr>
+  <tr>
+    <td>timestamp[us, tz=UTC]</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
+  </tr>
+  <tr>
+    <td>timestamp[us]</td>
+    <td style="text-align: center;">DATETIME</td>
+    <td style="text-align: center;">❌ <a class="footnote-reference brackets" href="#id12" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a></td>
 
-* - Arrow Type
-  - SQL Type
-* - binary
-  - BYTES
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - NUMERIC
-* - double
-  - FLOAT64
-* - int64
-  - INT64
-* - string
-  - STRING
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - DATETIME
-:::
+  </tr>
+</table>
 
-#### Bulk ingest (Arrow to SQL) type mapping
+## Previous Versions
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
+To see documentation for previous versions of this driver, see the following:
 
-* - Arrow Type
-  - SQL Type
-* - binary
-  - BYTES
-* - bool
-  - BOOLEAN
-* - date32[day]
-  - DATE
-* - decimal128
-  - NUMERIC
-* - double
-  - FLOAT64
-* - float
-  - FLOAT64
-* - int16
-  - INT64
-* - int32
-  - INT64
-* - int64
-  - INT64
-* - string
-  - STRING
-* - time64[us]
-  - TIME
-* - timestamp[us, tz=UTC]
-  - TIMESTAMP
-* - timestamp[us]
-  - ❌ [^7]
-:::
-
+- [v1.0.0](./v1.0.0.md)
 
 [^1]: BigQuery treats NULL arrays as empty arrays in result sets, even though you can differentiate between them during query execution.  See https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#array_nulls for more details.
 
@@ -261,5 +290,6 @@ To use the driver:
 [^6]: BigQuery's timestamp is effectively an Instant; use DATETIME for naive timestamps
 
 [^7]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
+
 
 [bigquery]: https://cloud.google.com/bigquery/

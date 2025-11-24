@@ -63,3 +63,137 @@
     font-size: inherit;
     padding: 0;
 }
+
+/* Fix text wrapping in highlighted code blocks. Very long, unbroken strings
+   will break out of their box without this.
+*/
+.md-typeset pre {
+    overflow-x: auto;
+}
+
+/***********************************************************************
+ Custom shields.io style badges. See conf.py. sphinx-design badges are too
+ simple and this lets us customize our badges exactly as we need.
+
+ - Supports light+dark mode
+ - Available styles: primary, secondary, success, warning, danger, info
+ ***********************************************************************/
+
+/* Base badge styles */
+.custom-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.3rem;
+    overflow: hidden;
+    font-size: 75%;
+    line-height: 1rem;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+/* Badge label (left part) */
+.custom-badge .custom-badge-label {
+    padding: 0.25em 0.5em;
+    font-weight: 600;
+}
+
+/* Badge value (right part) */
+.custom-badge .custom-badge-value {
+    padding: 0.25em 0.5em;
+}
+
+/* primary material-blue-800 */
+.custom-badge-primary .custom-badge-label {
+    background-color: #0277BD;
+    color: #ffffff;
+}
+
+.custom-badge-primary .custom-badge-value {
+    background-color: #B3E5FC;
+    color: #0d47a1;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-primary .custom-badge-value {
+    background-color: #1e3a5f;
+    color: #90caf9;
+}
+
+/* secondary */
+.custom-badge-secondary .custom-badge-label {
+    background-color: #616161;
+    color: #ffffff;
+}
+
+.custom-badge-secondary .custom-badge-value {
+    background-color: #eeeeee;
+    color: #424242;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-secondary .custom-badge-value {
+    background-color: #424242;
+    color: #e0e0e0;
+}
+
+/* success */
+.custom-badge-success .custom-badge-label {
+    background-color: #2e7d32;
+    color: #ffffff;
+}
+
+.custom-badge-success .custom-badge-value {
+    background-color: #e8f5e9;
+    color: #1b5e20;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-success .custom-badge-value {
+    background-color: #1b4d20;
+    color: #a5d6a7;
+}
+
+/* warning */
+.custom-badge-warning .custom-badge-label {
+    background-color: #ef6c00;
+    color: #ffffff;
+}
+
+.custom-badge-warning .custom-badge-value {
+    background-color: #fff3e0;
+    color: #e65100;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-warning .custom-badge-value {
+    background-color: #4d2c00;
+    color: #ffcc80;
+}
+
+/* danger */
+.custom-badge-danger .custom-badge-label {
+    background-color: #c62828;
+    color: #ffffff;
+}
+
+.custom-badge-danger .custom-badge-value {
+    background-color: #ffebee;
+    color: #b71c1c;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-danger .custom-badge-value {
+    background-color: #4d1a1a;
+    color: #ef9a9a;
+}
+
+/* info */
+.custom-badge-info .custom-badge-label {
+    background-color: #616161;
+    color: #ffffff;
+}
+
+.custom-badge-info .custom-badge-value {
+    background-color: #bdbdbd80;
+    color: #424242;
+}
+
+[data-md-color-scheme="slate"] .custom-badge-info .custom-badge-value {
+    background-color: #bdbdbd47;
+    color: #edededa0;
+}

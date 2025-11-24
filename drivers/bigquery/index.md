@@ -266,10 +266,18 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   <tr>
     <td>timestamp[us]</td>
     <td style="text-align: center;">DATETIME</td>
-    <td style="text-align: center;">❌ <a class="footnote-reference brackets" href="#id12" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a></td>
+    <td style="text-align: center;">❌ <a class="footnote-reference brackets" href="#id14" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a></td>
 
   </tr>
 </table>
+
+<!-- Temporary workaround to make this footnote work. MyST doesn't support
+footenotes in HTML tables and also doesn't support Attributes
+(https://myst-parser.readthedocs.io/en/latest/syntax/optional.html#attributes)
+for footnotes but apparently it supports footnotes in raw HTML as long as it's
+not a table.
+-->
+<span style="display: none;">[^7]</span>
 
 ## Previous Versions
 
@@ -290,6 +298,5 @@ To see documentation for previous versions of this driver, see the following:
 [^6]: BigQuery's timestamp is effectively an Instant; use DATETIME for naive timestamps
 
 [^7]: This is broken on Google's side, as BigQuery doesn't properly parse Parquet types. See https://github.com/googleapis/google-cloud-python/issues/6542.
-
 
 [bigquery]: https://cloud.google.com/bigquery/

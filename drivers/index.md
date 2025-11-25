@@ -26,6 +26,7 @@ See the individual driver pages for information on each driver:
 :::{toctree}
 :maxdepth: 1
 
+redshift/index.md
 bigquery/index.md
 mysql/index.md
 trino/index.md

@@ -19,6 +19,8 @@ hide-toc: true
 ```{include} _static/adbc-drivers-logo.svg
 ```
 
+[Back to the ADBC Driver Foundry](https://adbc-drivers.org){target=_self}
+
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
 :gutter: 3
@@ -103,4 +105,5 @@ Repository
 :hidden:
 
 drivers/index.md
+Back to ADBC Driver Foundry <https://adbc-drivers.org>
 :::

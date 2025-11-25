@@ -31,7 +31,7 @@ To learn more about the Foundry, head back to the [ABDC Drivery Foundry](https:/
 :gutter: 3
 
 ::::{grid-item-card}
-**Google BigQuery**
+**BigQuery**
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
 +++

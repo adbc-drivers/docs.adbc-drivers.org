@@ -107,6 +107,7 @@ Repository
 :maxdepth: 2
 :hidden:
 
+Home <self>
 drivers/index.md
 Back to ADBC Driver Foundry <https://adbc-drivers.org>
 :::

@@ -60,8 +60,6 @@ Documentation
 
 :::::
 
-## ADBC Resources
-
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
 

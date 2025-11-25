@@ -244,7 +244,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ## Previous Versions
 
-To see documentation for previous versions of this driver, see the following:
+To see documentation for the current and previous versions of this driver, see the following:
 
 - [v0.1.0](./v0.1.0.md)
 

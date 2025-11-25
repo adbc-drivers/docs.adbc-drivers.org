@@ -281,7 +281,7 @@ not a table.
 
 ## Previous Versions
 
-To see documentation for previous versions of this driver, see the following:
+To see documentation for the current and previous versions of this driver, see the following:
 
 - [v1.0.0](./v1.0.0.md)
 

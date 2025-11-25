@@ -16,15 +16,15 @@
 ---
 
 (driver-bigquery-prerelease)=
-# Google BigQuery (`v0.1.0-dev.10.9f9be4c-dirty`)
+# BigQuery (`v0.1.0-dev.10.9f9be4c-dirty`)
 
-{bdg-primary}`Version v0.1.0-dev.10.9f9be4c-dirty`
+[{badge-primary}`Driver Version|v1.0.0-dev.10.9f9be4c-dirty`](#driver-bigquery-prerelease)
 
 :::{warning}
 This is documentation for a prerelease version.
 :::
 
-This driver provides access to [Google BigQuery][bigquery], a data warehouse
+This driver provides access to [BigQuery][bigquery], a data warehouse
 offered by Google Cloud.
 
 ## Installation & Quickstart

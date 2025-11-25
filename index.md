@@ -19,7 +19,12 @@ hide-toc: true
 ```{include} _static/adbc-drivers-logo.svg
 ```
 
-[Back to the ADBC Driver Foundry](https://adbc-drivers.org){target=_self}
+Welcome to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} driver documentation site.
+
+Below you will find documentation for the drivers available from the Foundry, resources for learning how to use them, and more about [ADBC](https://arrow.apache.org/adbc).
+
+To learn more about the Foundry, head back to the [ABDC Drivery Foundry](https://adbc-drivers.org){target=_self} website.
+## Drivers
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0

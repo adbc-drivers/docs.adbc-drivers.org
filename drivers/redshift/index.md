@@ -38,7 +38,7 @@ This project is not affiliated with Amazon.
 The Redshift driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
 ```bash
-dbc install redsfhit
+dbc install redshfit
 ```
 
 ## Connecting

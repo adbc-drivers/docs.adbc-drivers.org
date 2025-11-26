@@ -32,9 +32,9 @@ To learn more about the Foundry, head back to the [ABDC Drivery Foundry](https:/
 :gutter: 3
 
 ::::{grid-item-card}
-**Amazon Redsfhit**
+**Amazon Redshift**
 ^^^
-Work with Amazon Redsfhit, a data warehouse offered by Amazon. Supports both Provisioned and Serverless offerings.
+Work with Amazon Redshift, a data warehouse offered by Amazon. Supports both Provisioned and Serverless offerings.
 +++
 :::{button-ref} drivers/redshift/index
 :click-parent:

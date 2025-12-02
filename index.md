@@ -34,7 +34,7 @@ To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://
 ::::{grid-item-card}
 **Amazon Redshift**
 ^^^
-Work with Amazon Redshift, a data warehouse offered by Amazon. Supports both Provisioned and Serverless offerings.
+Work with Amazon Redshift, a data warehouse offered by AWS. Supports both Provisioned and Serverless offerings.
 +++
 :::{button-ref} drivers/redshift/index
 :click-parent:

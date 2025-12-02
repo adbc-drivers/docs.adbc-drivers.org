@@ -41,12 +41,3 @@ repos:
         args: [--fix=lf]
         exclude: '\.bat$'
       - id: trailing-whitespace
-
-  # - repo: https://github.com/adbc-drivers/dev
-  #   rev: 8ba235d79417939cf59e94ab85204731f7cbb9ba
-  #   hooks:
-  #     - id: rat
-  - repo: ../dev # or whatever the relative path is
-    rev: HEAD
-    hooks:
-      - id: rat

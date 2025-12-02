@@ -26,7 +26,7 @@ v1.0.0.md
 
 [{badge-primary}`Driver Version|v1.0.0`](#driver-redshift-v1.0.0)
 
-This driver provides access to [Amazon Redshift][redshift] (commonly referred
+This driver provides access to [Amazon Redshfit][redshift] (commonly referred
 to as just "Redshift").
 
 :::{note}

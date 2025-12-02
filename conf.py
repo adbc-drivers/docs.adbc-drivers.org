@@ -60,7 +60,7 @@ html_css_files = ["custom.css"]
 html_logo = "_static/adbc-drivers-logo.png"
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
-html_title = "ADBC Drivers Documentation"
+html_title = "ADBC Driver Foundry Driver Documentation"
 html_theme_options = {
     "features": [
         "content.code.copy",

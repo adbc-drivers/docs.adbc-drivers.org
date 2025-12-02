@@ -26,7 +26,6 @@ v0.1.0.md
 
 [{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0) {badge-success}`Tested With|MySQL 9.4`
 
-
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
 open-source relational database management system.
 
@@ -245,7 +244,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ## Previous Versions
 
-To see documentation for previous versions of this driver, see the following:
+To see documentation for the current and previous versions of this driver, see the following:
 
 - [v0.1.0](./v0.1.0.md)
 

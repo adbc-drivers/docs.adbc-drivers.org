@@ -19,12 +19,32 @@ hide-toc: true
 ```{include} _static/adbc-drivers-logo.svg
 ```
 
+Welcome to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} driver documentation site.
+
+Below you will find documentation for the drivers available from the Foundry, resources for learning how to use them, and more about [ADBC](https://arrow.apache.org/adbc).
+
+To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} website.
+
+## Drivers
+
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
 :gutter: 3
 
 ::::{grid-item-card}
-**Google BigQuery**
+**Amazon Redshift**
+^^^
+Work with Amazon Redshift, a data warehouse offered by AWS. Supports both Provisioned and Serverless offerings.
++++
+:::{button-ref} drivers/redshift/index
+:click-parent:
+Documentation
+:::
+::::
+
+
+::::{grid-item-card}
+**BigQuery**
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
 +++
@@ -102,5 +122,7 @@ Repository
 :maxdepth: 2
 :hidden:
 
+Home <self>
 drivers/index.md
+Back to ADBC Driver Foundry <https://adbc-drivers.org>
 :::

@@ -15,34 +15,55 @@
 {}
 ---
 
-(driver-mysql-v0.1.0)=
-# MySQL Driver v0.1.0
+# Amazon Redshift
 
-[{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0) {badge-success}`Tested With|MySQL 9.4`
+:::{toctree}
+:maxdepth: 1
+:hidden:
 
-This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
-open-source relational database management system.
+v1.0.0.md
+:::
+
+[{badge-primary}`Driver Version|v1.0.0`](#driver-redshift-v1.0.0)
+
+This driver provides access to [Amazon Redshfit][redshift] (commonly referred
+to as just "Redshift").
+
+:::{note}
+This project is not affiliated with Amazon.
+:::
 
 ## Installation
 
-The MySQL driver can be installed with [dbc](https://docs.columnar.tech/dbc):
+The Redshift driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
 ```bash
-dbc install mysql
+dbc install redshift
 ```
 
 ## Connecting
 
-To connect, edit the `uri` option below to match your environment and run the following:
+To connect, edit the `uri`, `redshift.cluster_type`, `redshift.workgroup_name`, and `redshift.db_name` options below to match your environment and run the following:
 
 ```python
 from adbc_driver_manager import dbapi
 
-conn = dbapi.connect(
-  driver="mysql",
-  db_kwargs = {
-    "uri": "root@tcp(localhost:3306)/demo"
-  }
+dbapi.connect(
+    driver="redshift",
+    db_kwargs={
+        "uri": "postgresql://localhost:5439", # for Redshift Serverless with bastion host
+        #"uri": "postgresql://localhost:5440", # for Redshift Provisioned with bastion host
+        #"uri": "postgresql://<cluster hostname>:<cluster port>", # for direct connection
+
+        "redshift.cluster_type": "redshift-serverless", # for Redshift Serverless
+        #"redshift.cluster_type": "redshift-iam", # for Redshift Provisioned with IAM auth
+        #"redshift.cluster_type": "redshift", # for Redshift Provisioned with user/password auth
+
+        "redshift.workgroup_name": "<WORKGROUP_NAME>", # for Redshift Serverless
+        #"redshift.cluster_identifier": "<CLUSTER IDENTIFIER>", # for Redshift Provisioned
+
+        "redshift.db_name": "sample_data_dev",
+    }
 )
 ```
 
@@ -82,11 +103,11 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Specify target catalog</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td>Specify target schema</td>
@@ -94,7 +115,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>❌</td>
+      <td>✅</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
@@ -115,7 +136,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>Get Parameter Schema</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">✅</td>
     </tr>
     <tr>
       <td>Get Table Schema</td>
@@ -127,14 +148,14 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
     </tr>
     <tr>
       <td>Transactions</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">✅</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### MySQL to Arrow
+#### Redshift to Arrow
 
 :::{list-table}
 :header-rows: 1
@@ -146,37 +167,41 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 * - BIGINT
   - int64
 * - BOOLEAN
-  - int64, int8 ⚠️ [^1]
+  - bool
 * - DATE
   - date32[day]
-* - DATETIME
-  - timestamp[us]
 * - DOUBLE PRECISION
   - double
 * - INT
   - int32
+* - INTERVAL DAY TO SECOND
+  - month_day_nano_interval
+* - INTERVAL YEAR TO MONTH
+  - month_day_nano_interval
 * - NUMERIC
-  - decimal64(10, 2)
+  - decimal128
 * - REAL
-  - ❌
+  - float
 * - SMALLINT
   - int16
 * - TIME
   - time64[us]
 * - TIMESTAMP
   - timestamp[us]
+* - TIMESTAMP WITH TIME ZONE
+  - timestamp[us, tz=UTC]
 * - VARBINARY
   - binary
 * - VARCHAR
   - string
 :::
 
-#### Arrow to MySQL
+#### Arrow to Redshift
 
 <table class="docutils data align-default" style="width: 100%;">
   <tr>
     <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
-    <th colspan="2" style="text-align: center;">MySQL Type</th>
+    <th colspan="2" style="text-align: center;">Redshift Type</th>
   </tr>
   <tr>
     <th style="text-align: center;">Bind</th>
@@ -184,7 +209,13 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   </tr>
   <tr>
     <td>binary</td>
-    <td colspan="2" style="text-align: center;">VARBINARY</td>
+<td style="text-align: center;">
+
+⚠️
+[^2]
+
+</td>
+    <td style="text-align: center;">VARBINARY</td>
   </tr>
   <tr>
     <td>bool</td>
@@ -196,7 +227,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   </tr>
   <tr>
     <td>decimal128</td>
-    <td colspan="2" style="text-align: center;">DECIMAL</td>
+    <td colspan="2" style="text-align: center;">NUMERIC</td>
   </tr>
   <tr>
     <td>double</td>
@@ -204,7 +235,13 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   </tr>
   <tr>
     <td>float</td>
-    <td colspan="2" style="text-align: center;">❌</td>
+<td style="text-align: center;">
+
+REAL ⚠️
+[^1]
+
+</td>
+    <td style="text-align: center;">REAL</td>
   </tr>
   <tr>
     <td>int16</td>
@@ -224,7 +261,13 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   </tr>
   <tr>
     <td>time64[us]</td>
-    <td colspan="2" style="text-align: center;">TIME</td>
+    <td style="text-align: center;">TIME</td>
+    <td style="text-align: center;">
+
+❌
+[^3]
+
+</td>
   </tr>
   <tr>
     <td>timestamp[us, tz=UTC]</td>
@@ -232,10 +275,21 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   </tr>
   <tr>
     <td>timestamp[us]</td>
-    <td colspan="2" style="text-align: center;">DATETIME</td>
+    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
   </tr>
 </table>
 
-[^1]: Return type is inconsistent depending on how the query was written
 
-[mysql]: https://www.mysql.com/
+## Previous Versions
+
+To see documentation for the current and previous versions of this driver, see the following:
+
+- [v1.0.0](./v1.0.0.md)
+
+[^1]: precision is limited
+
+[^2]: null bytes in bind parameters will instead end the value (e.g. [A, 0x00, B] will instead get inserted as [A])
+
+[^3]: Redshift raises an ASSERT
+
+[redshift]: https://aws.amazon.com/redshift/

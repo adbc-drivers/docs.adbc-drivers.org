@@ -62,7 +62,7 @@ conn = dbapi.connect(
   driver="bigquery",
   db_kwargs={
       "adbc.bigquery.sql.project_id": "my-gcp-project",
-      "adbc.bigquery.sql.dataset_id": "my-gcp-datase"
+      "adbc.bigquery.sql.dataset_id": "my-gcp-dataset"
   }
 )
 ```
@@ -272,7 +272,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 </table>
 
 <!-- Temporary workaround to make this footnote work. MyST doesn't support
-footenotes in HTML tables and also doesn't support Attributes
+footnotes in HTML tables and also doesn't support Attributes
 (https://myst-parser.readthedocs.io/en/latest/syntax/optional.html#attributes)
 for footnotes but apparently it supports footnotes in raw HTML as long as it's
 not a table.
@@ -281,7 +281,7 @@ not a table.
 
 ## Previous Versions
 
-To see documentation for previous versions of this driver, see the following:
+To see documentation for the current and previous versions of this driver, see the following:
 
 - [v1.0.0](./v1.0.0.md)
 

@@ -131,6 +131,7 @@ ogp_social_cards = {
 # Custom shields.io style badges. See custom.css for corresponding css.
 custom_badge_variants = ["primary", "secondary", "success", "warning", "danger", "info"]
 
+
 def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """
     Custom badge role that creates shields.io-style badges with one or two
@@ -166,14 +167,14 @@ def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     value = escape(value)
 
     if label:
-        html = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f"""<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-label">{label}</span>
             <span class="custom-badge-value">{value}</span>
-        </span>'''
+        </span>"""
     else:
-        html = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f"""<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-value">{value}</span>
-        </span>'''
+        </span>"""
 
     node = nodes.raw("", html, format="html")
     return [node], []

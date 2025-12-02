@@ -16,6 +16,8 @@ hide-navigation: true
 hide-toc: true
 ---
 
+# ADBC Driver Foundry Driver Documentation
+
 ```{include} _static/adbc-drivers-logo.svg
 ```
 

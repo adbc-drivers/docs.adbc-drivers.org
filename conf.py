@@ -23,7 +23,7 @@ from sphinx.writers.html import HTMLTranslator
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "docs.adbc-drivers.org"
+project = "ADBC Driver Foundry Driver Documentation"
 copyright = "2025 ADBC Drivers Contributors"
 author = "ADBC Drivers Contributors"
 
@@ -120,7 +120,7 @@ myst_enable_extensions = ["attrs_block", "attrs_inline", "colon_fence", "linkify
 
 ogp_description_length = 400
 ogp_site_url = "https://docs.adbc-drivers.org"
-ogp_site_name = "ADBC Drivers Documentation"
+ogp_site_name = "ADBC Driver Foundry Driver Documentation"
 ogp_social_cards = {
     "image": "_static/opengraph-logo.png",
     "line_color": "#434343",

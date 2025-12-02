@@ -48,3 +48,19 @@ When writing the pull request description:
 
 - Make sure the bottom of the description has `Closes #NNN`, `Fixes #NNN`, or
   similar, so that the issue will be linked to your pull request.
+
+## Setting up a Developer Environment
+
+We use [Pixi](https://pixi.sh) for managing the development process. See [Pixi Installation](https://pixi.sh/latest/installation/) for information on how to install Pixi.
+
+Once Pixi is installed, run:
+
+```sh
+pixi run
+```
+
+to see the available tasks.
+
+## Code of Conduct
+
+Contributors are expected to follow our [Code of Conduct](https://github.com/adbc-drivers/docs.adbc-drivers.org?tab=coc-ov-file).

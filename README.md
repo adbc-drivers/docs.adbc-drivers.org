@@ -35,3 +35,7 @@ Then visit <http://localhost:8000>.
 
 Note that the theme used does not always work well with incremental builds.
 You may need to remove `_build` and start again, especially when changing theme options.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on how to contribute.

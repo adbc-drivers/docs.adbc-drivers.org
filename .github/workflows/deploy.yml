@@ -17,9 +17,6 @@ name: Deploy Website
 on:
   push:
     branches: ["main"]
-  pull_request:
-    branches: ["main"]
-  workflow_dispatch:
 
 concurrency:
   group: "pages"

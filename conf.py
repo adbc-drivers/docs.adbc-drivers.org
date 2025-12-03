@@ -49,7 +49,7 @@ exclude_patterns = [
     ".git",
     "generated",
     "README.md",
-    "CONTRIBUTING.md"
+    "CONTRIBUTING.md",
 ]
 suppress_warnings = ["myst.header"]
 

@@ -58,6 +58,7 @@ suppress_warnings = ["myst.header"]
 
 html_css_files = ["custom.css"]
 html_logo = "_static/adbc-drivers-logo.png"
+html_favicon = "_static/favicon.ico"
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
 html_title = "ADBC Driver Foundry Documentation"

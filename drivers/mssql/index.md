@@ -184,7 +184,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - string
 :::
 
-#### Arrow to Microsoft SQL Server
+#### Arrow to SQL Server
 
 <table class="docutils data align-default" style="width: 100%;">
   <tr>

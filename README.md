@@ -1,6 +1,22 @@
-# docs.adbc-drivers.org
+<!--
+  Copyright (c) 2025 ADBC Drivers Contributors
 
-Source code for the [ADBC Driver Foundry](https://adbc-drivers.org) Driver Documentation [website](https://docs.adbc-drivers.org).
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+
+# ADBC Driver Foundry Documentation
+
+Source code for the [ADBC Driver Foundry](https://adbc-drivers.org) driver documentation [website](https://docs.adbc-drivers.org).
 This project uses [Sphinx](https://sphinx-doc.org) and can be built with [Pixi](https://pixi.sh).
 
 ## Building
@@ -35,3 +51,7 @@ Then visit <http://localhost:8000>.
 
 Note that the theme used does not always work well with incremental builds.
 You may need to remove `_build` and start again, especially when changing theme options.
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for information on how to contribute.

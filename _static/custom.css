@@ -71,6 +71,14 @@
     overflow-x: auto;
 }
 
+/* Let the site title wrap in the drawer. Otherwise our long site title
+   truncates.
+*/
+[for=__drawer].md-nav__title {
+    text-wrap: inherit;
+    line-height: inherit;
+}
+
 /***********************************************************************
  Custom shields.io style badges. See conf.py. sphinx-design badges are too
  simple and this lets us customize our badges exactly as we need.
@@ -196,4 +204,31 @@
 [data-md-color-scheme="slate"] .custom-badge-info .custom-badge-value {
     background-color: #bdbdbd47;
     color: #edededa0;
+}
+
+/*
+  Hack because I couldn't figure out how to override og-title on the index page.
+
+  We want the header logo to be at the top and we don't want an actual, visible
+  <h1> with the site title.
+
+  The first thing I tried was eval-rst with the documented sphinx-opengraph
+  override for :og:title: but it doesn't work at all and the content gets
+  rendered literally and not processed. The second thing I tried was to add a
+  top level heading but hide it with CSS but sphinx-opengraph includes the class
+  in the result.
+
+  So this is slightly more complicated than that. Apparently Sphinx turns the
+  top level header into an id so as long as on other page has the exact same title this should work.
+
+  From: https://www.tpgi.com/the-anatomy-of-visually-hidden/
+*/
+#adbc-driver-foundry-driver-documentation>h1 {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
 }

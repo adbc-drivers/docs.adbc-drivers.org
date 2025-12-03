@@ -23,7 +23,7 @@ from sphinx.writers.html import HTMLTranslator
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "docs.adbc-drivers.org"
+project = "ADBC Driver Foundry Documentation"
 copyright = "2025 ADBC Drivers Contributors"
 author = "ADBC Drivers Contributors"
 
@@ -49,6 +49,7 @@ exclude_patterns = [
     ".git",
     "generated",
     "README.md",
+    "CONTRIBUTING.md"
 ]
 suppress_warnings = ["myst.header"]
 
@@ -59,7 +60,7 @@ html_css_files = ["custom.css"]
 html_logo = "_static/adbc-drivers-logo.png"
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
-html_title = "ADBC Drivers Documentation"
+html_title = "ADBC Driver Foundry Documentation"
 html_theme_options = {
     "features": [
         "content.code.copy",
@@ -120,7 +121,7 @@ myst_enable_extensions = ["attrs_block", "attrs_inline", "colon_fence", "linkify
 
 ogp_description_length = 400
 ogp_site_url = "https://docs.adbc-drivers.org"
-ogp_site_name = "ADBC Drivers Documentation"
+ogp_site_name = "ADBC Driver Foundry Documentation"
 ogp_social_cards = {
     "image": "_static/opengraph-logo.png",
     "line_color": "#434343",
@@ -130,6 +131,7 @@ ogp_social_cards = {
 
 # Custom shields.io style badges. See custom.css for corresponding css.
 custom_badge_variants = ["primary", "secondary", "success", "warning", "danger", "info"]
+
 
 def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     """
@@ -166,14 +168,14 @@ def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):
     value = escape(value)
 
     if label:
-        html = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f"""<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-label">{label}</span>
             <span class="custom-badge-value">{value}</span>
-        </span>'''
+        </span>"""
     else:
-        html = f'''<span class="custom-badge custom-badge-{variant}">
+        html = f"""<span class="custom-badge custom-badge-{variant}">
             <span class="custom-badge-value">{value}</span>
-        </span>'''
+        </span>"""
 
     node = nodes.raw("", html, format="html")
     return [node], []

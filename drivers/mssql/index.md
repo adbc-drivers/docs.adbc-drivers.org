@@ -12,7 +12,7 @@
 v1.0.0.md
 :::
 
-[{badge-primary}`Driver Version|v1.0.0`](#driver-mssql-v1.0.0) {badge-success}`Tested With|Microsoft SQL Server 2022`
+[{badge-primary}`Driver Version|v1.0.0`](#driver-mssql-v1.0.0) {badge-success}`Tested With|SQL Server 2022`
 
 This driver provides access to [Microsoft SQL Server][mssql].
 

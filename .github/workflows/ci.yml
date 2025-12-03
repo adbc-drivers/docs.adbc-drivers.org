@@ -45,6 +45,9 @@ jobs:
           cache: true
           pixi-version: v0.50.2
 
+      - name: Install pre-commit
+        run: pip install pre-commit
+
       - name: pre-commit (cache)
         uses: actions/cache@v4
         with:

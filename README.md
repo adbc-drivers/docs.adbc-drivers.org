@@ -14,9 +14,9 @@
   limitations under the License.
 -->
 
-# ADBC Driver Foundry Driver Documentation
+# ADBC Driver Foundry Documentation
 
-Source code for the [ADBC Driver Foundry](https://adbc-drivers.org) Driver Documentation [website](https://docs.adbc-drivers.org).
+Source code for the [ADBC Driver Foundry](https://adbc-drivers.org) driver documentation [website](https://docs.adbc-drivers.org).
 This project uses [Sphinx](https://sphinx-doc.org) and can be built with [Pixi](https://pixi.sh).
 
 ## Building

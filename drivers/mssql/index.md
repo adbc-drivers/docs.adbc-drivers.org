@@ -298,4 +298,4 @@ To see documentation for the current and previous versions of this driver, see t
 
 [^3]: ingested as TIME(7), so full nanosecond precision is unavailable
 
-[mssql]: https://www.microsoft.com/en-us/sql-server
+[mssql]: https://www.microsoft.com/sql-server

@@ -131,7 +131,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ### Types
 
-#### Microsoft SQL Server to Arrow
+#### SQL Server to Arrow
 
 :::{list-table}
 :header-rows: 1

@@ -71,6 +71,14 @@
     overflow-x: auto;
 }
 
+/* Let the site title wrap in the drawer. Otherwise our long site title
+   truncates.
+*/
+[for=__drawer].md-nav__title {
+    text-wrap: inherit;
+    line-height: inherit;
+}
+
 /***********************************************************************
  Custom shields.io style badges. See conf.py. sphinx-design badges are too
  simple and this lets us customize our badges exactly as we need.

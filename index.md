@@ -57,6 +57,17 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+**Microsoft SQL Server**
+^^^
+Work with Microsoft SQL Server, a relational database system offered by Microsoft.
++++
+:::{button-ref} drivers/mssql/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 **MySQL**
 ^^^
 Work with MySQL, a free and open source relational database management system.

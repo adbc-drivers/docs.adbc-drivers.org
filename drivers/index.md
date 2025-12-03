@@ -28,6 +28,7 @@ See the individual driver pages for information on each driver:
 
 redshift/index.md
 bigquery/index.md
+mssql/index.md
 mysql/index.md
 trino/index.md
 :::

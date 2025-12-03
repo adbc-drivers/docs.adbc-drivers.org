@@ -12,59 +12,84 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Deploy Website
+name: CI
 
 on:
-  push:
-    branches: ["main"]
   pull_request:
-    branches: ["main"]
-  workflow_dispatch:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
 
 concurrency:
-  group: "pages"
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  dev:
+  check:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - uses: actions/checkout@v6
+
       - uses: prefix-dev/setup-pixi@82d477f15f3a381dbcc8adc1206ce643fe110fb7 # v0.9.3
         with:
           cache: true
           pixi-version: v0.50.2
+
       - name: pre-commit (cache)
         uses: actions/cache@v4
         with:
           path: ~/.cache/pre-commit
           key: pre-commit-${{ hashFiles('.pre-commit-config.yaml') }}
+
       - name: pre-commit
         run: |
-          pixi run pre-commit
+          pre-commit run --all-files --color=always --show-diff-on-failure --verbose
+
+      - name: Check PR title format
+        if: github.event_name == 'pull_request'
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+        run: |
+          git clone --depth 1 https://github.com/adbc-drivers/dev
+          python dev/adbc_drivers_dev/title_check.py $(pwd) "$PR_TITLE"
+
       - name: pixi lock
         run: |
           pixi lock --check
 
   build:
     runs-on: ubuntu-latest
+    needs: check
     steps:
       - uses: actions/checkout@v6
+
       - uses: prefix-dev/setup-pixi@82d477f15f3a381dbcc8adc1206ce643fe110fb7 # v0.9.3
         with:
           cache: true
           pixi-version: v0.50.2
+
       - name: Build site
         run: |
           pixi run build
+
       - name: Upload built site as artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v4
         with:
           path: ./_build
 
   deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -74,7 +99,9 @@ jobs:
       actions: read
       pages: write
       id-token: write
-    if: github.event_name != 'pull_request'
+    concurrency:
+      group: "pages"
+      cancel-in-progress: true
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

@@ -189,7 +189,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 <table class="docutils data align-default" style="width: 100%;">
   <tr>
     <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
-    <th colspan="2" style="text-align: center;">Microsoft SQL Server Type</th>
+    <th colspan="2" style="text-align: center;">SQL Server Type</th>
   </tr>
   <tr>
     <th style="text-align: center;">Bind</th>

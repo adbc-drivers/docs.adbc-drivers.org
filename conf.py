@@ -31,7 +31,7 @@ author = "ADBC Drivers Contributors"
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    "myst_parser",
+    'myst_parser',
     "sphinx_design",
     "sphinx_immaterial",
     "sphinx.ext.intersphinx",

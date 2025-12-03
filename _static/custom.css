@@ -223,7 +223,7 @@
 
   From: https://www.tpgi.com/the-anatomy-of-visually-hidden/
 */
-#adbc-driver-foundry-driver-documentation>h1 {
+#adbc-driver-foundry-documentation>h1 {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;

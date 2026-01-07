@@ -30,5 +30,6 @@ redshift/index.md
 bigquery/index.md
 mssql/index.md
 mysql/index.md
+snowflake/index.md
 trino/index.md
 :::

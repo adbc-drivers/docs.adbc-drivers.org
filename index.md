@@ -79,6 +79,17 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+**Snowflake**
+^^^
+Work with Snowflake, a cloud data warehouse.
++++
+:::{button-ref} drivers/snowflake/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 **Trino**
 ^^^
 Work with Trino, a distributed SQL query engine.

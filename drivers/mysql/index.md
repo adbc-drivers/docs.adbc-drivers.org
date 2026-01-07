@@ -21,10 +21,11 @@
 :maxdepth: 1
 :hidden:
 
+v0.2.0.md
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.0`](#driver-mysql-v0.1.0) {badge-success}`Tested With|MySQL 9.4`
+[{badge-primary}`Driver Version|v0.2.0`](#driver-mysql-v0.2.0 "Permalink") {badge-success}`Tested With|MySQL 9.4`
 
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
 open-source relational database management system.
@@ -53,6 +54,41 @@ conn = dbapi.connect(
 ```
 
 Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
+
+### Connection String Format
+
+Connection strings are passed with the `uri` option which uses the following format:
+
+```text
+mysql://[user[:[password]]@]host[:port][/schema][?attribute1=value1&attribute2=value2...]
+```
+
+Examples:
+
+- `mysql://localhost/mydb`
+- `mysql://user:pass@localhost:3306/mydb`
+- `mysql://user:pass@host/db?charset=utf8mb4&timeout=30s`
+- `mysql://user@(/path/to/socket.sock)/db` (Unix domain socket)
+- `mysql://user@localhost/mydb` (no password)
+
+This follows MySQL's official [URI-like connection string format](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connecting-using-uri). Also see [MySQL Connection Parameters](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connection-parameters-base) for the complete specification.
+
+Components:
+- `scheme`: `mysql://` (required)
+- `user`: Optional (for authentication)
+- `password`: Optional (for authentication, requires user)
+- `host`: Required (must be explicitly specified)
+- `port`: Optional (defaults to 3306)
+- `schema`: Optional (can be empty, MySQL database name)
+- Query params: MySQL connection attributes
+
+:::{note}
+Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
+:::
+
+When connecting via Unix domain sockets, use the parentheses syntax to wrap the socket path: `(/path/to/socket.sock)`.
+
+The driver also supports the MySQL DSN format (see [Go MySQL Driver documentation](https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name)), but standard URIs are recommended.
 
 ## Feature & Type Support
 
@@ -147,10 +183,12 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 :width: 100%
 :widths: 1 3
 
-* - SQL Type
+* - MySQL Type
   - Arrow Type
 * - BIGINT
   - int64
+* - BIT
+  - binary
 * - BOOLEAN
   - int64, int8 ⚠️ [^1]
 * - DATE
@@ -161,8 +199,10 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   - double
 * - INT
   - int32
+* - JSON
+  - extension&lt;arrow.json&gt;
 * - NUMERIC
-  - decimal64(10, 2)
+  - decimal64
 * - REAL
   - ❌
 * - SMALLINT
@@ -170,7 +210,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 * - TIME
   - time64[us]
 * - TIMESTAMP
-  - timestamp[us]
+  - timestamp[us], timestamp[us] (with time zone) ⚠️ [^1]
 * - VARBINARY
   - binary
 * - VARCHAR
@@ -181,70 +221,321 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 <table class="docutils data align-default" style="width: 100%;">
   <tr>
-    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrrow Type</th>
     <th colspan="2" style="text-align: center;">MySQL Type</th>
   </tr>
   <tr>
     <th style="text-align: center;">Bind</th>
     <th style="text-align: center;">Ingest</th>
   </tr>
-  <tr>
-    <td>binary</td>
-    <td colspan="2" style="text-align: center;">VARBINARY</td>
-  </tr>
-  <tr>
-    <td>bool</td>
-    <td colspan="2" style="text-align: center;">BOOLEAN</td>
-  </tr>
-  <tr>
-    <td>date32[day]</td>
-    <td colspan="2" style="text-align: center;">DATE</td>
-  </tr>
-  <tr>
-    <td>decimal128</td>
-    <td colspan="2" style="text-align: center;">DECIMAL</td>
-  </tr>
-  <tr>
-    <td>double</td>
-    <td colspan="2" style="text-align: center;">DOUBLE PRECISION</td>
-  </tr>
-  <tr>
-    <td>float</td>
-    <td colspan="2" style="text-align: center;">❌</td>
-  </tr>
-  <tr>
-    <td>int16</td>
-    <td colspan="2" style="text-align: center;">SMALLINT</td>
-  </tr>
-  <tr>
-    <td>int32</td>
-    <td colspan="2" style="text-align: center;">INT</td>
-  </tr>
-  <tr>
-    <td>int64</td>
-    <td colspan="2" style="text-align: center;">BIGINT</td>
-  </tr>
-  <tr>
-    <td>string</td>
-    <td colspan="2" style="text-align: center;">VARCHAR</td>
-  </tr>
-  <tr>
-    <td>time64[us]</td>
-    <td colspan="2" style="text-align: center;">TIME</td>
-  </tr>
-  <tr>
-    <td>timestamp[us, tz=UTC]</td>
-    <td colspan="2" style="text-align: center;">TIMESTAMP</td>
-  </tr>
-  <tr>
-    <td>timestamp[us]</td>
-    <td colspan="2" style="text-align: center;">DATETIME</td>
-  </tr>
+<tr>
+  <td>binary</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARBINARY
+
+</td>
+
+</tr>
+<tr>
+  <td>binary_view</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARBINARY
+
+</td>
+
+</tr>
+<tr>
+  <td>bool</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+BOOLEAN
+
+</td>
+
+</tr>
+<tr>
+  <td>date32[day]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DATE
+
+</td>
+
+</tr>
+<tr>
+  <td>decimal128</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DECIMAL
+
+</td>
+
+</tr>
+<tr>
+  <td>double</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DOUBLE PRECISION
+
+</td>
+
+</tr>
+<tr>
+  <td>fixed_size_binary</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARBINARY
+
+</td>
+
+</tr>
+<tr>
+  <td>float</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+
+</tr>
+<tr>
+  <td>int16</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+SMALLINT
+
+</td>
+
+</tr>
+<tr>
+  <td>int32</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+INT
+
+</td>
+
+</tr>
+<tr>
+  <td>int64</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+BIGINT
+
+</td>
+
+</tr>
+<tr>
+  <td>large_binary</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARBINARY
+
+</td>
+
+</tr>
+<tr>
+  <td>large_string</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARCHAR
+
+</td>
+
+</tr>
+<tr>
+  <td>string</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARCHAR
+
+</td>
+
+</tr>
+<tr>
+  <td>string_view</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+VARCHAR
+
+</td>
+
+</tr>
+<tr>
+  <td>time32[ms]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIME
+
+</td>
+
+</tr>
+<tr>
+  <td>time32[s]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIME
+
+</td>
+
+</tr>
+<tr>
+  <td>time64[ns]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIME
+
+</td>
+
+</tr>
+<tr>
+  <td>time64[us]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIME
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[ms]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DATETIME
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[ms] (with time zone)</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIMESTAMP
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[ns]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DATETIME
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[ns] (with time zone)</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIMESTAMP
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[s]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DATETIME
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[s] (with time zone)</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIMESTAMP
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[us]</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+DATETIME
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[us] (with time zone)</td>
+
+
+<td colspan="2" style="text-align: center;">
+
+TIMESTAMP
+
+</td>
+
+</tr>
 </table>
+
+## Compatibility
+
+This driver was tested on the following versions of MySQL:
+
+- 9.4.0 (MySQL Community Server - GPL)
 
 ## Previous Versions
 
-To see documentation for the current and previous versions of this driver, see the following:
+To see documentation for previous versions of this driver, see the following:
 
 - [v0.1.0](./v0.1.0.md)
 

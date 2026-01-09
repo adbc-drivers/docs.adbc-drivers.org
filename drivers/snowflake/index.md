@@ -15,69 +15,83 @@
 {}
 ---
 
-# Microsoft SQL Server
+# Snowflake
 
 :::{toctree}
 :maxdepth: 1
 :hidden:
 
-v1.1.0.md
-v1.0.0.md
+v1.10.0.md
 :::
 
-:::{note}
-This project is not associated with Microsoft.
-:::
+[{badge-primary}`Driver Version|v1.10.0`](#driver-snowflake-v1.10.0 "Permalink") {badge-success}`Tested With|Snowflake 9`
 
-[{badge-primary}`Driver Version|v1.1.0`](#driver-mssql-v1.1.0 "Permalink") {badge-success}`Tested With|Microsoft SQL Server 2022`
-
-This driver provides access to [Microsoft SQL Server][mssql].
+This driver provides access to [Snowflake][snowflake], a cloud-based data warehouse platform.
 
 ## Installation & Quickstart
 
 The driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
 ```bash
-dbc install mssql
+dbc install snowflake
 ```
+
+## Pre-requisites
+
+Using the Snowflake driver requires a Snowflake account and authentication. See [Getting Started With Snowflake](https://docs.snowflake.com/en/user-guide-getting-started) for instructions.
 
 ## Connecting
 
-To use the driver, provide a SQL Server connection string as the `uri` option. The driver supports URI format and DSN-style connection strings, but URIs are recommended.
+To connect, replace the Snowflake options below with the appropriate values for your situation and run the following:
 
 ```python
 from adbc_driver_manager import dbapi
 
-dbapi.connect(
-  driver="mssql",
-  db_kwargs={
-      "uri": "mssql://sa:password@localhost:1433"
-  }
+conn = dbapi.connect(
+    driver="snowflake",
+    db_kwargs={
+        "username": "USER",
+
+        ### for username/password authentication: ###
+        "adbc.snowflake.sql.auth_type": "auth_snowflake",
+        "password": "PASS",
+
+        ### for JWT authentication: ###
+        #"adbc.snowflake.sql.auth_type": "auth_jwt",
+        #"adbc.snowflake.sql.client_option.jwt_private_key": "/path/to/rsa_key.p8",
+
+        "adbc.snowflake.sql.account": "ACCOUNT-IDENT",
+        "adbc.snowflake.sql.db": "SNOWFLAKE_SAMPLE_DATA",
+        "adbc.snowflake.sql.schema": "TPCH_SF1",
+        "adbc.snowflake.sql.warehouse": "MY_WAREHOUSE",
+        "adbc.snowflake.sql.role": "MY_ROLE"
+    }
 )
 ```
 
 Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.  See [adbc-quickstarts](https://github.com/columnar-tech/adbc-quickstarts).
 
+The driver supports connecting with individual options or connection strings.
+
 ### Connection String Format
 
-SQL Server URI syntax:
+Snowflake URI syntax:
 
 ```
-mssql://[user:[password]]@host[:port][/instance][?param1=value&param2=value]
-
-sqlserver://[user:[password]]@host[:port][/instance][?param1=value&param2=value]
+snowflake://user[:password]@host[:port]/database[/schema][?param1=value1&param2=value2]
 ```
 
-This follows the format of [Microsoft's official Go MSSQL driver](https://github.com/microsoft/go-mssqldb/tree/main?tab=readme-ov-file#the-connection-string-can-be-specified-in-one-of-three-formats).
+This follows the [Go Snowflake Driver Connection String](https://pkg.go.dev/github.com/snowflakedb/gosnowflake#hdr-Connection_String) format with the addition of the `snowflake://` scheme.
 
 Components:
 
-- `scheme`: `mssql://` or `sqlserver://` (required) - both schemes are supported
-- `user/password`: (optional) Credentials for standard SQL Server authentication.
-- `host`: (required) The hostname or IP address of the SQL Server machine.
-- `port`: (optional) Defaults to 1433.
-- `instance`: (optional) The name of the SQL Server instance (e.g., SQLExpress).
-- `Query Parameters`: Additional configuration options. For a list of common parameters, see the [Microsoft's official Go MSSQL driver](https://github.com/microsoft/go-mssqldb?tab=readme-ov-file#common-parameters)
+- `scheme`: `snowflake://` (required)
+- `user/password`: (optional) For username/password authentication
+- `host`: (required) The Snowflake account identifier string (e.g., myorg-account1) OR the full hostname (e.g., private.network.com). If a full hostname is used, the actual Snowflake account identifier must be provided separately via the account query parameter (see example 3).
+- `port`: The port is optional and defaults to 443.
+- `database`: Database name (required)
+- `schema`: Schema name (optional)
+- `Query Parameters`: Additional configuration options. For a complete list of parameters, see the [Go Snowflake Driver Connection Parameters](https://pkg.go.dev/github.com/snowflakedb/gosnowflake#hdr-Connection_Parameters)
 
 :::{note}
 Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`.
@@ -85,14 +99,9 @@ Reserved characters in URI elements must be URI-encoded. For example, `@` become
 
 Examples:
 
-- `mssql://username:mypass@localhost?database=master&connection+timeout=30`
-- `mssql://username:mypass@localhost:1234?database=master&connection+timeout=30`
-- `mssql://username@localhost/SQLExpress?database=master&connection+timeout=30`
-- `sqlserver://sa@localhost/SQLExpress?database=master&connection+timeout=30`
-- `sqlserver://sa:mypass@localhost?database=master&connection+timeout=30`
-- `sqlserver://sa:mypass@localhost:1234?database=master&connection+timeout=30`
-
-This driver also supports other types of connection strings that are supported by [Microsoft's official Go MSSQL driver](https://github.com/microsoft/go-mssqldb/tree/main?tab=readme-ov-file#the-connection-string-can-be-specified-in-one-of-three-formats).
+- `snowflake://jane.doe:MyS3cr3t!@myorg-account1/ANALYTICS_DB/SALES_DATA?warehouse=WH_XL&role=ANALYST`
+- `snowflake://service_user@myorg-account2/RAW_DATA_LAKE?authenticator=oauth&application=ADBC_APP`
+- `snowflake://sys_admin@private.network.com:443/OPS_MONITOR/DBA?account=vpc-id-1234&insecureMode=true&client_session_keep_alive=true` (Uses full hostname, requires explicit account parameter)
 
 ## Feature & Type Support
 
@@ -128,19 +137,19 @@ This driver also supports other types of connection strings that are supported b
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td>Specify target catalog</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td>Specify target schema</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>✅</td>
+      <td>❌</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
@@ -161,7 +170,7 @@ This driver also supports other types of connection strings that are supported b
     </tr>
     <tr>
       <td>Get Parameter Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">❌</td>
     </tr>
     <tr>
       <td>Get Table Schema</td>
@@ -178,107 +187,51 @@ This driver also supports other types of connection strings that are supported b
   </tbody>
 </table>
 
-
-<table class="docutils data align-default" style="width: 100%">
-  <colgroup>
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 10%;">
-    <col span="1" style="width: 40%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Name</th>
-      <th>Support</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3">Configuration</td>
-      <td>Connect with URI</td>
-      <td>✅</td>
-      <td>Test MSSQL URI without explicit port.</td>
-    </tr>
-    <tr>
-      <td>Connect with mssql:// URI</td>
-      <td>✅</td>
-      <td>Test end-to-end connection with mssql:// scheme.</td>
-    </tr>
-    <tr>
-      <td>Connect with sqlserver:// URI</td>
-      <td>✅</td>
-      <td>Test end-to-end connection with sqlserver:// scheme.</td>
-    </tr>
-  </tbody>
-</table>
-
 ### Types
 
-#### Microsoft SQL Server to Arrow
+#### Snowflake to Arrow
 
 :::{list-table}
 :header-rows: 1
 :width: 100%
 :widths: 1 3
 
-* - Microsoft SQL Server Type
+* - Snowflake Type
   - Arrow Type
 * - BIGINT
   - int64
-* - BIT
+* - BOOLEAN
   - bool
-* - CHAR
-  - string
 * - DATE
   - date32[day]
-* - DATETIME
-  - timestamp[us] (with time zone)
-* - DATETIME2
-  - timestamp[us] (with time zone)
 * - DOUBLE PRECISION
   - double
 * - INT
-  - int32
-* - NCHAR
-  - string
+  - int64
 * - NUMERIC
-  - decimal128
+  - double
 * - REAL
-  - float
+  - double
 * - SMALLINT
-  - int16
+  - int64
 * - TIME
-  - time64[ns] ⚠️ [^1]
-* - TIME(0)
-  - time32[s]
-* - TIME(1)
-  - time32[ms]
-* - TIME(2)
-  - time32[ms]
-* - TIME(3)
-  - time32[ms]
-* - TIME(4)
-  - time64[us]
-* - TIME(5)
-  - time64[us]
-* - TIME(6)
-  - time64[us]
-* - TIME(7)
   - time64[ns]
+* - TIMESTAMP
+  - timestamp[us]
+* - TIMESTAMP WITH TIME ZONE
+  - timestamp[us] (with time zone)
 * - VARBINARY
   - binary
 * - VARCHAR
   - string
 :::
 
-#### Arrow to Microsoft SQL Server
+#### Arrow to Snowflake
 
 <table class="docutils data align-default" style="width: 100%;">
   <tr>
     <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrrow Type</th>
-    <th colspan="2" style="text-align: center;">Microsoft SQL Server Type</th>
+    <th colspan="2" style="text-align: center;">Snowflake Type</th>
   </tr>
   <tr>
     <th style="text-align: center;">Bind</th>
@@ -288,26 +241,23 @@ This driver also supports other types of connection strings that are supported b
   <td>binary</td>
 <td style="text-align: center;">
 
-VARBINARY
+❌
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY(MAX)
+BINARY
 
 </td>
 
 </tr>
 <tr>
   <td>binary_view</td>
-<td style="text-align: center;">
 
-VARBINARY
 
-</td>
-<td style="text-align: center;">
+<td colspan="2" style="text-align: center;">
 
-VARBINARY(MAX)
+❌
 
 </td>
 
@@ -318,16 +268,19 @@ VARBINARY(MAX)
 
 <td colspan="2" style="text-align: center;">
 
-BIT
+BOOLEAN
 
 </td>
 
 </tr>
 <tr>
   <td>date32[day]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATE
 
@@ -336,11 +289,14 @@ DATE
 </tr>
 <tr>
   <td>decimal128</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-NUMERIC
+(not tested)
 
 </td>
 
@@ -360,23 +316,26 @@ DOUBLE PRECISION
   <td>fixed_size_binary</td>
 <td style="text-align: center;">
 
-VARBINARY
+❌
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY(MAX)
+BINARY(n)
 
 </td>
 
 </tr>
 <tr>
   <td>float</td>
+<td style="text-align: center;">
 
+REAL ⚠️ [^1]
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-REAL
+(not tested)
 
 </td>
 
@@ -385,7 +344,7 @@ REAL
   <td>halffloat</td>
 <td style="text-align: center;">
 
-REAL
+REAL ⚠️ [^1]
 
 </td>
 <td style="text-align: center;">
@@ -397,22 +356,28 @@ REAL
 </tr>
 <tr>
   <td>int16</td>
-
-
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
 
 SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+(not tested)
 
 </td>
 
 </tr>
 <tr>
   <td>int32</td>
-
-
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
 
 INT
+
+</td>
+<td style="text-align: center;">
+
+(not tested)
 
 </td>
 
@@ -432,12 +397,12 @@ BIGINT
   <td>large_binary</td>
 <td style="text-align: center;">
 
-VARBINARY
+❌
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY(MAX)
+BINARY
 
 </td>
 
@@ -446,12 +411,12 @@ VARBINARY(MAX)
   <td>large_string</td>
 <td style="text-align: center;">
 
-NVARCHAR
+VARCHAR ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
 
-NTEXT
+STRING
 
 </td>
 
@@ -460,12 +425,12 @@ NTEXT
   <td>string</td>
 <td style="text-align: center;">
 
-NVARCHAR
+VARCHAR ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
 
-NTEXT
+STRING
 
 </td>
 
@@ -474,12 +439,12 @@ NTEXT
   <td>string_view</td>
 <td style="text-align: center;">
 
-NVARCHAR
+VARCHAR ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
 
-NTEXT
+❌
 
 </td>
 
@@ -488,12 +453,12 @@ NTEXT
   <td>time32[ms]</td>
 <td style="text-align: center;">
 
-TIME(3)
+❌
 
 </td>
 <td style="text-align: center;">
 
-TIME(7) ⚠️ [^3]
+TIME(3)
 
 </td>
 
@@ -502,12 +467,12 @@ TIME(7) ⚠️ [^3]
   <td>time32[s]</td>
 <td style="text-align: center;">
 
-TIME(0)
+❌
 
 </td>
 <td style="text-align: center;">
 
-TIME(7) ⚠️ [^3]
+TIME(0)
 
 </td>
 
@@ -516,12 +481,12 @@ TIME(7) ⚠️ [^3]
   <td>time64[ns]</td>
 <td style="text-align: center;">
 
-TIME(7)
+❌
 
 </td>
 <td style="text-align: center;">
 
-TIME(7) ⚠️ [^3]
+TIME(9)
 
 </td>
 
@@ -530,34 +495,40 @@ TIME(7) ⚠️ [^3]
   <td>time64[us]</td>
 <td style="text-align: center;">
 
-TIME(6)
+❌
 
 </td>
 <td style="text-align: center;">
 
-TIME(7) ⚠️ [^3]
+TIME(6)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[ms]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_NTZ(3)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[ms] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_LTZ(3)
 
 </td>
 
@@ -566,12 +537,12 @@ DATETIME2
   <td>timestamp[ns]</td>
 <td style="text-align: center;">
 
-DATETIME2 [^2]
+❌
 
 </td>
 <td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_NTZ(9)
 
 </td>
 
@@ -580,72 +551,76 @@ DATETIME2
   <td>timestamp[ns] (with time zone)</td>
 <td style="text-align: center;">
 
-DATETIME2 [^2]
+❌
 
 </td>
 <td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_LTZ(9)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[s]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_NTZ(0)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[s] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_LTZ(0)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[us]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_NTZ(6)
 
 </td>
 
 </tr>
 <tr>
   <td>timestamp[us] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
-DATETIME2
+TIMESTAMP_LTZ(6)
 
 </td>
 
 </tr>
 </table>
 
-## Previous Versions
+[^1]: bind is not supported for REAL
 
-To see documentation for previous versions of this driver, see the following:
+[^2]: bind is not supported for VARCHAR
 
-- [v1.0.0](./v1.0.0.md)
-
-[^1]: while the documentation claims 7 digits of precision, the client only receives 6
-
-[^2]: Values rounded to microsecond precision
-
-[^3]: ingested as TIME(7)
-
-[mssql]: https://www.microsoft.com/sql-server
+[snowflake]: https://www.snowflake.com/

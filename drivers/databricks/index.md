@@ -21,10 +21,10 @@
 :maxdepth: 1
 :hidden:
 
-v0.1.0.md
+v0.1.1.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.0`](#driver-databricks-v0.1.0 "Permalink") {badge-success}`Tested With|Databricks 17`
+[{badge-primary}`Driver Version|v0.1.1`](#driver-databricks-v0.1.1 "Permalink") {badge-success}`Tested With|Databricks 17`
 
 This driver provides access to [Databricks][databricks], a
 cloud-based platform for data analytics.
@@ -699,13 +699,5 @@ TIMESTAMP
 This driver was tested on the following versions of Databricks:
 
 - 2025.35
-
-## Previous Versions
-
-To see documentation for previous versions of this driver, see the following:
-
-- [v0.1.0](./v0.1.0.md)
-
-
 
 [databricks]: https://www.databricks.com

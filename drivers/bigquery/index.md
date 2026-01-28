@@ -23,7 +23,6 @@
 
 v1.10.0.md
 v1.0.0.md
-prerelease.md
 :::
 
 [{badge-primary}`Driver Version|v1.10.0`](#driver-bigquery-v1.10.0 "Permalink") {badge-success}`Tested With|BigQuery 1.72.0`

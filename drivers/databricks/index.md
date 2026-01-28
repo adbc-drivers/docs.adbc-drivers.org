@@ -15,7 +15,7 @@
 {}
 ---
 
-# Databricks Driver v0.1.0
+# Databricks Driver
 
 :::{toctree}
 :maxdepth: 1

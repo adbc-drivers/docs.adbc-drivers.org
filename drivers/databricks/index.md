@@ -24,10 +24,15 @@
 v0.1.1.md
 :::
 
-[{badge-primary}`Driver Version|v0.1.1`](#driver-databricks-v0.1.1 "Permalink") {badge-success}`Tested With|Databricks 17`
+[{badge-primary}`Driver Version|v0.1.2`](#driver-databricks-v0.1.2 "Permalink") {badge-success}`Tested With|Databricks 17`
 
 This driver provides access to [Databricks][databricks], a
 cloud-based platform for data analytics.
+
+:::{note}
+This is an early version of the driver, and contributors are still
+working with Databricks to expand the featureset and improve performance.
+:::
 
 ## Installation
 
@@ -227,7 +232,7 @@ Examples:
 * - SMALLINT
   - int16
 * - TIMESTAMP
-  - timestamp[us, tz=Etc/UTC]
+  - timestamp[us] (with time zone)
 * - TIMESTAMP_NTZ
   - timestamp[us]
 * - VARBINARY
@@ -365,7 +370,7 @@ REAL
 </td>
 <td style="text-align: center;">
 
-None
+(not tested)
 
 </td>
 
@@ -477,7 +482,7 @@ VARCHAR
 </td>
 <td style="text-align: center;">
 
-None
+(not tested)
 
 </td>
 
@@ -491,7 +496,7 @@ None
 </td>
 <td style="text-align: center;">
 
-None
+(not tested)
 
 </td>
 
@@ -505,7 +510,7 @@ None
 </td>
 <td style="text-align: center;">
 
-None
+(not tested)
 
 </td>
 
@@ -519,35 +524,7 @@ None
 </td>
 <td style="text-align: center;">
 
-None
-
-</td>
-
-</tr>
-<tr>
-  <td>timestamp[ms, tz=Asia/Tokyo]</td>
-<td style="text-align: center;">
-
-❌
-
-</td>
-<td style="text-align: center;">
-
-None
-
-</td>
-
-</tr>
-<tr>
-  <td>timestamp[ms, tz=UTC]</td>
-<td style="text-align: center;">
-
-None
-
-</td>
-<td style="text-align: center;">
-
-TIMESTAMP
+(not tested)
 
 </td>
 
@@ -567,24 +544,10 @@ TIMESTAMP_NTZ
 
 </tr>
 <tr>
-  <td>timestamp[ns, tz=Asia/Tokyo]</td>
+  <td>timestamp[ms] (with time zone)</td>
 <td style="text-align: center;">
 
 ❌
-
-</td>
-<td style="text-align: center;">
-
-None
-
-</td>
-
-</tr>
-<tr>
-  <td>timestamp[ns, tz=UTC]</td>
-<td style="text-align: center;">
-
-None
 
 </td>
 <td style="text-align: center;">
@@ -609,24 +572,10 @@ TIMESTAMP_NTZ
 
 </tr>
 <tr>
-  <td>timestamp[s, tz=Asia/Tokyo]</td>
+  <td>timestamp[ns] (with time zone)</td>
 <td style="text-align: center;">
 
 ❌
-
-</td>
-<td style="text-align: center;">
-
-None
-
-</td>
-
-</tr>
-<tr>
-  <td>timestamp[s, tz=UTC]</td>
-<td style="text-align: center;">
-
-None
 
 </td>
 <td style="text-align: center;">
@@ -651,24 +600,10 @@ TIMESTAMP_NTZ
 
 </tr>
 <tr>
-  <td>timestamp[us, tz=Asia/Tokyo]</td>
+  <td>timestamp[s] (with time zone)</td>
 <td style="text-align: center;">
 
 ❌
-
-</td>
-<td style="text-align: center;">
-
-None
-
-</td>
-
-</tr>
-<tr>
-  <td>timestamp[us, tz=UTC]</td>
-<td style="text-align: center;">
-
-None
 
 </td>
 <td style="text-align: center;">
@@ -680,6 +615,20 @@ TIMESTAMP
 </tr>
 <tr>
   <td>timestamp[us]</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+<td style="text-align: center;">
+
+TIMESTAMP(6)
+
+</td>
+
+</tr>
+<tr>
+  <td>timestamp[us] (with time zone)</td>
 <td style="text-align: center;">
 
 ❌

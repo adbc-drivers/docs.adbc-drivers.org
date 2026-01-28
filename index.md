@@ -44,13 +44,23 @@ Documentation
 :::
 ::::
 
-
 ::::{grid-item-card}
 **BigQuery**
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
 +++
 :::{button-ref} drivers/bigquery/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+**Databricks**
+^^^
+Work with Databricks, a cloud data platform.
++++
+:::{button-ref} drivers/databricks/index
 :click-parent:
 Documentation
 :::

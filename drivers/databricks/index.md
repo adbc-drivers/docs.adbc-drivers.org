@@ -21,7 +21,7 @@
 :maxdepth: 1
 :hidden:
 
-v0.1.1.md
+v0.1.2.md
 :::
 
 [{badge-primary}`Driver Version|v0.1.2`](#driver-databricks-v0.1.2 "Permalink") {badge-success}`Tested With|Databricks 17`

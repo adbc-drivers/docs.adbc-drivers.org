@@ -27,7 +27,9 @@ Below you will find documentation for the drivers available from the Foundry, re
 
 To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} website.
 
-## Drivers
+## Foundry Drivers
+
+Drivers available from the ADBC Driver Foundry:
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
@@ -109,6 +111,89 @@ Work with Trino, a distributed SQL query engine.
 Documentation
 :::
 ::::
+
+:::::
+
+## Other Drivers
+
+Drivers available elsewhere:
+
+:::::{grid} 1 2 3 3
+:margin: 4 4 0 0
+:gutter: 3
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+
+**DuckDB**
+:::{image} _static/DuckDB_icon-darkmode.svg
+:width: 16px
+:align: center
+:::
+^^^
+
+DuckDB ADBC driver from DuckDB
++++
+:::{button-link} https://duckdb.org/docs/stable/clients/adbc
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+
+**FlightSQL**
+:::{image} _static/feather.svg
+:width: 16px
+:align: center
+:::
+^^^
+
+FlightSQL ADBC driver from the Apache Software Foundation
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/flightsql.html
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+
+**PostgreSQL**
+:::{image} _static/feather.svg
+:width: 16px
+:align: center
+:::
+^^^
+
+PostgreSQL ADBC driver from the Apache Software Foundation
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/postgresql.html
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+
+**SQLite**
+:::{image} _static/feather.svg
+:width: 16px
+:align: center
+:::
+^^^
+
+SQLite ADBC driver from the Apache Software Foundation
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/sqlite.html
+:click-parent:
+Documentation
+:::
+::::
+
 
 :::::
 

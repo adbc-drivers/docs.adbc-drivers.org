@@ -232,3 +232,46 @@
     white-space: nowrap;
     width: 1px;
 }
+
+/* Customizing https://sphinx-design.readthedocs.io/en/latest/cards.html so we
+can display an icon in the title. This class is used by the class-title card
+option. */
+.sd-card-header-with-icon {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    position: relative;
+}
+
+.sd-card-header-with-icon > * {
+    margin: 0;
+}
+
+.sd-card-header-with-icon > :nth-child(2),
+.sd-card-header-with-icon > :nth-child(3) {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Override the align-center class margins on the image */
+.sd-card-header-with-icon > :nth-child(2) img,
+.sd-card-header-with-icon > :nth-child(3) img {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/***********************************************************************
+ * Light/dark mode image utilities used for icons in cards
+ ***********************************************************************/
+
+[data-md-color-scheme="slate"] .only-light {
+    display: none !important;
+}
+
+.only-dark {
+    display: none !important;
+}
+
+[data-md-color-scheme="slate"] .only-dark {
+    display: flex !important;
+}

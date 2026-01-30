@@ -27,14 +27,27 @@ Below you will find documentation for the drivers available from the Foundry, re
 
 To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} website.
 
-## Drivers
+## Foundry Drivers
+
+Drivers available from the ADBC Driver Foundry:
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
 :gutter: 3
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Amazon Redshift**
+:::{image} _static/driver_icons/color/light_mode/redshift.svg
+:class: only-light
+:width: 14px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/redshift.svg
+:class: only-dark
+:width: 14px
+:align: center
+:::
 ^^^
 Work with Amazon Redshift, a data warehouse offered by AWS. Supports both Provisioned and Serverless offerings.
 +++
@@ -45,7 +58,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **BigQuery**
+:::{image} _static/driver_icons/color/light_mode/bigquery.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/bigquery.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
 +++
@@ -56,7 +80,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Databricks**
+:::{image} _static/driver_icons/color/light_mode/databricks.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/databricks.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Databricks, a cloud data platform.
 +++
@@ -67,7 +102,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Microsoft SQL Server**
+:::{image} _static/driver_icons/color/light_mode/mssql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/mssql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Microsoft SQL Server, a relational database system offered by Microsoft.
 +++
@@ -78,7 +124,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **MySQL**
+:::{image} _static/driver_icons/color/light_mode/mysql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/mysql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with MySQL, a free and open source relational database management system.
 +++
@@ -89,7 +146,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Snowflake**
+:::{image} _static/driver_icons/color/light_mode/snowflake.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/snowflake.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Snowflake, a cloud data warehouse.
 +++
@@ -100,7 +168,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Trino**
+:::{image} _static/driver_icons/color/light_mode/trino.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/trino.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Trino, a distributed SQL query engine.
 +++
@@ -111,6 +190,108 @@ Documentation
 ::::
 
 :::::
+
+## Other Drivers
+
+Drivers available across the ADBC-verse:
+
+:::::{grid} 1 2 3 3
+:margin: 4 4 0 0
+:gutter: 3
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**DuckDB**
+:::{image} _static/driver_icons/color/light_mode/duckdb.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/duckdb.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
+^^^
+DuckDB ADBC driver from the DuckDB project
++++
+:::{button-link} https://duckdb.org/docs/stable/clients/adbc
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**Flight SQL**
+:::{image} _static/driver_icons/color/light_mode/flightsql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/flightsql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
+^^^
+Arrow Flight SQL ADBC driver from the Apache Arrow project
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/flight_sql.html
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+
+**PostgreSQL**
+:::{image} _static/driver_icons/color/light_mode/postgresql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/postgresql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
+^^^
+PostgreSQL ADBC driver from the Apache Arrow project
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/postgresql.html
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**SQLite**
+:::{image} _static/driver_icons/color/light_mode/sqlite.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/sqlite.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
+^^^
+SQLite ADBC driver from the Apache Arrow project
++++
+:::{button-link} https://arrow.apache.org/adbc/current/driver/sqlite.html
+:click-parent:
+Documentation
+:::
+::::
+
+:::::
+
+If you'd like to see your ADBC driver listed here, please shoot an email to [hello@adbc-drivers.org](mailto:hello@adbc-drivers.org).
+
 
 ## ADBC Resources
 

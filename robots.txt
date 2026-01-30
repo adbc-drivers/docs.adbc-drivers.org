@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://docs.columnar.tech/drivers/sitemap.xml
+Sitemap: https://docs.adbc-drivers.org/sitemap.xml

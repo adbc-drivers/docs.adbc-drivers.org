@@ -42,11 +42,13 @@ Drivers available from the ADBC Driver Foundry:
 :class: only-light
 :width: 14px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/redshift.svg
 :class: only-dark
 :width: 14px
 :align: center
+:alt:
 :::
 ^^^
 Work with Amazon Redshift, a data warehouse offered by AWS. Supports both Provisioned and Serverless offerings.
@@ -64,11 +66,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/bigquery.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
@@ -86,11 +90,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/databricks.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with Databricks, a cloud data platform.
@@ -108,11 +114,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/mssql.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with Microsoft SQL Server, a relational database system offered by Microsoft.
@@ -130,11 +138,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/mysql.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with MySQL, a free and open source relational database management system.
@@ -152,11 +162,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/snowflake.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with Snowflake, a cloud data warehouse.
@@ -174,11 +186,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/trino.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Work with Trino, a distributed SQL query engine.
@@ -206,11 +220,13 @@ Drivers available across the ADBC-verse:
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/duckdb.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 DuckDB ADBC driver from the DuckDB project
@@ -228,11 +244,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/flightsql.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 Arrow Flight SQL ADBC driver from the Apache Arrow project
@@ -251,11 +269,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/postgresql.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 PostgreSQL ADBC driver from the Apache Arrow project
@@ -273,11 +293,13 @@ Documentation
 :class: only-light
 :width: 16px
 :align: center
+:alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/sqlite.svg
 :class: only-dark
 :width: 16px
 :align: center
+:alt:
 :::
 ^^^
 SQLite ADBC driver from the Apache Arrow project

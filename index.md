@@ -143,16 +143,16 @@ Documentation
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 
-**FlightSQL**
+**Flight SQL**
 :::{image} _static/feather.svg
 :width: 16px
 :align: center
 :::
 ^^^
 
-FlightSQL ADBC driver from the Apache Software Foundation
+Arrow Flight SQL ADBC driver from the Apache Software Foundation
 +++
-:::{button-link} https://arrow.apache.org/adbc/current/driver/flightsql.html
+:::{button-link} https://arrow.apache.org/adbc/current/driver/flight_sql.html
 :click-parent:
 Documentation
 :::

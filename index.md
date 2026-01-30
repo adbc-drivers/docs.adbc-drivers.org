@@ -116,7 +116,7 @@ Documentation
 
 ## Other Drivers
 
-Drivers available elsewhere:
+Drivers available across the ADBC-verse:
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
@@ -194,8 +194,10 @@ Documentation
 :::
 ::::
 
-
 :::::
+
+If you'd like to see your ADBC driver listed here, please shoot an email to [hello@adbc-drivers.org](mailto:hello@adbc-drivers.org).
+
 
 ## ADBC Resources
 

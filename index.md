@@ -213,7 +213,7 @@ Drivers available across the ADBC-verse:
 :align: center
 :::
 ^^^
-DuckDB ADBC driver from DuckDB
+DuckDB ADBC driver from the DuckDB project
 +++
 :::{button-link} https://duckdb.org/docs/stable/clients/adbc
 :click-parent:
@@ -235,7 +235,7 @@ Documentation
 :align: center
 :::
 ^^^
-Arrow Flight SQL ADBC driver from the Apache Software Foundation
+Arrow Flight SQL ADBC driver from the Apache Arrow project
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/flight_sql.html
 :click-parent:
@@ -258,7 +258,7 @@ Documentation
 :align: center
 :::
 ^^^
-PostgreSQL ADBC driver from the Apache Software Foundation
+PostgreSQL ADBC driver from the Apache Arrow project
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/postgresql.html
 :click-parent:
@@ -280,7 +280,7 @@ Documentation
 :align: center
 :::
 ^^^
-SQLite ADBC driver from the Apache Software Foundation
+SQLite ADBC driver from the Apache Arrow project
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/sqlite.html
 :click-parent:

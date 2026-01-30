@@ -58,6 +58,7 @@ suppress_warnings = ["myst.header"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_css_files = ["custom.css"]
+html_extra_path = ["robots.txt"]
 html_logo = "_static/adbc-drivers-logo.png"
 html_favicon = "_static/favicon.ico"
 html_static_path = ["_static"]

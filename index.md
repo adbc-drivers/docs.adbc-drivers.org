@@ -36,7 +36,18 @@ Drivers available from the ADBC Driver Foundry:
 :gutter: 3
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Amazon Redshift**
+:::{image} _static/driver_icons/color/light_mode/redshift.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/redshift.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Amazon Redshift, a data warehouse offered by AWS. Supports both Provisioned and Serverless offerings.
 +++
@@ -47,7 +58,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **BigQuery**
+:::{image} _static/driver_icons/color/light_mode/bigquery.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/bigquery.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with BigQuery, a data warehouse offered by Google Cloud.
 +++
@@ -58,7 +80,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Databricks**
+:::{image} _static/driver_icons/color/light_mode/databricks.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/databricks.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Databricks, a cloud data platform.
 +++
@@ -69,7 +102,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Microsoft SQL Server**
+:::{image} _static/driver_icons/color/light_mode/mssql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/mssql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Microsoft SQL Server, a relational database system offered by Microsoft.
 +++
@@ -80,7 +124,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **MySQL**
+:::{image} _static/driver_icons/color/light_mode/mysql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/mysql.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with MySQL, a free and open source relational database management system.
 +++
@@ -91,7 +146,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Snowflake**
+:::{image} _static/driver_icons/color/light_mode/snowflake.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/snowflake.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Snowflake, a cloud data warehouse.
 +++
@@ -102,7 +168,18 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **Trino**
+:::{image} _static/driver_icons/color/light_mode/trino.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/trino.svg
+:class: only-dark
+:width: 16px
+:align: center
+:::
 ^^^
 Work with Trino, a distributed SQL query engine.
 +++
@@ -124,14 +201,18 @@ Drivers available across the ADBC-verse:
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
-
 **DuckDB**
-:::{image} _static/DuckDB_icon-darkmode.svg
+:::{image} _static/driver_icons/color/light_mode/duckdb.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/duckdb.svg
+:class: only-dark
 :width: 16px
 :align: center
 :::
 ^^^
-
 DuckDB ADBC driver from DuckDB
 +++
 :::{button-link} https://duckdb.org/docs/stable/clients/adbc
@@ -142,14 +223,18 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
-
 **Flight SQL**
-:::{image} _static/feather.svg
+:::{image} _static/driver_icons/color/light_mode/flightsql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/flightsql.svg
+:class: only-dark
 :width: 16px
 :align: center
 :::
 ^^^
-
 Arrow Flight SQL ADBC driver from the Apache Software Foundation
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/flight_sql.html
@@ -162,12 +247,17 @@ Documentation
 :class-header: sd-card-header-with-icon
 
 **PostgreSQL**
-:::{image} _static/feather.svg
+:::{image} _static/driver_icons/color/light_mode/postgresql.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/postgresql.svg
+:class: only-dark
 :width: 16px
 :align: center
 :::
 ^^^
-
 PostgreSQL ADBC driver from the Apache Software Foundation
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/postgresql.html
@@ -178,14 +268,18 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
-
 **SQLite**
-:::{image} _static/feather.svg
+:::{image} _static/driver_icons/color/light_mode/sqlite.svg
+:class: only-light
+:width: 16px
+:align: center
+:::
+:::{image} _static/driver_icons/color/dark_mode/sqlite.svg
+:class: only-dark
 :width: 16px
 :align: center
 :::
 ^^^
-
 SQLite ADBC driver from the Apache Software Foundation
 +++
 :::{button-link} https://arrow.apache.org/adbc/current/driver/sqlite.html

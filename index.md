@@ -40,12 +40,12 @@ Drivers available from the ADBC Driver Foundry:
 **Amazon Redshift**
 :::{image} _static/driver_icons/color/light_mode/redshift.svg
 :class: only-light
-:width: 16px
+:width: 14px
 :align: center
 :::
 :::{image} _static/driver_icons/color/dark_mode/redshift.svg
 :class: only-dark
-:width: 16px
+:width: 14px
 :align: center
 :::
 ^^^

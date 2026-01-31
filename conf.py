@@ -35,6 +35,7 @@ extensions = [
     "sphinx_design",
     "sphinx_immaterial",
     "sphinx.ext.intersphinx",
+    "sphinx_sitemap",
     "sphinxext.opengraph",
 ]
 
@@ -57,11 +58,13 @@ suppress_warnings = ["myst.header"]
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_css_files = ["custom.css"]
+html_extra_path = ["robots.txt"]
 html_logo = "_static/adbc-drivers-logo.png"
 html_favicon = "_static/favicon.ico"
 html_static_path = ["_static"]
 html_theme = "sphinx_immaterial"
 html_title = "ADBC Driver Foundry Documentation"
+html_baseurl = "https://docs.adbc-drivers.org/"
 html_theme_options = {
     "features": [
         "content.code.copy",
@@ -127,6 +130,16 @@ ogp_social_cards = {
     "image": "_static/opengraph-logo.png",
     "line_color": "#434343",
 }
+
+# -- Options for sphinx-sitemap ----------------------------------------------
+
+# sphinx-sitemap defaults to "{lang}{version}{link}" but we don't need {lang} or
+# {version}
+sitemap_url_scheme = "{link}"
+# We don't need this index in the sitemap and if we don't exclude it sitemap
+# generation breaks for some reason
+sitemap_excludes = ["genindex.html"]
+sitemap_show_lastmod = True
 
 # -- Customization -----------------------------------------------------------
 

@@ -218,3 +218,14 @@ def setup(app):
     for variant in custom_badge_variants:
         role_name = f"badge-{variant}"
         app.add_role(role_name, badge_role)
+
+    # Remove last_updated dates from pages.
+    #
+    # When we added sphinx-sitemap last modified dates started showing up at the
+    # bottom of every page. sphinx-sitemap uses sphinx-last-updated-by-git which
+    # turns on `html_last_updated_fmt and ignores what the user has set so we
+    # have to put a hook in to force it back to None at this phase of the build.
+    def reset_last_updated_fmt(app):
+        app.config.html_last_updated_fmt = None
+
+    app.connect("builder-inited", reset_last_updated_fmt)

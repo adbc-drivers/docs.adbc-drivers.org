@@ -88,7 +88,7 @@ Documentation
 % https://clickhouse.com/legal/trademark-policy
 **ClickHouse**
 ^^^
-Work with ClickHouse, an open-source data warehouse and analytical database by ClickHouse, Inc.
+Work with ClickHouse, an open source data warehouse and analytical database by ClickHouse, Inc.
 +++
 :::{button-ref} drivers/clickhouse/index
 :click-parent:

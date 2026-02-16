@@ -108,12 +108,3 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 [^4]: ClickHouse Time type is not supported in Arrow format export
 
 [clickhouse]: https://clickhouse.com/
-[^1]: Date32 has limited range (1900-01-01 to 2299-12-31)
-
-[^2]: ClickHouse datetime without timezone is interpreted in **server** timezone
-
-[^3]: DateTime64 has limited range (1900 to 2299)
-
-[^4]: ClickHouse Time type is not supported in Arrow format export
-
-[clickhouse]: https://clickhouse.com/

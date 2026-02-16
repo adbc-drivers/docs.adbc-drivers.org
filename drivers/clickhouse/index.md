@@ -15,7 +15,7 @@
 {}
 ---
 
-# ClickHouse Driver
+# ClickHouse
 
 :::{toctree}
 :maxdepth: 1

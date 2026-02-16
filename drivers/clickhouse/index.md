@@ -35,7 +35,7 @@ ClickHouse is a trademark of ClickHouse, Inc. https://clickhouse.com
 The ClickHouse driver can be installed with [dbc](https://docs.columnar.tech/dbc):
 
 ```bash
-dbc install clickhouse
+dbc install --pre clickhouse
 ```
 
 :::{note}

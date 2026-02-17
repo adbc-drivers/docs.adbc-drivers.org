@@ -26,6 +26,7 @@ See the individual driver pages for information on each driver:
 :::{toctree}
 :maxdepth: 1
 
+clickhouse/index.md
 redshift/index.md
 bigquery/index.md
 databricks/index.md

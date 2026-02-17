@@ -84,6 +84,19 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+% N.B. it's unclear whether we have permission to use their logo right now.
+% https://clickhouse.com/legal/trademark-policy
+**ClickHouse**
+^^^
+Work with ClickHouse, an open source data warehouse and analytical database by ClickHouse, Inc.
++++
+:::{button-ref} drivers/clickhouse/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 **Databricks**
 :::{image} _static/driver_icons/color/light_mode/databricks.svg

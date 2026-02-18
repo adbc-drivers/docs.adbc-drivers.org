@@ -289,21 +289,21 @@ section:has(> .driver-header-links) {
     align-items: baseline;
 }
 
-/* Allow the h1 to wrap for long titles */
+/* Allow the h1 to wrap for long titles, but prevent it from pushing the icon off */
 section:has(> .driver-header-links) > h1 {
-    flex: 0 1 auto;
+    flex: 1 1 auto;
     min-width: 0;
+    max-width: calc(100% - 32px);
 }
 
-/* The header links grow and match the style of the h1 so things look
-consistent */
+/* The header links stay fixed on the right */
 section > .driver-header-links {
     display: flex;
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     justify-content: flex-end;
     gap: 0.5em;
     line-height: 0;
-    margin: 0 0 1.25em;
+    margin: 0 0 1.25em auto;
 }
 
 /* Align SVG baseline with h1 text */
@@ -311,10 +311,11 @@ section > .driver-header-links svg {
     display: block;
 }
 
-/* Make sure other section children take full width */
+/* Make sure other section children take full width on new lines */
 section:has(> .driver-header-links) > *:not(h1):not(.driver-header-links) {
     flex: 1 1 100%;
     min-width: 0;
+    width: 100%;
 }
 
 /* Let wide tables scroll on very narrow mobile viewports to avoid breaking the

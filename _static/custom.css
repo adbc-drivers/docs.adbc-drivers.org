@@ -287,7 +287,6 @@ section:has(> .driver-header-links) {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 0.5em;
 }
 
 /* Allow the h1 to wrap for long titles */

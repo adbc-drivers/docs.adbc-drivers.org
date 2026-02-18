@@ -24,7 +24,7 @@ from docutils import nodes
 from sphinx.writers.html import HTMLTranslator
 
 # Add _ext directory to Python path for custom extensions
-sys.path.insert(0, str(Path(__file__).parent / '_ext'))
+sys.path.insert(0, str(Path(__file__).parent / "_ext"))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

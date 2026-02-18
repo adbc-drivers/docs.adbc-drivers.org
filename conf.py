@@ -17,8 +17,14 @@
 # For the full list of built-in configuration values, see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import sys
+from pathlib import Path
+
 from docutils import nodes
 from sphinx.writers.html import HTMLTranslator
+
+# Add _ext directory to Python path for custom extensions
+sys.path.insert(0, str(Path(__file__).parent / '_ext'))
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -37,6 +43,7 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_sitemap",
     "sphinxext.opengraph",
+    "driver_header_links",
 ]
 
 templates_path = ["_templates"]
@@ -145,6 +152,38 @@ sitemap_show_lastmod = True
 
 # Custom shields.io style badges. See custom.css for corresponding css.
 custom_badge_variants = ["primary", "secondary", "success", "warning", "danger", "info"]
+
+# -- Driver Header Links Extension Configuration -----------------------------
+
+# Maps driver names to lists of link dicts with 'url' and optional 'label' keys.
+# GitHub URLs automatically display an icon (label used for accessibility).
+# Non-GitHub URLs display the label text (defaults to "Link" if not specified).
+driver_header_links_config = {
+    "bigquery": [
+        {"url": "https://github.com/adbc-drivers/bigquery", "label": "GitHub"},
+    ],
+    "clickhouse": [
+        {"url": "https://github.com/adbc-drivers/clickhouse", "label": "GitHub"},
+    ],
+    "databricks": [
+        {"url": "https://github.com/adbc-drivers/databricks", "label": "GitHub"},
+    ],
+    "mssql": [
+        {"url": "https://github.com/adbc-drivers/mssql", "label": "GitHub"},
+    ],
+    "mysql": [
+        {"url": "https://github.com/adbc-drivers/mysql", "label": "GitHub"},
+    ],
+    "redshift": [
+        {"url": "https://github.com/adbc-drivers/redshift", "label": "GitHub"},
+    ],
+    "snowflake": [
+        {"url": "https://github.com/adbc-drivers/snowflake", "label": "GitHub"},
+    ],
+    "trino": [
+        {"url": "https://github.com/adbc-drivers/trino", "label": "GitHub"},
+    ],
+}
 
 
 def badge_role(name, rawtext, text, lineno, inliner, options={}, content=[]):

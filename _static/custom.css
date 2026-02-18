@@ -275,3 +275,62 @@ option. */
 [data-md-color-scheme="slate"] .only-dark {
     display: flex !important;
 }
+
+/* Driver header links at top of driver pages
+   ┌────────────────┐┌─────────────────────────────────────────────────────┐
+   │ <DRIVER H1     ││                              <-- growing   <GITHUB> │
+   └────────────────┘└─────────────────────────────────────────────────────┘
+*/
+
+/* Use flexbox to position h1 and links side-by-side */
+section:has(> .driver-header-links) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+/* Allow the h1 to wrap for long titles */
+section:has(> .driver-header-links) > h1 {
+    flex: 0 1 auto;
+    min-width: 0;
+}
+
+/* The header links grow and match the style of the h1 so things look
+consistent */
+section > .driver-header-links {
+    display: flex;
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    gap: 0.5em;
+    line-height: 0;
+    margin: 0 0 1.25em;
+}
+
+/* Align SVG baseline with h1 text */
+section > .driver-header-links svg {
+    display: block;
+}
+
+/* Make sure other section children take full width */
+section:has(> .driver-header-links) > *:not(h1):not(.driver-header-links) {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+/* Let wide tables scroll on very narrow mobile viewports to avoid breaking the
+layout */
+section:has(> .driver-header-links) .md-typeset__scrollwrap,
+section:has(> .driver-header-links) .md-typeset__table {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+/* Color the GitHub icon - black in light mode, white in dark mode */
+.driver-github-link {
+    color: black !important;
+}
+
+[data-md-color-scheme="slate"] .driver-github-link {
+    color: white !important;
+}

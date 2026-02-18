@@ -107,6 +107,11 @@ html_theme_options = {
     ],
     "social": [],
     "toc_title": "Contents",
+    "repo_url": "https://github.com/adbc-drivers",
+    "repo_name": "adbc-drivers",
+    "icon":{
+        "repo": "fontawesome/brands/github"
+    }
 }
 
 # -- Options for Intersphinx -------------------------------------------------

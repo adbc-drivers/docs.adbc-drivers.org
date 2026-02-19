@@ -21,11 +21,12 @@
 :maxdepth: 1
 :hidden:
 
+v0.3.0.md
 v0.2.0.md
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.2.0`](#driver-mysql-v0.2.0 "Permalink") {badge-success}`Tested With|MySQL 9.4`
+[{badge-primary}`Driver Version|v0.3.0`](#driver-mysql-v0.3.0 "Permalink") {badge-success}`Tested With|MySQL 9.4`
 
 This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
 open-source relational database management system.
@@ -53,7 +54,7 @@ conn = dbapi.connect(
 )
 ```
 
-Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers.
+Note: The example above is for Python using the [adbc-driver-manager](https://pypi.org/project/adbc-driver-manager) package but the process will be similar for other driver managers. See [adbc-quickstarts](https://github.com/columnar-tech/adbc-quickstarts).
 
 ### Connection String Format
 
@@ -221,7 +222,7 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
 
 <table class="docutils data align-default" style="width: 100%;">
   <tr>
-    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrrow Type</th>
+    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
     <th colspan="2" style="text-align: center;">MySQL Type</th>
   </tr>
   <tr>
@@ -230,9 +231,12 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   </tr>
 <tr>
   <td>binary</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARBINARY
 
@@ -241,9 +245,12 @@ VARBINARY
 </tr>
 <tr>
   <td>binary_view</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARBINARY
 
@@ -252,9 +259,12 @@ VARBINARY
 </tr>
 <tr>
   <td>bool</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 BOOLEAN
 
@@ -263,9 +273,12 @@ BOOLEAN
 </tr>
 <tr>
   <td>date32[day]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATE
 
@@ -274,9 +287,12 @@ DATE
 </tr>
 <tr>
   <td>decimal128</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DECIMAL
 
@@ -285,9 +301,12 @@ DECIMAL
 </tr>
 <tr>
   <td>double</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DOUBLE PRECISION
 
@@ -296,9 +315,12 @@ DOUBLE PRECISION
 </tr>
 <tr>
   <td>fixed_size_binary</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARBINARY
 
@@ -318,9 +340,12 @@ VARBINARY
 </tr>
 <tr>
   <td>int16</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 SMALLINT
 
@@ -329,9 +354,12 @@ SMALLINT
 </tr>
 <tr>
   <td>int32</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 INT
 
@@ -340,9 +368,12 @@ INT
 </tr>
 <tr>
   <td>int64</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 BIGINT
 
@@ -351,9 +382,12 @@ BIGINT
 </tr>
 <tr>
   <td>large_binary</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARBINARY
 
@@ -362,9 +396,12 @@ VARBINARY
 </tr>
 <tr>
   <td>large_string</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARCHAR
 
@@ -373,9 +410,12 @@ VARCHAR
 </tr>
 <tr>
   <td>string</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARCHAR
 
@@ -384,9 +424,12 @@ VARCHAR
 </tr>
 <tr>
   <td>string_view</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 VARCHAR
 
@@ -395,9 +438,12 @@ VARCHAR
 </tr>
 <tr>
   <td>time32[ms]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIME
 
@@ -406,9 +452,12 @@ TIME
 </tr>
 <tr>
   <td>time32[s]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIME
 
@@ -417,9 +466,12 @@ TIME
 </tr>
 <tr>
   <td>time64[ns]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIME
 
@@ -428,9 +480,12 @@ TIME
 </tr>
 <tr>
   <td>time64[us]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIME
 
@@ -439,9 +494,12 @@ TIME
 </tr>
 <tr>
   <td>timestamp[ms]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATETIME
 
@@ -450,9 +508,12 @@ DATETIME
 </tr>
 <tr>
   <td>timestamp[ms] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIMESTAMP
 
@@ -461,9 +522,12 @@ TIMESTAMP
 </tr>
 <tr>
   <td>timestamp[ns]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATETIME
 
@@ -472,9 +536,12 @@ DATETIME
 </tr>
 <tr>
   <td>timestamp[ns] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIMESTAMP
 
@@ -483,9 +550,12 @@ TIMESTAMP
 </tr>
 <tr>
   <td>timestamp[s]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATETIME
 
@@ -494,9 +564,12 @@ DATETIME
 </tr>
 <tr>
   <td>timestamp[s] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIMESTAMP
 
@@ -505,9 +578,12 @@ TIMESTAMP
 </tr>
 <tr>
   <td>timestamp[us]</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 DATETIME
 
@@ -516,9 +592,12 @@ DATETIME
 </tr>
 <tr>
   <td>timestamp[us] (with time zone)</td>
+<td style="text-align: center;">
 
+❌
 
-<td colspan="2" style="text-align: center;">
+</td>
+<td style="text-align: center;">
 
 TIMESTAMP
 
@@ -537,6 +616,7 @@ This driver was tested on the following versions of MySQL:
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.2.0](./v0.2.0.md)
 - [v0.1.0](./v0.1.0.md)
 
 [^1]: Return type is inconsistent depending on how the query was written

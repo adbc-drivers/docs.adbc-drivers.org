@@ -123,7 +123,7 @@ Documentation
 ::::{grid-item-card}
 **Exasol**
 ^^^
-Exasol
+Work with the Exasol in-memory analytics engine.
 +++
 :::{button-ref} drivers/exasol/index
 :click-parent:

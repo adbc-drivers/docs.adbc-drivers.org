@@ -27,6 +27,7 @@ See the individual driver pages for information on each driver:
 :maxdepth: 1
 
 clickhouse/index.md
+exasol/index.md
 redshift/index.md
 bigquery/index.md
 databricks/index.md

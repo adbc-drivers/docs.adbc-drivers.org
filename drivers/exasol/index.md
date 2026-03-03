@@ -15,7 +15,7 @@
 {}
 ---
 
-# Exasol Driver 0.6.3
+# Exasol
 
 :::{toctree}
 :maxdepth: 1

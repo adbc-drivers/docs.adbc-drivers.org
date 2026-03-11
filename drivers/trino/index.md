@@ -21,12 +21,13 @@
 :maxdepth: 1
 :hidden:
 
+v0.3.1.md
 v0.3.0.md
 v0.2.0.md
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.3.0`](#driver-trino-v0.3.0 "Permalink") {badge-success}`Tested With|Trino 479`
+[{badge-primary}`Driver Version|v0.3.1`](#driver-trino-v0.3.1 "Permalink") {badge-success}`Tested With|Trino 479`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
@@ -189,6 +190,27 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
       <td colspan="2">❌</td>
     </tr>
   </tbody>
+</table>
+
+<table class="docutils data align-default" style="width: 100%">
+  <colgroup>
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 40%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>Name</th>
+      <th>Support</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>    <tr>      <td rowspan="1">Configuration</td>      <td>Connect with URI</td>
+      <td>✅</td>
+      <td>Test authentication with credentials embedded in URI.</td>
+    </tr>  </tbody>
 </table>
 
 ### Types
@@ -446,7 +468,7 @@ string
 </td>
 <td style="text-align: center;">
 
-VARCHAR, IPADDRESS
+IPADDRESS, VARCHAR
 
 </td>
 <td style="text-align: center;">
@@ -624,6 +646,7 @@ This driver was tested on the following versions of Trino:
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.3.0](./v0.3.0.md)
 - [v0.2.0](./v0.2.0.md)
 - [v0.1.0](./v0.1.0.md)
 

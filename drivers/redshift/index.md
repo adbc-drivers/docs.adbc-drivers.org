@@ -198,6 +198,8 @@ The driver also supports standard PostgreSQL connection strings (e.g., `postgres
   </tbody>
 </table>
 
+### Driver-Specific Features
+
 <table class="docutils data align-default" style="width: 100%">
   <colgroup>
     <col span="1" style="width: 25%;">

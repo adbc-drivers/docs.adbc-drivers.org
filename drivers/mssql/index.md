@@ -21,6 +21,7 @@
 :maxdepth: 1
 :hidden:
 
+v1.3.1.md
 v1.3.0.md
 v1.2.0.md
 v1.1.0.md
@@ -31,7 +32,7 @@ v1.0.0.md
 This project is not associated with Microsoft.
 :::
 
-[{badge-primary}`Driver Version|v1.3.0`](#driver-mssql-v1.3.0 "Permalink") {badge-success}`Tested With|Microsoft SQL Server 2022`
+[{badge-primary}`Driver Version|v1.3.1`](#driver-mssql-v1.3.1 "Permalink") {badge-success}`Tested With|Microsoft SQL Server 2025`
 
 This driver provides access to [Microsoft SQL Server][mssql].
 
@@ -183,42 +184,6 @@ This driver also supports other types of connection strings that are supported b
   </tbody>
 </table>
 
-
-<table class="docutils data align-default" style="width: 100%">
-  <colgroup>
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 10%;">
-    <col span="1" style="width: 40%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Name</th>
-      <th>Support</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td rowspan="3">Configuration</td>
-      <td>Connect with URI</td>
-      <td>✅</td>
-      <td>Test MSSQL URI without explicit port.</td>
-    </tr>
-    <tr>
-      <td>Connect with mssql:// URI</td>
-      <td>✅</td>
-      <td>Test end-to-end connection with mssql:// scheme.</td>
-    </tr>
-    <tr>
-      <td>Connect with sqlserver:// URI</td>
-      <td>✅</td>
-      <td>Test end-to-end connection with sqlserver:// scheme.</td>
-    </tr>
-  </tbody>
-</table>
-
 ### Types
 
 #### Microsoft SQL Server to Arrow
@@ -280,17 +245,25 @@ This driver also supports other types of connection strings that are supported b
 
 #### Arrow to Microsoft SQL Server
 
+
 <table class="docutils data align-default" style="width: 100%;">
-  <tr>
-    <th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
-    <th colspan="2" style="text-align: center;">Microsoft SQL Server Type</th>
-  </tr>
-  <tr>
-    <th style="text-align: center;">Bind</th>
-    <th style="text-align: center;">Ingest</th>
-  </tr>
+<thead>
 <tr>
-  <td>binary</td>
+<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th colspan="2" style="text-align: center;">Microsoft SQL Server Type</th>
+</tr>
+<tr>
+<th style="text-align: center;">Bind</th>
+<th style="text-align: center;">Ingest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">
+
+binary
+
+</td>
 <td style="text-align: center;">
 
 VARBINARY
@@ -301,10 +274,13 @@ VARBINARY
 VARBINARY(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>binary_view</td>
+<td style="text-align: center;">
+
+binary_view
+
+</td>
 <td style="text-align: center;">
 
 VARBINARY
@@ -315,54 +291,61 @@ VARBINARY
 VARBINARY(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>bool</td>
+<td style="text-align: center;">
 
+bool
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 BIT
 
 </td>
-
 </tr>
 <tr>
-  <td>date32[day]</td>
+<td style="text-align: center;">
 
+date32[day]
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATE
 
 </td>
-
 </tr>
 <tr>
-  <td>decimal128</td>
+<td style="text-align: center;">
 
+decimal128
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 NUMERIC
 
 </td>
-
 </tr>
 <tr>
-  <td>double</td>
+<td style="text-align: center;">
 
+double
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DOUBLE PRECISION
 
 </td>
-
 </tr>
 <tr>
-  <td>fixed_size_binary</td>
+<td style="text-align: center;">
+
+fixed_size_binary
+
+</td>
 <td style="text-align: center;">
 
 VARBINARY
@@ -373,21 +356,25 @@ VARBINARY
 VARBINARY(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>float</td>
+<td style="text-align: center;">
 
+float
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 REAL
 
 </td>
-
 </tr>
 <tr>
-  <td>halffloat</td>
+<td style="text-align: center;">
+
+halffloat
+
+</td>
 <td style="text-align: center;">
 
 REAL
@@ -398,43 +385,49 @@ REAL
 (not tested)
 
 </td>
-
 </tr>
 <tr>
-  <td>int16</td>
+<td style="text-align: center;">
 
+int16
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 SMALLINT
 
 </td>
-
 </tr>
 <tr>
-  <td>int32</td>
+<td style="text-align: center;">
 
+int32
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 INT
 
 </td>
-
 </tr>
 <tr>
-  <td>int64</td>
+<td style="text-align: center;">
 
+int64
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 BIGINT
 
 </td>
-
 </tr>
 <tr>
-  <td>large_binary</td>
+<td style="text-align: center;">
+
+large_binary
+
+</td>
 <td style="text-align: center;">
 
 VARBINARY
@@ -445,10 +438,13 @@ VARBINARY
 VARBINARY(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>large_string</td>
+<td style="text-align: center;">
+
+large_string
+
+</td>
 <td style="text-align: center;">
 
 NVARCHAR
@@ -456,13 +452,16 @@ NVARCHAR
 </td>
 <td style="text-align: center;">
 
-NTEXT
+NVARCHAR(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>string</td>
+<td style="text-align: center;">
+
+string
+
+</td>
 <td style="text-align: center;">
 
 NVARCHAR
@@ -470,13 +469,16 @@ NVARCHAR
 </td>
 <td style="text-align: center;">
 
-NTEXT
+NVARCHAR(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>string_view</td>
+<td style="text-align: center;">
+
+string_view
+
+</td>
 <td style="text-align: center;">
 
 NVARCHAR
@@ -484,16 +486,19 @@ NVARCHAR
 </td>
 <td style="text-align: center;">
 
-NTEXT
+NVARCHAR(MAX)
 
 </td>
-
 </tr>
 <tr>
-  <td>time32[ms]</td>
 <td style="text-align: center;">
 
-TIME, TIME(1), TIME(2), TIME(3)
+time32[ms]
+
+</td>
+<td style="text-align: center;">
+
+TIME(1), TIME(3), TIME, TIME(2)
 
 </td>
 <td style="text-align: center;">
@@ -501,13 +506,16 @@ TIME, TIME(1), TIME(2), TIME(3)
 TIME(7) ⚠️ [^3]
 
 </td>
-
 </tr>
 <tr>
-  <td>time32[s]</td>
 <td style="text-align: center;">
 
-TIME, TIME(0)
+time32[s]
+
+</td>
+<td style="text-align: center;">
+
+TIME(0), TIME
 
 </td>
 <td style="text-align: center;">
@@ -515,24 +523,30 @@ TIME, TIME(0)
 TIME(7) ⚠️ [^3]
 
 </td>
-
 </tr>
 <tr>
-  <td>time64[ns]</td>
 <td style="text-align: center;">
 
-TIME, TIME(7)
+time64[ns]
 
 </td>
 <td style="text-align: center;">
 
-TIME(7) ⚠️ [^3], TIME(7) ⚠️ [^3]
+TIME(7), TIME
 
 </td>
+<td style="text-align: center;">
 
+TIME(7) ⚠️ [^3]
+
+</td>
 </tr>
 <tr>
-  <td>time64[us]</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
 <td style="text-align: center;">
 
 TIME, TIME(4), TIME(5), TIME(6)
@@ -543,32 +557,37 @@ TIME, TIME(4), TIME(5), TIME(6)
 TIME(7) ⚠️ [^3]
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[ms]</td>
+<td style="text-align: center;">
 
+timestamp[ms]
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[ms] (with time zone)</td>
+<td style="text-align: center;">
 
+timestamp[ms] (with time zone)
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[ns]</td>
+<td style="text-align: center;">
+
+timestamp[ns]
+
+</td>
 <td style="text-align: center;">
 
 DATETIME2 [^2]
@@ -579,10 +598,13 @@ DATETIME2 [^2]
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[ns] (with time zone)</td>
+<td style="text-align: center;">
+
+timestamp[ns] (with time zone)
+
+</td>
 <td style="text-align: center;">
 
 DATETIME2 [^2]
@@ -593,72 +615,75 @@ DATETIME2 [^2]
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[s]</td>
+<td style="text-align: center;">
 
+timestamp[s]
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[s] (with time zone)</td>
+<td style="text-align: center;">
 
+timestamp[s] (with time zone)
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[us]</td>
+<td style="text-align: center;">
 
+timestamp[us]
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
 <tr>
-  <td>timestamp[us] (with time zone)</td>
+<td style="text-align: center;">
 
+timestamp[us] (with time zone)
 
+</td>
 <td colspan="2" style="text-align: center;">
 
 DATETIME2
 
 </td>
-
 </tr>
+</tbody>
 </table>
 
 ## Compatibility
 
 This driver was tested on the following versions of Microsoft SQL Server:
 
-- 16.0.4236.2 Enterprise Evaluation Edition (64-bit)
+- 17.0.4015.4 Enterprise Evaluation Edition (64-bit)
 
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v1.3.0](./v1.3.0.md)
 - [v1.2.0](./v1.2.0.md)
 - [v1.1.0](./v1.1.0.md)
 - [v1.0.0](./v1.0.0.md)
 
 [^1]: while the documentation claims 7 digits of precision, the client only receives 6
-
 [^2]: Values rounded to microsecond precision
-
 [^3]: ingested as TIME(7)
 
 [mssql]: https://www.microsoft.com/sql-server

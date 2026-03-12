@@ -21,12 +21,13 @@
 :maxdepth: 1
 :hidden:
 
+v0.3.1.md
 v0.3.0.md
 v0.2.0.md
 v0.1.0.md
 :::
 
-[{badge-primary}`Driver Version|v0.3.0`](#driver-trino-v0.3.0 "Permalink") {badge-success}`Tested With|Trino 479`
+[{badge-primary}`Driver Version|v0.3.1`](#driver-trino-v0.3.1 "Permalink") {badge-success}`Tested With|Trino 479`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
@@ -446,7 +447,7 @@ string
 </td>
 <td style="text-align: center;">
 
-VARCHAR, IPADDRESS
+IPADDRESS, VARCHAR
 
 </td>
 <td style="text-align: center;">
@@ -624,6 +625,7 @@ This driver was tested on the following versions of Trino:
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.3.0](./v0.3.0.md)
 - [v0.2.0](./v0.2.0.md)
 - [v0.1.0](./v0.1.0.md)
 

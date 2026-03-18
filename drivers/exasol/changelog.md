@@ -15,7 +15,7 @@
 {}
 ---
 
-# Changelog
+# Changelog for Exasol Driver
 
 ## v0.7.0 (2026-03-20)
 

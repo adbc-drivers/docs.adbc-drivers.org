@@ -121,6 +121,17 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+**Exasol**
+^^^
+Work with the Exasol in-memory analytics engine.
++++
+:::{button-ref} drivers/exasol/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 **Microsoft SQL Server**
 :::{image} _static/driver_icons/color/light_mode/mssql.svg

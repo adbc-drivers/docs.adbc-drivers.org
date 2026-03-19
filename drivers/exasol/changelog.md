@@ -1,5 +1,5 @@
 ---
-# Copyright (c) 2025 ADBC Drivers Contributors
+# Copyright (c) 2026 ADBC Drivers Contributors
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,24 +15,22 @@
 {}
 ---
 
-# Foundry Drivers
+# Changelog for Exasol Driver
 
-The ADBC Driver Foundry provides a set of ADBC drivers for different
-vendors.  All drivers implement the ADBC 1.1 interface and can be used from
-different languages including Go, Python, R, Rust, and more.
+## v0.7.0 (2026-03-20)
 
-See the individual driver pages for information on each driver:
+New features:
 
-:::{toctree}
-:maxdepth: 1
+- Add support for GetObjects
+- Add support for GetParameterSchema
+- Add support for GetTableSchema
+- Add support for transactions
+- Add support for getting the current catalog
 
-clickhouse/index.md
-exasol/index.md
-redshift/index.md
-bigquery/index.md
-databricks/index.md
-mssql/index.md
-mysql/index.md
-snowflake/index.md
-trino/index.md
-:::
+Fixes:
+
+- Fix support for large result sets
+
+## v0.6.3 (2026-03-03)
+
+- Initial release supporting query execution

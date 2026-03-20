@@ -334,6 +334,28 @@ Documentation
 :::
 ::::
 
+::::{grid-item-card}
+**Oracle Database**
+^^^
+ADBC driver for Oracle Database from Columnar
++++
+:::{button-link} https://docs.columnar.tech/drivers/oracle
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+**Teradata**
+^^^
+ADBC driver for Teradata from Columnar
++++
+:::{button-link} https://docs.columnar.tech/drivers/teradata
+:click-parent:
+Documentation
+:::
+::::
+
 :::::
 
 If you'd like to see your ADBC driver listed here, please shoot an email to [hello@adbc-drivers.org](mailto:hello@adbc-drivers.org).

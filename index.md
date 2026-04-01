@@ -193,7 +193,7 @@ Documentation
 ::::{grid-item-card}
 **SingleStore**
 ^^^
-Work with the SingleStore relational database management system.
+Work with SingleStore, a distributed database for low-latency SQL.
 +++
 :::{button-ref} drivers/singlestore/index
 :click-parent:

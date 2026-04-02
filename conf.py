@@ -171,6 +171,9 @@ driver_header_links_config = {
     "databricks": [
         {"url": "https://github.com/adbc-drivers/databricks", "label": "GitHub"},
     ],
+    "exasol": [
+        {"url": "https://github.com/adbc-drivers/exasol", "label": "GitHub"},
+    ],
     "mssql": [
         {"url": "https://github.com/adbc-drivers/mssql", "label": "GitHub"},
     ],
@@ -179,6 +182,9 @@ driver_header_links_config = {
     ],
     "redshift": [
         {"url": "https://github.com/adbc-drivers/redshift", "label": "GitHub"},
+    ],
+    "singlestore": [
+        {"url": "https://github.com/adbc-drivers/singlestore", "label": "GitHub"},
     ],
     "snowflake": [
         {"url": "https://github.com/adbc-drivers/snowflake", "label": "GitHub"},

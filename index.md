@@ -191,6 +191,17 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+**SingleStore**
+^^^
+Work with SingleStore, a distributed database for low-latency SQL.
++++
+:::{button-ref} drivers/singlestore/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 **Snowflake**
 :::{image} _static/driver_icons/color/light_mode/snowflake.svg

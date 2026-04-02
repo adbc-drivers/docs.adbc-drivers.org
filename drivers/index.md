@@ -33,6 +33,7 @@ bigquery/index.md
 databricks/index.md
 mssql/index.md
 mysql/index.md
+singlestore/index.md
 snowflake/index.md
 trino/index.md
 :::

@@ -129,7 +129,16 @@ intersphinx_mapping = {
 
 # -- Options for MyST --------------------------------------------------------
 
-myst_enable_extensions = ["attrs_block", "attrs_inline", "colon_fence", "linkify"]
+myst_enable_extensions = [
+    "attrs_block",
+    "attrs_inline",
+    "colon_fence",
+    "linkify",
+    "substitution",
+]
+myst_substitutions = {
+    "BREAKING_CHANGE": "({octicon}`alert-fill;1em;sd-text-warning` **Breaking change**)"
+}
 
 # -- Options for OpenGraph ---------------------------------------------------
 

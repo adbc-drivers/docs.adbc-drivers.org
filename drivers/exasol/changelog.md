@@ -17,6 +17,18 @@
 
 # Changelog for Exasol Driver
 
+## v0.9.0 (2026-04-16)
+
+New features:
+
+- Add support for validating TLS certificate fingerprints
+- Add support for 1024-bit RSA public keys during login (used by some instances, e.g. `demodb.exasol.com`)
+- {{BREAKING_CHANGE}} Default to `tls=true` in connections to match Exasol 7.1+
+
+Fixes:
+
+- Update dependencies with security advisories (see the [upstream changelog](https://github.com/exasol-labs/exarrow-rs/releases/tag/v0.7.3) for details)
+
 ## v0.7.0 (2026-03-20)
 
 New features:

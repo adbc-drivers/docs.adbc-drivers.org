@@ -21,6 +21,7 @@
 :maxdepth: 1
 :hidden:
 
+changelog.md
 v1.3.1.md
 v1.3.0.md
 v1.2.0.md

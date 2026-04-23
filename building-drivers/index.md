@@ -76,3 +76,7 @@ TODO: Talk about licensing considerations.
 ### Why not under apache/arrow-adbc?
 
 TODO: Talk about this
+
+### Who owns the repo?
+
+TODO: Talk about how we envision that the driver/author will be who owns the repo and that the Foundry will help manage it.

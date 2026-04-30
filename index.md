@@ -370,6 +370,17 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+**SAP HANA**
+^^^
+ADBC driver for SAP HANA from Columnar
++++
+:::{button-link} https://docs.columnar.tech/drivers/sap-hana
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 **Teradata**
 ^^^
 ADBC driver for Teradata from Columnar

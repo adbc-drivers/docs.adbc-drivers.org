@@ -168,7 +168,7 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
-**MySQL**
+**MySQL/MariaDB**
 :::{image} _static/driver_icons/color/light_mode/mysql.svg
 :class: only-light
 :width: 16px
@@ -183,6 +183,8 @@ Documentation
 :::
 ^^^
 Work with MySQL, a free and open source relational database management system.
+
+Also supports MariaDB.
 +++
 :::{button-ref} drivers/mysql/index
 :click-parent:

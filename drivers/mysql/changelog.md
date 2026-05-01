@@ -25,7 +25,7 @@ New features:
 
 Fixes:
 
-- Cap the size of batched INSERTS in bulk ingest, fixing a big with wide tables
+- Cap the size of batched INSERTS in bulk ingest, fixing a bug with wide tables
 
 # v0.3.0 (2026-02-19)
 

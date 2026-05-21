@@ -132,6 +132,30 @@ Documentation
 ::::
 
 ::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**DuckDB Quack**
+:::{image} _static/driver_icons/color/light_mode/duckdb.svg
+:class: only-light
+:width: 16px
+:align: center
+:alt:
+:::
+:::{image} _static/driver_icons/color/dark_mode/duckdb.svg
+:class: only-dark
+:width: 16px
+:align: center
+:alt:
+:::
+^^^
+Connect to a remote DuckDB instance via the Quack protocol.
++++
+:::{button-ref} drivers/quack/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
 **Exasol**
 ^^^
 Work with the Exasol in-memory analytics engine.

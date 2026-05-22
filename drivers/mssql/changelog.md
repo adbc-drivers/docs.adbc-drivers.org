@@ -17,6 +17,12 @@
 
 # Changelog for Microsoft SQL Server Driver
 
+## v1.4.1 (2026-05-22)
+
+Fixes:
+
+- Restore support for SMALLDATETIME, IMAGE, UNIQUEIDENTIFIER, and XML types
+
 ## v1.4.0 (2026-05-19)
 
 New features:

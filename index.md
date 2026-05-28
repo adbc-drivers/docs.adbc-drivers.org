@@ -61,6 +61,23 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
+**Apache DataFusion**
+:::{image} _static/driver_icons/color/light_mode/datafusion.svg
+:width: 14px
+:align: center
+:alt:
+:::
+^^^
+Embed Apache DataFusion, an extensible query engine that uses Apache Arrow as its in-memory format.
++++
+:::{button-ref} drivers/datafusion/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **BigQuery**
 :::{image} _static/driver_icons/color/light_mode/bigquery.svg
 :class: only-light

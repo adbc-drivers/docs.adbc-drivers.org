@@ -48,6 +48,7 @@ extensions = [
 
 templates_path = ["_templates"]
 exclude_patterns = [
+    ".worktrees",
     "_build",
     "Thumbs.db",
     ".DS_Store",
@@ -180,6 +181,9 @@ driver_header_links_config = {
     "databricks": [
         {"url": "https://github.com/adbc-drivers/databricks", "label": "GitHub"},
     ],
+    "datafusion": [
+        {"url": "https://github.com/adbc-drivers/datafusion", "label": "GitHub"},
+    ],
     "exasol": [
         {"url": "https://github.com/adbc-drivers/exasol", "label": "GitHub"},
     ],
@@ -188,6 +192,9 @@ driver_header_links_config = {
     ],
     "mysql": [
         {"url": "https://github.com/adbc-drivers/mysql", "label": "GitHub"},
+    ],
+    "quack": [
+        {"url": "https://github.com/adbc-drivers/quack", "label": "GitHub"},
     ],
     "redshift": [
         {"url": "https://github.com/adbc-drivers/redshift", "label": "GitHub"},

@@ -79,7 +79,7 @@ Documentation
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 **Apache Spark**
-:::{image} _static/driver_icons/color/light_mode/spark.png
+:::{image} _static/driver_icons/color/light_mode/spark.svg
 :class: only-light
 :width: 32px
 :align: center
@@ -175,13 +175,13 @@ Documentation
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
 **DuckDB Quack**
-:::{image} _static/driver_icons/color/light_mode/duckdb.svg
+:::{image} _static/driver_icons/color/light_mode/quack.svg
 :class: only-light
 :width: 16px
 :align: center
 :alt:
 :::
-:::{image} _static/driver_icons/color/dark_mode/duckdb.svg
+:::{image} _static/driver_icons/color/dark_mode/quack.svg
 :class: only-dark
 :width: 16px
 :align: center

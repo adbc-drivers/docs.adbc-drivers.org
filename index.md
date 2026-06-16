@@ -35,17 +35,6 @@ To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://
 :gutter: 3
 
 ::::{grid-item-card}
-**Building Drivers**
-^^^
-Learn how to build an ADBC driver in the Foundry.
-+++
-:::{button-ref} building-drivers/index
-:click-parent:
-Guide
-:::
-::::
-
-::::{grid-item-card}
 **Using Drivers**
 ^^^
 Learn how to use the drivers from the Foundry.
@@ -54,7 +43,17 @@ Learn how to use the drivers from the Foundry.
 :click-parent:
 Guide
 :::
+::::
 
+::::{grid-item-card}
+**Building Drivers**
+^^^
+Learn how to build an ADBC driver in the Foundry.
++++
+:::{button-ref} building-drivers/index
+:click-parent:
+Guide
+:::
 ::::
 
 :::::

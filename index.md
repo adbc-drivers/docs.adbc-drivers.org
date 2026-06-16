@@ -402,7 +402,7 @@ Learn how to install drivers from the Foundry and use them with your favorite pr
 +++
 :::{button-ref} using-drivers/index
 :click-parent:
-Guide
+Read Guide
 :::
 ::::
 
@@ -413,7 +413,7 @@ Learn how to build an ADBC driver in the Foundry.
 +++
 :::{button-ref} building-drivers/index
 :click-parent:
-Guide
+Read Guide
 :::
 ::::
 

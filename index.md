@@ -37,7 +37,7 @@ To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://
 ::::{grid-item-card}
 **Using Drivers**
 ^^^
-Learn how to use the drivers from the Foundry.
+Learn how to install drivers from the Foundry and use them with your favorite programming language.
 +++
 :::{button-ref} using-drivers/index
 :click-parent:

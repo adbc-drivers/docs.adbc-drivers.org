@@ -26,6 +26,7 @@ dbc has its own documentation that covers its installation and usage: [https://d
 To give you a sense of how simple it is to use dbc, the following steps should work for most users to get started:
 
 ### Install dbc
+
 ```sh
 curl -LsSf https://dbc.columnar.tech/install.sh | sh
 ```
@@ -58,3 +59,14 @@ pyarrow.Table
 ----
 1: [[1]]
 ```
+
+## Using Drivers
+
+To find the documentation for any driver dbc lists, run `dbc doc <driver>`. For example,
+
+```console
+$ dbc docs mysql
+# your browser should open to https://docs.adbc-drivers.org/drivers/mysql/
+```
+
+Another great resource for getting started with ADBC is Columnar's [adbc-quickstarts](https://github.com/columnar-tech/adbc-quickstarts) repo.

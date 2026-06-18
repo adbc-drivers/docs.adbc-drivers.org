@@ -17,7 +17,7 @@
 
 # Changelog for ADBC Driver for Snowflake
 
-## v1.11.0 (2026-06-17)
+## v1.11.0 (2026-06-18)
 
 New features:
 
@@ -28,7 +28,7 @@ New features:
 - Support querying and ingesting GEOGRAPHY and GEOMETRY types via GeoArrow extension types
 - Implement GetStatistics
 - Return `xdbc_column_size` for BINARY type columns in GetObjects
-- Support ingesting Arrow list as ARRAY
+- Support ingesting Arrow list, large_list as ARRAY
 - Support querying ARRAY as Arrow arrow.json
 - Support queries that invoke stored procedures via `CALL`
 - Improve GetObjects performance

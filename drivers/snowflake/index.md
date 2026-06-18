@@ -28,7 +28,7 @@ v1.10.1 <v1.10.1.md>
 v1.10.0 <v1.10.0.md>
 :::
 
-[{badge-primary}`Driver Version|v1.11.0`](#driver-snowflake-v1.11.0 "Permalink") {badge-secondary}`Release Date|2026-06-16` {badge-success}`Tested With|Snowflake 10`
+[{badge-primary}`Driver Version|v1.11.0`](#driver-snowflake-v1.11.0 "Permalink") {badge-secondary}`Release Date|2026-06-18` {badge-success}`Tested With|Snowflake 10`
 
 This driver provides access to [Snowflake][snowflake], a cloud-based data warehouse platform.
 
@@ -266,6 +266,54 @@ double
 <tr>
 <td style="text-align: left;">
 
+GEOGRAPHY (geography_output_format = EWKB)
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOGRAPHY (geography_output_format = GEOJSON)
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOMETRY (geometry_output_format = EWKB)
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOMETRY (geometry_output_format = GEOJSON)
+
+</td>
+<td style="text-align: center;">
+
+string [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
 INT
 
 </td>
@@ -295,7 +343,7 @@ NUMERIC (use_high_precision = false)
 </td>
 <td style="text-align: center;">
 
-int64 [^1]
+int64 [^2]
 
 </td>
 </tr>
@@ -495,7 +543,24 @@ DOUBLE PRECISION
 </td>
 <td style="text-align: center;">
 
-DOUBLE PRECISION, REAL, NUMERIC
+REAL, NUMERIC, DOUBLE PRECISION
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+<td style="text-align: center;">
+
+(NA/not tested)
+
+</td>
+<td style="text-align: center;">
+
+GEOMETRY
 
 </td>
 </tr>
@@ -597,7 +662,7 @@ BIGINT
 </td>
 <td style="text-align: center;">
 
-BIGINT, INT, SMALLINT
+SMALLINT, INT, BIGINT
 
 </td>
 </tr>
@@ -626,7 +691,7 @@ large_list&lt;value: int32&gt;
 </td>
 <td style="text-align: center;">
 
-❌ [^2]
+ARRAY
 
 </td>
 </tr>
@@ -865,8 +930,8 @@ TIMESTAMP_LTZ(6)
 </tbody>
 </table>
 
-[^1]: When use_high_precision=false, values exceeding int64 range are silently truncated — the driver discards the upper bits and returns only the lower 64 bits without warning.
-[^2]: arrow-go cannot write LARGE_LIST to Parquet
+[^1]: Snowflake does not return the SRID in GEOJSON format
+[^2]: When use_high_precision=false, values exceeding int64 range are silently truncated — the driver discards the upper bits and returns only the lower 64 bits without warning.
 
 ## Options
 
@@ -1076,6 +1141,12 @@ TIMESTAMP_LTZ(6)
 
   Can be set on the statement.
 
+`adbc.snowflake.sql.client_option.geography_output_format`
+`adbc.snowflake.sql.client_option.geometry_output_format`
+: **Values:** `GeoJSON`, `EKWB`. **Default:** `GeoJSON`
+
+  The format used to return geometry/geography data. The default of GeoJSON will return these columns as string columns containing JSON data. If set to EWKB, instead `geoarrow.wkb` extension columns will be returned with CRS metadata in the extension type.
+
 `adbc.snowflake.sql.client_option.max_timestamp_precision`
 : **Values:** `nanoseconds`, `nanoseconds_error_on_overflow`, `microseconds`. **Default:** `nanoseconds`
 
@@ -1119,9 +1190,9 @@ TIMESTAMP_LTZ(6)
   Can be set on the statement.
 
 `adbc.snowflake.statement.ingest_geo_type`
-: **Values:** `geography` or `geometry`. **Default:** `geography`
+: **Values:** `geography`, `geometry`, or empty string. **Default:** empty string
 
-  Which Snowflake data type to use when ingesting columns of GeoArrow extension types (`geoarrow.wkb`, `geoarrow.wkt`).
+  Which Snowflake data type to use when ingesting columns of GeoArrow extension types (`geoarrow.wkb`, `geoarrow.wkt`). If empty, then it will be detected: if the SRID is 4326 and `edges:spherical` is set, then it will be ingested as GEOGRAPHY, else GEOMETRY. If explicitly set, the driver will use the specified type.
 
   Can be set on the statement.
 

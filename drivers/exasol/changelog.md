@@ -19,7 +19,7 @@
 
 For full details, see the [upstream changelog](https://github.com/exasol-labs/exarrow-rs/blob/main/CHANGELOG.md).
 
-## v0.12.7 (2026-06-16)
+## v0.12.7 (2026-06-18)
 
 Fixes:
 

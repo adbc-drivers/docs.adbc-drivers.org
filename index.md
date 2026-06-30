@@ -30,7 +30,7 @@ To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://
 
 :::{card}
 :class-card: sd-bg-primary sd-text-white sd-card-announcement
-New: [Building Drivers](./building-drivers/index.md) — learn how to build and ship an ADBC driver with the Foundry.
+**New: [Building Drivers](./building-drivers/index.md)**—learn how to build and ship an ADBC driver with the Foundry.
 :::
 
 ## Available Drivers

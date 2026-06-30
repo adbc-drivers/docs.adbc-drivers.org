@@ -17,6 +17,10 @@
 
 # Building Drivers
 
+:::{warning}
+**This guide is a work-in-progress.**
+:::
+
 In ADBC's first years, only a handful of drivers existed. Most were built by a small group of core developers within the Apache Arrow project, and a few by independent community members. Then ADBC went mainstream, and demand for new drivers exploded. At the same time, the vendors behind the databases, query engines, and data platforms that ADBC connects to wanted an active role in the direction and maintenance of their own drivers. The centralized Apache Software Foundation governance model was ill-suited to both: it funneled every contribution through the small group of core maintainers who could review and merge it, and it gave vendors no real ownership of the drivers that carried their names.
 
 The ADBC Driver Foundry ("the Foundry") was created to fix this. Each driver lives in its own repository, with its own maintainers and commit privileges. Those who own a driver can steer its direction and ship changes without waiting on a central gatekeeper. But the Foundry stops short of the opposite extreme—fully independent projects, each reinventing the basics and drifting toward its own conventions. Instead, it pairs that autonomy with shared scaffolding. Common frameworks and consistent processes hold every driver to the same baseline of functionality and polish. Centrally run services handle the work each driver would otherwise duplicate—validating drivers; building binaries; code-signing, notarizing, and distributing them; and documentation. For driver developers, this means time spent on the driver itself, not on the machinery of shipping it. For users, it means one trustworthy place to find drivers, and a consistent experience across them—rather than the fragmented, uneven landscape typical of earlier driver ecosystems.
@@ -307,15 +311,15 @@ Drivers that do not quite meet these requirements but want to make an initial re
 
 ### After I build my driver, how does it become available with dbc?
 
-TODO
+[TODO](https://github.com/adbc-drivers/docs.adbc-drivers.org/issues/97)
 
 ### Who is responsible for releasing?
 
-TODO
+[TODO](https://github.com/adbc-drivers/docs.adbc-drivers.org/issues/97)
 
 ### Who is responsible for responding to issues?
 
-TODO
+[TODO](https://github.com/adbc-drivers/docs.adbc-drivers.org/issues/97)
 
 ### What's the best language for writing drivers?
 

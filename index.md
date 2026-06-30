@@ -23,13 +23,19 @@ hide-toc: true
 
 Welcome to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} driver documentation site.
 
-Below you will find documentation for the drivers available from the Foundry, resources for learning how to use them, and more about [ADBC](https://arrow.apache.org/adbc).
+Below you will find documentation for how to get involved with the Foundry, what drivers are available, resources for learning how to use them, and more about [ADBC](https://arrow.apache.org/adbc).
 
 To learn more about the Foundry, head back to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} website.
 
-## Foundry Drivers
 
-Drivers available from the ADBC Driver Foundry:
+:::{card}
+:class-card: sd-bg-primary sd-text-white sd-card-announcement
+**New: [Building Drivers](./building-drivers/index.md)**—learn how to build and ship an ADBC driver with the Foundry.
+:::
+
+## Available Drivers
+
+Drivers available from the ADBC Driver Foundry. If you'd like your driver to be listed here, check out [Building Drivers](./building-drivers/index.md).
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
@@ -461,6 +467,36 @@ Documentation
 If you'd like to see your ADBC driver listed here, please shoot an email to [hello@adbc-drivers.org](mailto:hello@adbc-drivers.org).
 
 
+## Guides
+
+:::::{grid} 1 2 3 3
+:margin: 4 4 0 0
+:gutter: 3
+
+::::{grid-item-card}
+**Using Drivers**
+^^^
+Learn how to install drivers from the Foundry and use them with your favorite programming language.
++++
+:::{button-ref} using-drivers/index
+:click-parent:
+Read Guide
+:::
+::::
+
+::::{grid-item-card}
+**Building Drivers**
+^^^
+Learn how to build an ADBC driver in the Foundry.
++++
+:::{button-ref} building-drivers/index
+:click-parent:
+Read Guide
+:::
+::::
+
+:::::
+
 ## ADBC Resources
 
 :::::{grid} 1 2 3 3
@@ -503,10 +539,12 @@ Repository
 :::::
 
 :::{toctree}
-:maxdepth: 2
+:maxdepth: 3
 :hidden:
 
 Home <self>
+building-drivers/index.md
+using-drivers/index.md
 drivers/index.md
 Back to ADBC Driver Foundry <https://adbc-drivers.org>
 :::

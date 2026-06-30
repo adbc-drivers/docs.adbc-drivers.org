@@ -15,7 +15,7 @@
 {}
 ---
 
-# Foundry Drivers
+# Available Drivers
 
 The ADBC Driver Foundry provides a set of ADBC drivers for different
 vendors.  All drivers implement the ADBC 1.1 interface and can be used from
@@ -40,3 +40,5 @@ snowflake/index.md
 spark/index.md
 trino/index.md
 :::
+
+If you'd like to see your driver show up in the list, check out our [Building Drivers](../building-drivers/index.md) guide.

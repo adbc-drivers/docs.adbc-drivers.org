@@ -46,13 +46,13 @@ Drivers available from the ADBC Driver Foundry. If you'd like your driver to be 
 **Amazon Redshift**
 :::{image} _static/driver_icons/color/light_mode/redshift.svg
 :class: only-light
-:width: 14px
+:width: 18px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/redshift.svg
 :class: only-dark
-:width: 14px
+:width: 18px
 :align: center
 :alt:
 :::
@@ -67,16 +67,57 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
+**Apache DataFusion**
+:::{image} _static/driver_icons/color/light_mode/datafusion.svg
+:width: 24px
+:align: center
+:alt:
+:::
+^^^
+Embed Apache DataFusion, an extensible query engine that uses Apache Arrow as its in-memory format.
++++
+:::{button-ref} drivers/datafusion/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**Apache Spark**
+:::{image} _static/driver_icons/color/light_mode/spark.svg
+:class: only-light
+:width: 24px
+:align: center
+:alt:
+:::
+:::{image} _static/driver_icons/color/dark_mode/spark.svg
+:class: only-dark
+:width: 24px
+:align: center
+:alt:
+:::
+^^^
+Connect to Apache Spark, a multi-language engine for large data analytics on single-node machines and multi-node clusters. Supports the HiveServer2 Thrift protocol, Spark Connect, and Apache Livy.
++++
+:::{button-ref} drivers/spark/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
 **BigQuery**
 :::{image} _static/driver_icons/color/light_mode/bigquery.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/bigquery.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -94,13 +135,13 @@ Documentation
 **ClickHouse**
 :::{image} _static/driver_icons/color/light_mode/clickhouse.svg
 :class: only-light
-:width: 16px
+:width: 20px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/clickhouse.svg
 :class: only-dark
-:width: 16px
+:width: 20px
 :align: center
 :alt:
 :::
@@ -118,13 +159,13 @@ Documentation
 **Databricks**
 :::{image} _static/driver_icons/color/light_mode/databricks.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/databricks.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -132,6 +173,30 @@ Documentation
 Work with Databricks, a cloud data platform.
 +++
 :::{button-ref} drivers/databricks/index
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+:class-header: sd-card-header-with-icon
+**DuckDB Quack**
+:::{image} _static/driver_icons/color/light_mode/quack.svg
+:class: only-light
+:width: 24px
+:align: center
+:alt:
+:::
+:::{image} _static/driver_icons/color/dark_mode/quack.svg
+:class: only-dark
+:width: 24px
+:align: center
+:alt:
+:::
+^^^
+Connect to a remote DuckDB instance via the Quack protocol.
++++
+:::{button-ref} drivers/quack/index
 :click-parent:
 Documentation
 :::
@@ -153,13 +218,13 @@ Documentation
 **Microsoft SQL Server**
 :::{image} _static/driver_icons/color/light_mode/mssql.svg
 :class: only-light
-:width: 16px
+:width: 20px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/mssql.svg
 :class: only-dark
-:width: 16px
+:width: 20px
 :align: center
 :alt:
 :::
@@ -174,21 +239,23 @@ Documentation
 
 ::::{grid-item-card}
 :class-header: sd-card-header-with-icon
-**MySQL**
+**MySQL/MariaDB**
 :::{image} _static/driver_icons/color/light_mode/mysql.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/mysql.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 ^^^
 Work with MySQL, a free and open source relational database management system.
+
+Also supports MariaDB.
 +++
 :::{button-ref} drivers/mysql/index
 :click-parent:
@@ -212,13 +279,13 @@ Documentation
 **Snowflake**
 :::{image} _static/driver_icons/color/light_mode/snowflake.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/snowflake.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -236,13 +303,13 @@ Documentation
 **Trino**
 :::{image} _static/driver_icons/color/light_mode/trino.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/trino.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -270,13 +337,13 @@ Drivers available across the ADBC-verse:
 **DuckDB**
 :::{image} _static/driver_icons/color/light_mode/duckdb.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/duckdb.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -294,13 +361,13 @@ Documentation
 **Flight SQL**
 :::{image} _static/driver_icons/color/light_mode/flightsql.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/flightsql.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -319,13 +386,13 @@ Documentation
 **PostgreSQL**
 :::{image} _static/driver_icons/color/light_mode/postgresql.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/postgresql.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -343,13 +410,13 @@ Documentation
 **SQLite**
 :::{image} _static/driver_icons/color/light_mode/sqlite.svg
 :class: only-light
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
 :::{image} _static/driver_icons/color/dark_mode/sqlite.svg
 :class: only-dark
-:width: 16px
+:width: 24px
 :align: center
 :alt:
 :::
@@ -368,6 +435,17 @@ Documentation
 ADBC driver for Oracle Database from Columnar
 +++
 :::{button-link} https://docs.columnar.tech/drivers/oracle
+:click-parent:
+Documentation
+:::
+::::
+
+::::{grid-item-card}
+**SAP HANA**
+^^^
+ADBC driver for SAP HANA from Columnar
++++
+:::{button-link} https://docs.columnar.tech/drivers/sap-hana
 :click-parent:
 Documentation
 :::
@@ -423,6 +501,7 @@ Read Guide
 
 :::::{grid} 1 2 3 3
 :margin: 4 4 0 0
+:gutter: 3
 
 ::::{grid-item-card}
 **Apache Arrow ADBC**

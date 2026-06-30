@@ -21,13 +21,16 @@
 :maxdepth: 1
 :hidden:
 
-changelog.md
-v0.9.0.md
-v0.7.0.md
-v0.6.3.md
+Changelog <changelog.md>
+v0.12.7 <v0.12.7.md>
+v0.12.6 <v0.12.6.md>
+v0.12.0 <v0.12.0.md>
+v0.9.0 <v0.9.0.md>
+v0.7.0 <v0.7.0.md>
+v0.6.3 <v0.6.3.md>
 :::
 
-{badge-primary}`Driver Version|0.9.0` {badge-success}`Tested With|Exasol 2025`
+{badge-primary}`Driver Version|0.12.7` {badge-secondary}`Release Date|2026-06-18` {badge-success}`Tested With|Exasol 2025`
 
 This driver provides access to [Exasol][exasol], an in-memory analytics engine.  It is developed by Exasol Labs.  The source code can be found at [exarrow-rs](https://github.com/exasol-labs/exarrow-rs); the ADBC Driver Foundry distributes precompiled binaries of the upstream sources for Linux, macOS, and Windows.
 
@@ -68,132 +71,273 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">Exasol</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>❌</td>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>❌</td>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### Exasol to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Exasol Type
-  - Arrow Type
-* - BIGINT
-  - decimal128
-* - BOOLEAN
-  - bool
-* - DATE
-  - date32[day]
-* - DECIMAL
-  - decimal128
-* - DOUBLE PRECISION
-  - double
-* - HASHTYPE
-  - ❌ [^1]
-* - INT
-  - decimal128
-* - INT/INTEGER
-  - decimal128
-* - NUMERIC
-  - decimal128
-* - REAL
-  - double
-* - SHORTINT/SMALLINT
-  - decimal128
-* - SMALLINT
-  - decimal128
-* - TIMESTAMP
-  - timestamp[us]
-* - VARCHAR
-  - string
-:::
-
-#### Arrow to Exasol
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">Exasol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+BIGINT
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BOOLEAN
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DECIMAL
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DOUBLE PRECISION
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+HASHTYPE
+
+</td>
+<td style="text-align: center;">
+
+❌ [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT/INTEGER
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NUMERIC
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SHORTINT/SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
 <th colspan="2" style="text-align: center;">Exasol Type</th>
 </tr>
 <tr>
@@ -203,7 +347,7 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
@@ -215,7 +359,7 @@ binary
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
@@ -227,7 +371,7 @@ binary_view
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
@@ -239,7 +383,7 @@ bool
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -251,7 +395,7 @@ date32[day]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
@@ -263,7 +407,7 @@ decimal128
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -275,7 +419,7 @@ double
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 fixed_size_binary
 
@@ -287,7 +431,7 @@ fixed_size_binary
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 float
 
@@ -299,7 +443,7 @@ float
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 halffloat
 
@@ -311,12 +455,12 @@ halffloat
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int16
 
@@ -328,7 +472,7 @@ int16
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
@@ -340,7 +484,7 @@ int32
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -352,7 +496,7 @@ int64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
@@ -364,7 +508,7 @@ large_binary
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
@@ -376,7 +520,7 @@ large_string
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
@@ -388,7 +532,7 @@ string
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -400,7 +544,7 @@ string_view
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
@@ -412,7 +556,7 @@ time32[ms]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
@@ -424,7 +568,7 @@ time32[s]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
@@ -436,7 +580,7 @@ time64[ns]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
@@ -448,7 +592,7 @@ time64[us]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -460,7 +604,7 @@ timestamp[ms]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -472,7 +616,7 @@ timestamp[ms] (with time zone)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -484,7 +628,7 @@ timestamp[ns]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -496,7 +640,7 @@ timestamp[ns] (with time zone)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -508,7 +652,7 @@ timestamp[s]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -520,7 +664,7 @@ timestamp[s] (with time zone)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -532,7 +676,7 @@ timestamp[us]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -550,6 +694,9 @@ timestamp[us] (with time zone)
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.12.6](./v0.12.6.md)
+- [v0.12.0](./v0.12.0.md)
+- [v0.9.0](./v0.9.0.md)
 - [v0.7.0](./v0.7.0.md)
 - [v0.6.3](./v0.6.3.md)
 

@@ -21,19 +21,21 @@
 :maxdepth: 1
 :hidden:
 
-changelog.md
-v1.3.1.md
-v1.3.0.md
-v1.2.0.md
-v1.1.0.md
-v1.0.0.md
+Changelog <changelog.md>
+v1.4.1 <v1.4.1.md>
+v1.4.0 <v1.4.0.md>
+v1.3.1 <v1.3.1.md>
+v1.3.0 <v1.3.0.md>
+v1.2.0 <v1.2.0.md>
+v1.1.0 <v1.1.0.md>
+v1.0.0 <v1.0.0.md>
 :::
 
 :::{note}
 This project is not associated with Microsoft.
 :::
 
-[{badge-primary}`Driver Version|v1.3.1`](#driver-mssql-v1.3.1 "Permalink") {badge-success}`Tested With|Microsoft SQL Server 2025`
+[{badge-primary}`Driver Version|v1.4.1`](#driver-mssql-v1.4.1 "Permalink") {badge-secondary}`Release Date|2026-05-22` {badge-success}`Tested With|Microsoft SQL Server 2025`
 
 This driver provides access to [Microsoft SQL Server][mssql].
 
@@ -107,150 +109,585 @@ This driver also supports other types of connection strings that are supported b
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">Microsoft SQL Server</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>✅</td>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>✅</td>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### Microsoft SQL Server to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Microsoft SQL Server Type
-  - Arrow Type
-* - BIGINT
-  - int64
-* - BIT
-  - bool
-* - CHAR
-  - string
-* - DATE
-  - date32[day]
-* - DATETIME
-  - timestamp[us] (with time zone)
-* - DATETIME2
-  - timestamp[us] (with time zone)
-* - DOUBLE PRECISION
-  - double
-* - INT
-  - int32
-* - NCHAR
-  - string
-* - NUMERIC
-  - decimal128
-* - REAL
-  - float
-* - SMALLINT
-  - int16
-* - TIME
-  - time64[ns] ⚠️ [^1]
-* - TIME(0)
-  - time32[s]
-* - TIME(1)
-  - time32[ms]
-* - TIME(2)
-  - time32[ms]
-* - TIME(3)
-  - time32[ms]
-* - TIME(4)
-  - time64[us]
-* - TIME(5)
-  - time64[us]
-* - TIME(6)
-  - time64[us]
-* - TIME(7)
-  - time64[ns]
-* - VARBINARY
-  - binary
-* - VARCHAR
-  - string
-:::
-
-#### Arrow to Microsoft SQL Server
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">Microsoft SQL Server</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+BIGINT
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BIT
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+CHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATETIME
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATETIME2
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DECIMAL
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DOUBLE PRECISION
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOGRAPHY
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOMETRY
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+IMAGE
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT
+
+</td>
+<td style="text-align: center;">
+
+int32
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+MONEY
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NTEXT
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NTEXT (mssql.query.large_text_type = large_string)
+
+</td>
+<td style="text-align: center;">
+
+large_string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NTEXT (mssql.query.large_text_type = string_view)
+
+</td>
+<td style="text-align: center;">
+
+string_view
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NUMERIC
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NVARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+float
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLDATETIME
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+int16
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLMONEY
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TEXT
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TEXT (mssql.query.large_text_type = large_string)
+
+</td>
+<td style="text-align: center;">
+
+large_string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TEXT (mssql.query.large_text_type = string_view)
+
+</td>
+<td style="text-align: center;">
+
+string_view
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME
+
+</td>
+<td style="text-align: center;">
+
+time64[ns] ⚠️ [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(0)
+
+</td>
+<td style="text-align: center;">
+
+time32[s]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(1)
+
+</td>
+<td style="text-align: center;">
+
+time32[ms]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(2)
+
+</td>
+<td style="text-align: center;">
+
+time32[ms]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(3)
+
+</td>
+<td style="text-align: center;">
+
+time32[ms]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(4)
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(5)
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(6)
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME(7)
+
+</td>
+<td style="text-align: center;">
+
+time64[ns]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TINYINT
+
+</td>
+<td style="text-align: center;">
+
+uint8
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+UNIQUEIDENTIFIER
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.uuid&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARBINARY
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+XML
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
 <th colspan="2" style="text-align: center;">Microsoft SQL Server Type</th>
 </tr>
 <tr>
@@ -260,7 +697,7 @@ This driver also supports other types of connection strings that are supported b
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
@@ -277,7 +714,7 @@ VARBINARY(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
@@ -294,7 +731,7 @@ VARBINARY(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
@@ -306,7 +743,7 @@ BIT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -318,19 +755,24 @@ DATE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
+
+DECIMAL(10,2)
+
+</td>
+<td style="text-align: center;">
 
 NUMERIC
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -342,7 +784,24 @@ DOUBLE PRECISION
 </td>
 </tr>
 <tr>
+<td style="text-align: left;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
 <td style="text-align: center;">
+
+(NA/not tested)
+
+</td>
+<td style="text-align: center;">
+
+GEOGRAPHY, GEOMETRY
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
 
 fixed_size_binary
 
@@ -359,7 +818,7 @@ VARBINARY(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 float
 
@@ -371,7 +830,7 @@ REAL
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 halffloat
 
@@ -383,12 +842,12 @@ REAL
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int16
 
@@ -400,7 +859,7 @@ SMALLINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
@@ -412,7 +871,7 @@ INT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -424,7 +883,7 @@ BIGINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
@@ -441,7 +900,7 @@ VARBINARY(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
@@ -458,7 +917,7 @@ NVARCHAR(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
@@ -475,7 +934,7 @@ NVARCHAR(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -492,14 +951,14 @@ NVARCHAR(MAX)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
 </td>
 <td style="text-align: center;">
 
-TIME(1), TIME(3), TIME, TIME(2)
+TIME(3), TIME(2), TIME, TIME(1)
 
 </td>
 <td style="text-align: center;">
@@ -509,14 +968,14 @@ TIME(7) ⚠️ [^3]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
 </td>
 <td style="text-align: center;">
 
-TIME(0), TIME
+TIME, TIME(0)
 
 </td>
 <td style="text-align: center;">
@@ -526,14 +985,14 @@ TIME(7) ⚠️ [^3]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
 </td>
 <td style="text-align: center;">
 
-TIME(7), TIME
+TIME, TIME(7)
 
 </td>
 <td style="text-align: center;">
@@ -543,14 +1002,14 @@ TIME(7) ⚠️ [^3]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
 </td>
 <td style="text-align: center;">
 
-TIME, TIME(4), TIME(5), TIME(6)
+TIME(6), TIME(5), TIME(4), TIME
 
 </td>
 <td style="text-align: center;">
@@ -560,7 +1019,7 @@ TIME(7) ⚠️ [^3]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -572,7 +1031,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -584,7 +1043,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -601,7 +1060,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -618,7 +1077,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -630,7 +1089,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -642,7 +1101,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -654,7 +1113,7 @@ DATETIME2
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -668,16 +1127,29 @@ DATETIME2
 </tbody>
 </table>
 
+## Options
+
+### Options Affecting Queries
+
+`mssql.query.large_text_type`
+: Values: `string`, `string_view`, or `large_string`. Default: `string`
+
+  Determines the Arrow string type to use for `VARCHAR(MAX)` and
+  `NVARCHAR(MAX)` (and their deprecated aliases `TEXT` and `NTEXT`) columns.
+
+  This does not affect bulk ingest.
+
 ## Compatibility
 
-This driver was tested on the following versions of Microsoft SQL Server:
+This driver was tested on:
 
-- 17.0.4015.4 Enterprise Evaluation Edition (64-bit)
+- Microsoft SQL Server `17.0.4045.5 Enterprise Evaluation Edition (64-bit)`
 
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v1.3.1](./v1.3.1.md)
 - [v1.3.0](./v1.3.0.md)
 - [v1.2.0](./v1.2.0.md)
 - [v1.1.0](./v1.1.0.md)

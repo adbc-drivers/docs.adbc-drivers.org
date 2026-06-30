@@ -48,6 +48,7 @@ extensions = [
 
 templates_path = ["_templates"]
 exclude_patterns = [
+    ".worktrees",
     "_build",
     "Thumbs.db",
     ".DS_Store",
@@ -133,9 +134,11 @@ myst_enable_extensions = [
     "attrs_block",
     "attrs_inline",
     "colon_fence",
+    "deflist",
     "linkify",
     "substitution",
 ]
+myst_heading_anchors = 3
 myst_substitutions = {
     "BREAKING_CHANGE": "({octicon}`alert-fill;1em;sd-text-warning` **Breaking change**)"
 }
@@ -175,10 +178,13 @@ driver_header_links_config = {
         {"url": "https://github.com/adbc-drivers/bigquery", "label": "GitHub"},
     ],
     "clickhouse": [
-        {"url": "https://github.com/adbc-drivers/clickhouse", "label": "GitHub"},
+        {"url": "https://github.com/ClickHouse/adbc_clickhouse", "label": "GitHub"},
     ],
     "databricks": [
         {"url": "https://github.com/adbc-drivers/databricks", "label": "GitHub"},
+    ],
+    "datafusion": [
+        {"url": "https://github.com/adbc-drivers/datafusion", "label": "GitHub"},
     ],
     "exasol": [
         {"url": "https://github.com/adbc-drivers/exasol", "label": "GitHub"},
@@ -189,6 +195,9 @@ driver_header_links_config = {
     "mysql": [
         {"url": "https://github.com/adbc-drivers/mysql", "label": "GitHub"},
     ],
+    "quack": [
+        {"url": "https://github.com/adbc-drivers/quack", "label": "GitHub"},
+    ],
     "redshift": [
         {"url": "https://github.com/adbc-drivers/redshift", "label": "GitHub"},
     ],
@@ -197,6 +206,9 @@ driver_header_links_config = {
     ],
     "snowflake": [
         {"url": "https://github.com/adbc-drivers/snowflake", "label": "GitHub"},
+    ],
+    "spark": [
+        {"url": "https://github.com/adbc-drivers/spark", "label": "GitHub"},
     ],
     "trino": [
         {"url": "https://github.com/adbc-drivers/trino", "label": "GitHub"},

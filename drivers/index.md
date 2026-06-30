@@ -26,15 +26,18 @@ See the individual driver pages for information on each driver:
 :::{toctree}
 :maxdepth: 1
 
-clickhouse/index.md
-exasol/index.md
-redshift/index.md
 bigquery/index.md
+clickhouse/index.md
 databricks/index.md
+datafusion/index.md
+exasol/index.md
 mssql/index.md
 mysql/index.md
+quack/index.md
+redshift/index.md
 singlestore/index.md
 snowflake/index.md
+spark/index.md
 trino/index.md
 :::
 

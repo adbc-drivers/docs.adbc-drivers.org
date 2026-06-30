@@ -21,13 +21,15 @@
 :maxdepth: 1
 :hidden:
 
-v1.11.2.md
-v1.11.0.md
-v1.10.0.md
-v1.0.0.md
+Changelog <changelog.md>
+v1.12.0 <v1.12.0.md>
+v1.11.2 <v1.11.2.md>
+v1.11.0 <v1.11.0.md>
+v1.10.0 <v1.10.0.md>
+v1.0.0 <v1.0.0.md>
 :::
 
-[{badge-primary}`Driver Version|v1.11.2`](#driver-bigquery-v1.11.2 "Permalink") {badge-success}`Tested With|BigQuery 1.73.1`
+[{badge-primary}`Driver Version|v1.12.0`](#driver-bigquery-v1.12.0 "Permalink") {badge-secondary}`Release Date|2026-06-21` {badge-success}`Tested With|BigQuery 1.77.0`
 
 This driver provides access to [BigQuery][bigquery], a data warehouse offered by Google Cloud.
 
@@ -94,10 +96,19 @@ Components:
   - `1` - Service Account JSON File
   - `2` - Service Account JSON String
   - `3` - User Authentication (OAuth)
-- Additional Parameters: Connection configuration as key-value pairs. For a complete list of available parameters, see the [Simba BigQuery JDBC Connector Configuration Options](https://storage.googleapis.com/simba-bq-release/jdbc/Simba%20Google%20BigQuery%20JDBC%20Connector%20Install%20and%20Configuration%20Guide_1.6.3.1004.pdf).
 
 :::{note}
 Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`.
+:::
+
+:::{note}
+Overriding the endpoint via the URI will lead to HTTPS always being assumed.
+:::
+
+Additional parameters can be provided as options, and some options may also be passed as query parameters. The query parameters supported by the [Simba BigQuery JDBC Connector](https://storage.googleapis.com/simba-bq-release/jdbc/Simba%20Google%20BigQuery%20JDBC%20Connector%20Install%20and%20Configuration%20Guide_1.6.3.1004.pdf) are generally supported. See [Options][#options] below for more information.
+
+:::{note}
+The query parameter is case sensitive.
 :::
 
 Examples:
@@ -114,144 +125,333 @@ Examples:
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">BigQuery</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>❌</td>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>✅</td>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### BigQuery to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - BigQuery Type
-  - Arrow Type
-* - ARRAY
-  - list [^1]
-* - BIGNUMERIC
-  - decimal256(76, 38)
-* - BOOL
-  - bool
-* - BOOLEAN
-  - bool
-* - BYTES
-  - binary
-* - DATE
-  - date32[day]
-* - DATETIME
-  - timestamp[us] [^2]
-* - FLOAT64
-  - double
-* - GEOGRAPHY
-  - extension&lt;geoarrow.wkt&gt;
-* - INT64
-  - int64
-* - INTERVAL
-  - month_day_nano_interval
-* - JSON
-  - extension&lt;arrow.json&gt;
-* - NUMERIC
-  - decimal128(38, 9) [^3] [^4] [^5]
-* - RANGE&lt;DATE&gt;
-  - struct&lt;start: date32[day], end: date32[day]&gt;
-* - RANGE&lt;DATETIME&gt;
-  - struct&lt;start: timestamp[us], end: timestamp[us]&gt;
-* - RANGE&lt;TIMESTAMP&gt;
-  - struct&lt;start: timestamp[us, tz=UTC], end: timestamp[us, tz=UTC]&gt;
-* - STRING
-  - string
-* - STRUCT
-  - struct
-* - TIME
-  - time64[us]
-* - TIMESTAMP
-  - timestamp[us] (with time zone) [^6]
-:::
-
-#### Arrow to BigQuery
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">BigQuery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+ARRAY
+
+</td>
+<td style="text-align: center;">
+
+list [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BIGNUMERIC
+
+</td>
+<td style="text-align: center;">
+
+decimal256(76, 38)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BOOL
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BYTES
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATETIME
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] [^2]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+FLOAT64
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOGRAPHY
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkt&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT64
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTERVAL
+
+</td>
+<td style="text-align: center;">
+
+month_day_nano_interval
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+JSON
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.json&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NUMERIC
+
+</td>
+<td style="text-align: center;">
+
+decimal128(38, 9) [^3] [^4] [^5]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+RANGE&lt;DATE&gt;
+
+</td>
+<td style="text-align: center;">
+
+struct&lt;start: date32[day], end: date32[day]&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+RANGE&lt;DATETIME&gt;
+
+</td>
+<td style="text-align: center;">
+
+struct&lt;start: timestamp[us], end: timestamp[us]&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+RANGE&lt;TIMESTAMP&gt;
+
+</td>
+<td style="text-align: center;">
+
+struct&lt;start: timestamp[us, tz=UTC], end: timestamp[us, tz=UTC]&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+STRING
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+STRUCT
+
+</td>
+<td style="text-align: center;">
+
+struct
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone) [^6]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
 <th colspan="3" style="text-align: center;">BigQuery Type</th>
 </tr>
 <tr>
@@ -262,7 +462,7 @@ Examples:
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
@@ -274,7 +474,7 @@ BYTES
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
@@ -296,19 +496,24 @@ BYTES
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
 </td>
-<td colspan="3" style="text-align: center;">
+<td style="text-align: center;">
+
+BOOL
+
+</td>
+<td colspan="2" style="text-align: center;">
 
 BOOLEAN
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -320,7 +525,7 @@ DATE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
@@ -332,7 +537,7 @@ NUMERIC
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -344,7 +549,7 @@ FLOAT64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 fixed_size_binary
 
@@ -356,14 +561,14 @@ BYTES
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 float
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td colspan="2" style="text-align: center;">
@@ -373,14 +578,14 @@ FLOAT64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int16
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td colspan="2" style="text-align: center;">
@@ -390,14 +595,14 @@ INT64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td colspan="2" style="text-align: center;">
@@ -407,7 +612,7 @@ INT64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -419,7 +624,7 @@ INT64
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
@@ -431,7 +636,7 @@ BYTES
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
@@ -443,14 +648,14 @@ STRING
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 list
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td style="text-align: center;">
@@ -460,12 +665,12 @@ ARRAY [^12] [^13] [^14]
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
@@ -477,7 +682,7 @@ STRING
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -499,14 +704,14 @@ STRING
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 struct
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td colspan="2" style="text-align: center;">
@@ -516,7 +721,7 @@ STRUCT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
@@ -528,7 +733,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
@@ -540,14 +745,14 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
 </td>
 <td style="text-align: center;">
 
-❌ [^7]
+TIME [^7]
 
 </td>
 <td style="text-align: center;">
@@ -562,7 +767,7 @@ time64[ns]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
@@ -574,7 +779,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -596,7 +801,7 @@ DATETIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -608,7 +813,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -630,7 +835,7 @@ DATETIME [^8]
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -652,7 +857,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -674,7 +879,7 @@ DATETIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -686,7 +891,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -708,7 +913,7 @@ DATETIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -722,10 +927,229 @@ TIMESTAMP
 </tbody>
 </table>
 
+### Query Statistics
+
+A selection of query statistics and other metadata is supplied in the metadata of the Arrow schema of the result set.
+
+### Storage Write API Support
+
+:::{warning}
+This functionality is experimental and is not currently recommended for production.
+:::
+
+The BigQuery driver supports using the [Storage Write API](https://docs.cloud.google.com/bigquery/docs/write-api) to ingest data. It can be enabled by setting `bigquery.bulk_ingest.method` (see [](#ingest-options) below).
+
+## Options
+
+### Connection Options
+
+`bigquery.auth_type`
+: **Values:** `auth_bigquery`, `json_credential_file`, `json_credential_string`, `anonymous`, `user_authentication`, `app_default_credentials`, `json_credentials`, `oauth_client_ids`. **Default:** `auth_bigquery`. **URI Parameter:** `OAuthType`
+
+  How to authenticate.
+
+`bigquery.auth.credentials`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `AuthCredentials`
+
+  If using `json_credential_string` authentication, then this is the JSON blob containing the credentials. If using `json_credential_file`, then it is the path to the credentials file.
+
+`bigquery.auth.credentials_type`
+: **Values:** `service_account`, `authorized_user`, `impersonated_service_account`, `external_account`. **Default:** (empty)
+
+  If using `json_credential_string` or `json_credential_file` authentication, this is the type of the credentials contained within. If not specified, it will be detected.
+
+`bigquery.auth.client_id`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `AuthClientId`
+
+  If using OAuth user authentication, this is the OAuth client ID.
+
+`bigquery.auth.client_secret`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `AuthClientSecret`
+
+  If using OAuth user authentication, this is the OAuth client secret.
+
+`bigquery.auth.quota_project`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `QuotaProject`
+
+  The project to use for quota.
+
+`bigquery.auth.refresh_token`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `AuthRefreshToken`
+
+  If using OAuth user authentication, this is the OAuth refresh token.
+
+`bigquery.dataset_id`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `DatasetId`
+
+  The dataset to connect to.
+
+`bigquery.endpoint`
+: **Type:** string. **Default:** (empty)
+
+  Override the location of the API endpoint for BigQuery; this can be used to connect to an emulator instead. It should be `http://host:port`.
+
+`bigquery.impersonate.delegates`
+: **Type:** string (comma-separated list). **Default:** (empty) **URI Parameter:** `ImpersonateDelegates`
+
+  The service account email addresses in the delegation chain. Each service account must have roles/iam.serviceAccountTokenCreator for the next service account in the chain.
+
+`bigquery.impersonate.lifetime`
+: **Type:** string (Go duration string, e.g. `300ms`). **Default:** (empty) **URI Parameter:** `ImpersonateLifetime`
+
+  The amount of time until the impersonated token expires.
+
+`bigquery.impersonate.scopes`
+: **Type:** string (comma-separated list). **Default:** (empty) **URI Parameter:** `ImpersonateScopes`
+
+  The scopes that the impersonated credential should have.
+
+`bigquery.impersonate.target_principal`
+: **Type:** string. **Default:** (empty) **URI Parameter:** `ImpersonateTargetPrincipal`
+
+  The principal to impersonate.
+
+`bigquery.location`
+:**Type:** string. **Default:** (none)  **URI Parameter:** `Location`
+
+  The project location.
+
+`bigquery.project_id`
+: **Type:** string.
+
+  The project to connect to.
+
+`bigquery.storage_endpoint`
+: **Type:** string. **Default:** (empty)
+
+  Override the location of the gRPC API endpoint for BigQuery Storage; this can be used to connect to an emulator instead. It should be a `host:port`.
+
+### Ingest Options
+
+`bigquery.bulk_ingest.compression`
+: **Values:** `none`, `lz4`, `zstd`. **Default:** `none`
+
+  When using the Storage Write API to ingest data, what kind of compression (if any) to apply to the Arrow data.
+
+  Can also be set on initial connection.
+
+`bigquery.bulk_ingest.method`
+: **Values:** `load`, `storage_write`. **Default:** `load`
+
+  How to ingest data.
+
+  - `load`: [run a batch load](https://docs.cloud.google.com/bigquery/docs/batch-loading-data)
+  - `storage_write`: (**experimental**) use the [Storage Write API](https://docs.cloud.google.com/bigquery/docs/write-api)
+
+  Can also be set on initial connection.
+
+### Query Options
+
+`bigquery.query.allow_large_results`
+: **Type:** boolean. **Default:** false
+
+  Allow arbitrarily large query results, at the cost of query performance (even if the result set is not large). For more information, see the [BigQuery documentation](https://cloud.google.com/bigquery/querying-data#largequeryresults).
+
+`bigquery.query.create_disposition`
+: **Values:** `CREATE_IF_NEEDED`, `CREATE_NEVER`. **Default:** `CREATE_IF_NEEDED`
+
+  Control when to create the destination table.
+
+`bigquery.query.create_session`
+: **Type:** boolean. **Default:** false
+
+  Create a new session.
+
+`bigquery.query.default_dataset_id`
+: **Type:** string. **Default:** the current catalog of the connection
+
+  The dataset in which to locate unqualified table names.
+
+  This is more easily accessible through ADBC's current catalog option.
+
+`bigquery.query.default_project_id`
+: **Type:** string. **Default:** the current catalog of the connection
+
+  The dataset in which to locate unqualified table names.
+
+  This is more easily accessible through ADBC's current schema option.
+
+`bigquery.query.destination_table`
+: **Type:** string. **Default:** create a temporary table
+
+  The destination table for query results. If empty (the default), query results will be written to a temporary table.
+
+`bigquery.query.disable_flattened_results`
+: **Type:** boolean. **Default:** false
+
+  Whether to flatten nested data. While the driver passes through this option to the BigQuery API, it is not relevant as the driver fetches results in Arrow format (which naturally supports nested data).
+
+`bigquery.query.disable_query_cache`
+: **Type:** boolean. **Default:** false
+
+  Disable fetching results from the query cache. For more information, see the [BigQuery documentation](https://cloud.google.com/bigquery/querying-data#querycaching).
+
+`bigquery.query.dry_run`
+: **Type:** boolean. **Default:** false
+
+  Do not run the query, but return the result set schema and other query metadata.
+
+  This is more easily accessible through ADBC's ExecuteSchema.
+
+`bigquery.query.job_timeout`
+: **Type:** integer. **Default:** 0
+
+  If nonzero, request that BigQuery apply a best-effort timeout (in milliseconds) to the job. BigQuery considers this option experimental, and it may be removed without notice.
+
+`bigquery.query.max_billing_tier`
+: **Type:** integer. **Default:** 0 (use the project default)
+
+  The maximum billing tier for this query. Queries that use resources beyond this tier will fail.
+
+`bigquery.query.max_bytes_billed`
+: **Type:** integer. **Default:** 0 (use the project default)
+
+  Limit the number of bytes that can be filled for this job. Queries that would exceed this limit will fail without incurring a charge.
+
+`bigquery.query.parameter_mode`
+: **Values:** `named`, `positional`. **Default:** `positional`
+
+  Whether the query uses positional (`?`) or named (`@p`) parameters. A query cannot mix both kinds.
+
+`bigquery.query.prefetch_concurrency`
+: **Type:** integer. **Default:** 10
+
+  This option currently has no effect (unless you set it to 0, which will cause the reader to hang).
+
+`bigquery.query.priority`
+: **Values:** `BATCH`, `INTERACTIVE`. **Default:** `INTERACTIVE`
+
+  The priority with which to schedule the query. For more information, see the [BigQuery documentation](https://cloud.google.com/bigquery/querying-data#batchqueries).
+
+`bigquery.query.result_buffer_size`
+: **Type:** integer. **Default:** 200
+
+  The maximum number of Arrow record batches to buffer in memory.
+
+`bigquery.query.use_legacy_sql`
+: **Type:** boolean. **Default:** false
+
+  Use BigQuery's [legacy SQL dialect](https://docs.cloud.google.com/bigquery/docs/reference/legacy-sql), which is not recommended.
+
+`bigquery.query.write_disposition`
+: **Values:** `WRITE_APPEND`, `WRITE_TRUNCATE`, `WRITE_TRUNCATE_DATA`, `WRITE_EMPTY`. **Default:** `WRITE_EMPTY`
+
+  What to do about existing data in the target table.
+
+  - `WRITE_APPEND`: upon successful completion of the job, atomically append to the existing table
+  - `WRITE_TRUNCATE`: upon successful completion of the job, atomically overwrite existing data
+  - `WRITE_TRUNCATE_DATA`: overwrite the data, but keep existing constraints and schema
+  - `WRITE_EMPTY`: fail if the destination table already contains data
+
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v1.11.2](./v1.11.2.md)
 - [v1.11.0](./v1.11.0.md)
 - [v1.10.0](./v1.10.0.md)
 - [v1.0.0](./v1.0.0.md)
@@ -736,7 +1160,7 @@ To see documentation for previous versions of this driver, see the following:
 [^4]: Scale must be in [0, 9]
 [^5]: The declared precision/scale is ignored in queries: it will always be decimal128(38, 9)
 [^6]: BigQuery's timestamp is effectively an Instant; use DATETIME for naive timestamps
-[^7]: https://github.com/adbc-drivers/bigquery/issues/86
+[^7]: BigQuery does not support nanoseconds; the driver will truncate to microseconds
 [^8]: Timestamp will be rounded to microseconds
 [^9]: arrow-go does not support writing binary view to Parquet
 [^10]: arrow-go does not support casting binary_view to binary

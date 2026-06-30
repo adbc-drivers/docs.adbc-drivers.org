@@ -15,10 +15,10 @@
 {}
 ---
 
-(driver-clickhouse-v0.1.0-alpha.1)=
-# ClickHouse Driver v0.1.0-alpha.1
+(driver-clickhouse-v0.1.0-alpha.2)=
+# ClickHouse Driver v0.1.0-alpha.2
 
-[{badge-primary}`Driver Version|v0.1.0-alpha.1`](#driver-clickhouse-v0.1.0-alpha.1 "Permalink") {badge-success}`Tested With|ClickHouse 25.12`
+[{badge-primary}`Driver Version|v0.1.0-alpha.2`](#driver-clickhouse-v0.1.0-alpha.2 "Permalink") {badge-secondary}`Release Date|2026-05-21` {badge-success}`Tested With|ClickHouse 25.12`
 
 This driver provides access to [ClickHouse][clickhouse], an open source data warehouse and analytical database.  It is developed by ClickHouse, Inc.  The source code can be found at [adbc_clickhouse](https://github.com/ClickHouse/adbc_clickhouse); the ADBC Driver Foundry distributes precompiled binaries of the upstream sources for Linux, macOS, and Windows.
 
@@ -55,49 +55,608 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ## Feature & Type Support
 
+<table class="docutils data align-default" style="width: 100%">
+  <colgroup>
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 50.0%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">ClickHouse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="8">Bulk Ingestion</td>
+      <td>Create</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Append</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Create/Append</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Replace</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Temporary Table</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>Non-nullable fields are marked NOT NULL</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td rowspan="4">Catalog (GetObjects)</td>
+      <td>depth=catalogs</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>depth=db_schemas</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>depth=tables</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td>depth=columns (all)</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+    <tr>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+    </tr>
+  </tbody>
+</table>
+
 ### Types
 
-#### ClickHouse to Arrow
+#### Database to Arrow
 
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">ClickHouse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
 
-* - ClickHouse Type
-  - Arrow Type
-* - Boolean
-  - bool
-* - Date32
-  - date32[day] [^1]
-* - DateTime64 (no time zone)
-  - timestamp[us] (with time zone) [^2] [^3]
-* - DateTime64 (with time zone)
-  - timestamp[us] (with time zone) [^3]
-* - Decimal
-  - decimal128
-* - Float32
-  - float
-* - Float64
-  - double
-* - Int16
-  - int16
-* - Int32
-  - int32
-* - Int64
-  - int64
-* - String
-  - string
-* - Time
-  - ❌ [^4]
-:::
+Boolean
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Date32
+
+</td>
+<td style="text-align: center;">
+
+date32[day] [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DateTime64 (no time zone)
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone) [^2] [^3]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DateTime64 (with time zone)
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone) [^3]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Decimal
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Float32
+
+</td>
+<td style="text-align: center;">
+
+float
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Float64
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Int16
+
+</td>
+<td style="text-align: center;">
+
+int16
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Int32
+
+</td>
+<td style="text-align: center;">
+
+int32
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Int64
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+String
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+Time
+
+</td>
+<td style="text-align: center;">
+
+❌ [^4]
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
+<th colspan="2" style="text-align: center;">ClickHouse Type</th>
+</tr>
+<tr>
+<th style="text-align: center;">Bind</th>
+<th style="text-align: center;">Ingest</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+binary
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+binary_view
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+bool
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+date32[day]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+decimal128
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+double
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+fixed_size_binary
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+float
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+halffloat
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+<td style="text-align: center;">
+
+(NA/not tested)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+int16
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+int32
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+int64
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+large_binary
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+large_string
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+string
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+string_view
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+time32[ms]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+time32[s]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+time64[ns]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+time64[us]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[ms]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[ms] (with time zone)
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[ns]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[ns] (with time zone)
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[s]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[s] (with time zone)
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[us]
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+timestamp[us] (with time zone)
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+</tbody>
+</table>
 
 [^1]: Date32 has limited range (1900-01-01 to 2299-12-31)
-
 [^2]: ClickHouse datetime without timezone is interpreted in **server** timezone
-
 [^3]: DateTime64 has limited range (1900 to 2299)
-
 [^4]: ClickHouse Time type is not supported in Arrow format export
 
 [clickhouse]: https://clickhouse.com/

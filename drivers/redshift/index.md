@@ -15,18 +15,20 @@
 {}
 ---
 
-# Amazon Redshift
+# Amazon Redshift Driver
 
 :::{toctree}
 :maxdepth: 1
 :hidden:
 
-v1.2.1.md
-v1.1.0.md
-v1.0.0.md
+Changelog <changelog.md>
+v1.3.0 <v1.3.0.md>
+v1.2.1 <v1.2.1.md>
+v1.1.0 <v1.1.0.md>
+v1.0.0 <v1.0.0.md>
 :::
 
-[{badge-primary}`Driver Version|v1.2.1`](#driver-redshift-v1.2.1 "Permalink") {badge-success}`Tested With|Amazon Redshift aws`
+[{badge-primary}`Driver Version|v1.3.0`](#driver-redshift-v1.3.0 "Permalink") {badge-secondary}`Release Date|2026-05-25` {badge-success}`Tested With|Amazon Redshift aws`
 
 This driver provides access to [Amazon Redshift][redshift]{target="_blank"}
 (commonly referred to as just "Redshift").
@@ -120,212 +122,357 @@ The driver also supports standard PostgreSQL connection strings (e.g., `postgres
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">Amazon Redshift</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>✅</td>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>✅</td>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
   </tbody>
 </table>
 
-### Driver-Specific Features
-
-<table class="docutils data align-default" style="width: 100%">
-  <colgroup>
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 25%;">
-    <col span="1" style="width: 10%;">
-    <col span="1" style="width: 40%;">
-  </colgroup>
-  <thead>
-    <tr>
-      <th>Feature</th>
-      <th>Name</th>
-      <th>Support</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>    <tr>      <td rowspan="10">Authentication</td>      <td>Log in as IAM identity</td>
-      <td>✅</td>
-      <td>Fetch temporary credentials for the current IAM identity.</td>
-    </tr>    <tr>      <td>Log in as IAM identity (serverless)</td>
-      <td>✅</td>
-      <td>Fetch temporary credentials for the current IAM identity.</td>
-    </tr>    <tr>      <td>Log in as user</td>
-      <td>✅</td>
-      <td>Fetch credentials for a given user, creating the user if specified.</td>
-    </tr>    <tr>      <td>Log in with OAuth via browser</td>
-      <td>✅</td>
-      <td>Trigger an OAuth flow to log in.</td>
-    </tr>    <tr>      <td>Log in with no URI (fetch cluster URI from AWS SDK)</td>
-      <td>✅</td>
-      <td>Log in without specifying cluster URI explicitly.</td>
-    </tr>    <tr>      <td>Log in with token</td>
-      <td>✅</td>
-      <td>Log in with a token from an identity provider.</td>
-    </tr>    <tr>      <td>Log in with user/password in URI</td>
-      <td>✅</td>
-      <td>Log in with user/password embedded in the URI.</td>
-    </tr>    <tr>      <td>Log in with user/password in options</td>
-      <td>✅</td>
-      <td>Log in with user/password specified in options.</td>
-    </tr>    <tr>      <td>Use access key+secret key</td>
-      <td>✅</td>
-      <td>None</td>
-    </tr>    <tr>      <td>Use explicit profile name</td>
-      <td>✅</td>
-      <td>None</td>
-    </tr>    <tr>      <td rowspan="1">Configuration</td>      <td>Connect with URI</td>
-      <td>✅</td>
-      <td>Test authentication with credentials embedded in Redshift URI.</td>
-    </tr>    <tr>      <td rowspan="2">Datashare</td>      <td>Get table schema</td>
-      <td>✅</td>
-      <td>Get the schema of a table in a datashare.</td>
-    </tr>    <tr>      <td>Query a table</td>
-      <td>✅</td>
-      <td>Query a table in a datashare.</td>
-    </tr>    <tr>      <td rowspan="2">Security</td>      <td>SSL Mode</td>
-      <td>✅</td>
-      <td>Choose whether TLS is required and how the certificate is validated.</td>
-    </tr>    <tr>      <td>SSL Mode in URI</td>
-      <td>✅</td>
-      <td>
-Verify that the 'sslmode' query parameter provided in the initial URI is extracted
-and applied to the final resolved connection URI.
-</td>
-    </tr>  </tbody>
-</table>
-
 ### Types
 
-#### Amazon Redshift to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Amazon Redshift Type
-  - Arrow Type
-* - BIGINT
-  - int64
-* - BOOLEAN
-  - bool
-* - DATE
-  - date32[day]
-* - DOUBLE PRECISION
-  - double
-* - GEOGRAPHY
-  - extension&lt;geoarrow.wkb&gt;
-* - GEOMETRY
-  - extension&lt;geoarrow.wkb&gt;
-* - HLLSKETCH
-  - extension&lt;arrow.opaque[storage_type=string, type_name=HLLSKETCH, vendor_name=Amazon Redshift]&gt;
-* - INT
-  - int32
-* - INTERVAL DAY TO SECOND
-  - month_day_nano_interval
-* - INTERVAL YEAR TO MONTH
-  - month_day_nano_interval
-* - NUMERIC
-  - decimal128
-* - REAL
-  - float
-* - SMALLINT
-  - int16
-* - SUPER
-  - extension&lt;arrow.json&gt;
-* - TIME
-  - time64[us]
-* - TIMESTAMP
-  - timestamp[us]
-* - TIMESTAMP WITH TIME ZONE
-  - timestamp[us] (with time zone)
-* - TIMETZ
-  - extension&lt;arrow.opaque[storage_type=string, type_name=TIMETZ, vendor_name=Amazon Redshift]&gt; [^1]
-* - VARBINARY
-  - binary
-* - VARCHAR
-  - string
-:::
-
-#### Arrow to Amazon Redshift
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">Amazon Redshift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+BIGINT
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BOOLEAN
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DECIMAL
+
+</td>
+<td style="text-align: center;">
+
+decimal128
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DOUBLE PRECISION
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOGRAPHY
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+GEOMETRY
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;geoarrow.wkb&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+HLLSKETCH
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.opaque[storage_type=string, type_name=HLLSKETCH, vendor_name=Amazon Redshift]&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTEGER
+
+</td>
+<td style="text-align: center;">
+
+int32
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTERVAL DAY TO SECOND
+
+</td>
+<td style="text-align: center;">
+
+month_day_nano_interval
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTERVAL YEAR TO MONTH
+
+</td>
+<td style="text-align: center;">
+
+month_day_nano_interval
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+float
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+int16
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SUPER
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.json&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP WITH TIME ZONE
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMPTZ
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMETZ
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.opaque[storage_type=string, type_name=TIMETZ, vendor_name=Amazon Redshift]&gt; [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARBYTE
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
 <th colspan="2" style="text-align: center;">Amazon Redshift Type</th>
 </tr>
 <tr>
@@ -335,14 +482,14 @@ and applied to the final resolved connection URI.
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY ⚠️ [^2]
+VARBYTE ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
@@ -352,14 +499,14 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY
+VARBYTE ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
@@ -369,7 +516,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
@@ -381,7 +528,7 @@ BOOLEAN
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -393,19 +540,24 @@ DATE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
+
+DECIMAL
+
+</td>
+<td style="text-align: center;">
 
 NUMERIC
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -417,7 +569,7 @@ DOUBLE PRECISION
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 extension&lt;arrow.json&gt;
 
@@ -429,12 +581,12 @@ SUPER
 </td>
 <td style="text-align: center;">
 
-SUPER ⚠️ [^13]
+SUPER ⚠️ [^12]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 extension&lt;geoarrow.wkb&gt;
 
@@ -446,12 +598,12 @@ GEOMETRY ⚠️ [^4], GEOGRAPHY ⚠️ [^3]
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 extension&lt;geoarrow.wkt&gt;
 
@@ -463,19 +615,19 @@ GEOMETRY ⚠️ [^6], GEOGRAPHY ⚠️ [^5]
 </td>
 <td style="text-align: center;">
 
-❌ [^11]
+GEOMETRY
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 fixed_size_binary
 
 </td>
 <td style="text-align: center;">
 
-VARBINARY
+VARBYTE ⚠️ [^2]
 
 </td>
 <td style="text-align: center;">
@@ -485,7 +637,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 float
 
@@ -502,7 +654,7 @@ REAL
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 halffloat
 
@@ -514,12 +666,12 @@ REAL
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int16
 
@@ -531,19 +683,24 @@ SMALLINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
+
+INTEGER
+
+</td>
+<td style="text-align: center;">
 
 INT
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -555,38 +712,48 @@ BIGINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
+
+VARBYTE ⚠️ [^2]
+
+</td>
+<td style="text-align: center;">
 
 VARBINARY
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
 
 VARCHAR
 
 </td>
+<td style="text-align: center;">
+
+VARCHAR(MAX)
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 list
 
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 <td style="text-align: center;">
@@ -596,19 +763,24 @@ SUPER
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
 </td>
-<td colspan="2" style="text-align: center;">
+<td style="text-align: center;">
 
 VARCHAR
 
 </td>
+<td style="text-align: center;">
+
+VARCHAR(MAX)
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -620,12 +792,12 @@ VARCHAR
 </td>
 <td style="text-align: center;">
 
-❌ [^12]
+❌ [^11]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 struct
 
@@ -637,7 +809,7 @@ SUPER
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
@@ -649,12 +821,12 @@ TIME
 </td>
 <td style="text-align: center;">
 
-❌ [^14]
+❌ [^13]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
@@ -666,12 +838,12 @@ TIME
 </td>
 <td style="text-align: center;">
 
-❌ [^14]
+❌ [^13]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
@@ -683,12 +855,12 @@ TIME
 </td>
 <td style="text-align: center;">
 
-❌ [^14]
+❌ [^13]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
@@ -700,12 +872,12 @@ TIME
 </td>
 <td style="text-align: center;">
 
-❌ [^14]
+❌ [^13]
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -717,7 +889,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -729,7 +901,7 @@ TIMESTAMP(3) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -746,7 +918,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -758,7 +930,7 @@ TIMESTAMP(9) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -770,7 +942,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -782,7 +954,7 @@ TIMESTAMP(0) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -794,7 +966,7 @@ TIMESTAMP
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -812,6 +984,7 @@ TIMESTAMP(6) WITH TIME ZONE
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v1.2.1](./v1.2.1.md)
 - [v1.1.0](./v1.1.0.md)
 - [v1.0.0](./v1.0.0.md)
 
@@ -825,9 +998,8 @@ To see documentation for previous versions of this driver, see the following:
 [^8]: Timestamp will be rounded to microseconds
 [^9]: arrow-go does not support writing binary view to Parquet
 [^10]: Redshift cannot read Parquet files with fixed-size binary columns
-[^11]: Redshift can only ingest geo data from CSV or textfiles, not Parquet
-[^12]: arrow-go does not support writing string view to Parquet
-[^13]: Redshift interprets the JSON data as a string, so the result will be unexpected.  Use struct/list data instead.
-[^14]: Redshift raises an ASSERT
+[^11]: arrow-go does not support writing string view to Parquet
+[^12]: Redshift interprets the JSON data as a string, so the result will be unexpected.  Use struct/list data instead.
+[^13]: Redshift raises an ASSERT
 
 [redshift]: https://aws.amazon.com/redshift/

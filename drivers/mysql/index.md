@@ -15,22 +15,24 @@
 {}
 ---
 
-# MySQL
+# MySQL/MariaDB
 
 :::{toctree}
 :maxdepth: 1
 :hidden:
 
-v0.3.1.md
-v0.3.0.md
-v0.2.0.md
-v0.1.0.md
+Changelog <changelog.md>
+v0.4.0 <v0.4.0.md>
+v0.3.1 <v0.3.1.md>
+v0.3.0 <v0.3.0.md>
+v0.2.0 <v0.2.0.md>
+v0.1.0 <v0.1.0.md>
 :::
 
-[{badge-primary}`Driver Version|v0.3.1`](#driver-mysql-v0.3.1 "Permalink") {badge-success}`Tested With|MySQL 9.4`
+[{badge-primary}`Driver Version|v0.4.0`](#driver-mysql-v0.4.0 "Permalink") {badge-secondary}`Release Date|2026-06-18` {badge-success}`Tested With|MySQL 9.4` {badge-success}`Tested With|MariaDB 12.2`
 
-This driver provides access to [MySQL][mysql]{target="_blank"}, a free and
-open-source relational database management system.
+This driver provides access to [MySQL][mysql] and [MariaDB][mariadb], free and
+open-source relational database management systems.
 
 ## Installation
 
@@ -50,7 +52,7 @@ from adbc_driver_manager import dbapi
 conn = dbapi.connect(
   driver="mysql",
   db_kwargs = {
-    "uri": "root@tcp(localhost:3306)/demo"
+    "uri": "mysql://root@localhost:3306/demo"
   }
 )
 ```
@@ -59,7 +61,11 @@ Note: The example above is for Python using the [adbc-driver-manager](https://py
 
 ### Connection String Format
 
-Connection strings are passed with the `uri` option which uses the following format:
+Connection strings are passed with the `uri` option. The driver supports two formats:
+
+#### MySQL URI Format (Recommended)
+
+The standard MySQL URI format, following MySQL's official specification:
 
 ```text
 mysql://[user[:[password]]@]host[:port][/schema][?attribute1=value1&attribute2=value2...]
@@ -73,9 +79,7 @@ Examples:
 - `mysql://user@(/path/to/socket.sock)/db` (Unix domain socket)
 - `mysql://user@localhost/mydb` (no password)
 
-This follows MySQL's official [URI-like connection string format](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connecting-using-uri). Also see [MySQL Connection Parameters](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connection-parameters-base) for the complete specification.
-
-Components:
+URI Components:
 - `scheme`: `mysql://` (required)
 - `user`: Optional (for authentication)
 - `password`: Optional (for authentication, requires user)
@@ -88,9 +92,24 @@ Components:
 Reserved characters in URI elements must be URI-encoded. For example, `@` becomes `%40`. If you include a zone ID in an IPv6 address, the `%` character used as the separator must be replaced with `%25`.
 :::
 
-When connecting via Unix domain sockets, use the parentheses syntax to wrap the socket path: `(/path/to/socket.sock)`.
+Unix Domain Sockets:
+When connecting via Unix domain sockets, use the parentheses syntax to wrap the socket path: `mysql://user@(/path/to/socket.sock)/db`
 
-The driver also supports the MySQL DSN format (see [Go MySQL Driver documentation](https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name)), but standard URIs are recommended.
+For complete details, see MySQL's [URI-like connection string format](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connecting-using-uri) and [Connection Parameters](https://dev.mysql.com/doc/refman/8.4/en/connecting-using-uri-or-key-value-pairs.html#connection-parameters-base) documentation.
+
+#### Go MySQL Driver DSN Format (Alternative)
+
+The driver also accepts the [Go MySQL Driver DSN format](https://github.com/go-sql-driver/mysql?tab=readme-ov-file#dsn-data-source-name):
+
+```text
+[username[:password]@][protocol[(address)]]/dbname[?param1=value1&...&paramN=valueN]
+```
+
+Examples:
+
+- `user:pass@tcp(localhost:3306)/mydb`
+- `user@tcp(127.0.0.1:3306)/mydb`
+- `user:pass@unix(/tmp/mysql.sock)/mydb`
 
 ## Feature & Type Support
 
@@ -98,144 +117,403 @@ The driver also supports the MySQL DSN format (see [Go MySQL Driver documentatio
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 25.0%;">
+    <col span="1" style="width: 25.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">MariaDB</th>
+      <th style="text-align: center;">MySQL</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>❌</td>
+      <td>Target Catalog</td>
+      <td colspan="2" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>❌</td>
+      <td>Target Schema</td>
+      <td colspan="2" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>❌</td>
+      <td colspan="2" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="2" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="2" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="2" style="text-align: center;">❌</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### MySQL to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - MySQL Type
-  - Arrow Type
-* - BIGINT
-  - int64
-* - BIT
-  - binary
-* - BOOLEAN
-  - int64, int8 ⚠️ [^1]
-* - DATE
-  - date32[day]
-* - DATETIME
-  - timestamp[us]
-* - DOUBLE PRECISION
-  - double
-* - INT
-  - int32
-* - JSON
-  - extension&lt;arrow.json&gt;
-* - NUMERIC
-  - decimal64
-* - REAL
-  - ❌
-* - SMALLINT
-  - int16
-* - TIME
-  - time64[us]
-* - TIMESTAMP
-  - timestamp[us], timestamp[us] (with time zone) ⚠️ [^1]
-* - VARBINARY
-  - binary
-* - VARCHAR
-  - string
-:::
-
-#### Arrow to MySQL
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
-<th colspan="2" style="text-align: center;">MySQL Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">MySQL</th>
+<th style="text-align: center;">MariaDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+BIGINT
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
+<td style="text-align: left;">
+
+BIGINT UNSIGNED
+
+</td>
+<td style="text-align: center;">
+
+uint64
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BIT
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BOOLEAN
+
+</td>
+<td style="text-align: center;">
+
+int64, int8 ⚠️ [^1]
+
+</td>
+<td style="text-align: center;">
+
+❌ [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATETIME
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us]
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DOUBLE PRECISION
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT
+
+</td>
+<td style="text-align: center;">
+
+int32
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+JSON
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.json&gt;
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+NUMERIC
+
+</td>
+<td style="text-align: center;">
+
+decimal64
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+float
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+int16
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us], timestamp[us] (with time zone) ⚠️ [^1]
+
+</td>
+<td style="text-align: center;">
+
+❌ [^1]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARBINARY
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
+<th colspan="2" style="text-align: center;">MySQL Type</th>
+<th colspan="2" style="text-align: center;">MariaDB Type</th>
+</tr>
+<tr>
+<th style="text-align: center;">Bind</th>
+<th style="text-align: center;">Ingest</th>
 <th style="text-align: center;">Bind</th>
 <th style="text-align: center;">Ingest</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
@@ -245,9 +523,14 @@ binary
 VARBINARY
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
@@ -257,9 +540,14 @@ binary_view
 VARBINARY
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
@@ -269,9 +557,14 @@ bool
 BOOLEAN
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -281,9 +574,14 @@ date32[day]
 DATE
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
@@ -293,9 +591,14 @@ decimal128
 DECIMAL
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -305,9 +608,14 @@ double
 DOUBLE PRECISION
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 fixed_size_binary
 
@@ -317,13 +625,6 @@ fixed_size_binary
 VARBINARY
 
 </td>
-</tr>
-<tr>
-<td style="text-align: center;">
-
-float
-
-</td>
 <td colspan="2" style="text-align: center;">
 
 ❌
@@ -331,7 +632,51 @@ float
 </td>
 </tr>
 <tr>
+<td style="text-align: left;">
+
+float
+
+</td>
 <td style="text-align: center;">
+
+REAL
+
+</td>
+<td colspan="3" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+halffloat
+
+</td>
+<td style="text-align: center;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+(NA/not tested)
+
+</td>
+<td style="text-align: center;">
+
+❌
+
+</td>
+<td style="text-align: center;">
+
+(NA/not tested)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
 
 int16
 
@@ -341,9 +686,14 @@ int16
 SMALLINT
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
@@ -353,9 +703,14 @@ int32
 INT
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -365,9 +720,14 @@ int64
 BIGINT
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
@@ -377,9 +737,14 @@ large_binary
 VARBINARY
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
@@ -389,9 +754,14 @@ large_string
 VARCHAR
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
@@ -401,9 +771,14 @@ string
 VARCHAR
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -413,9 +788,14 @@ string_view
 VARCHAR
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
@@ -425,9 +805,14 @@ time32[ms]
 TIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
@@ -437,9 +822,14 @@ time32[s]
 TIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
@@ -449,9 +839,14 @@ time64[ns]
 TIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
@@ -461,9 +856,14 @@ time64[us]
 TIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -473,9 +873,14 @@ timestamp[ms]
 DATETIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -485,9 +890,14 @@ timestamp[ms] (with time zone)
 TIMESTAMP
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -497,9 +907,14 @@ timestamp[ns]
 DATETIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -509,9 +924,14 @@ timestamp[ns] (with time zone)
 TIMESTAMP
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -521,9 +941,14 @@ timestamp[s]
 DATETIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -533,9 +958,14 @@ timestamp[s] (with time zone)
 TIMESTAMP
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -545,9 +975,14 @@ timestamp[us]
 DATETIME
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -557,24 +992,100 @@ timestamp[us] (with time zone)
 TIMESTAMP
 
 </td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+uint16
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+SMALLINT UNSIGNED
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+uint32
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+INT UNSIGNED
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+uint64
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+BIGINT UNSIGNED
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+uint8
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+TINYINT UNSIGNED
+
+</td>
+<td colspan="2" style="text-align: center;">
+
+❌
+
+</td>
 </tr>
 </tbody>
 </table>
 
 ## Compatibility
 
-This driver was tested on the following versions of MySQL:
+This driver was tested on:
 
-- 9.4.0 (MySQL Community Server - GPL)
+- MySQL `(unknown)`
+- MySQL `9.4.0 (MySQL Community Server - GPL)`
 
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.3.1](./v0.3.1.md)
 - [v0.3.0](./v0.3.0.md)
 - [v0.2.0](./v0.2.0.md)
 - [v0.1.0](./v0.1.0.md)
 
 [^1]: Return type is inconsistent depending on how the query was written
 
+[mariadb]: https://mariadb.org/
 [mysql]: https://www.mysql.com/

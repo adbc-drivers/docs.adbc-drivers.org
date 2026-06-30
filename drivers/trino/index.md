@@ -21,13 +21,15 @@
 :maxdepth: 1
 :hidden:
 
-v0.3.1.md
-v0.3.0.md
-v0.2.0.md
-v0.1.0.md
+Changelog <changelog.md>
+v0.4.0 <v0.4.0.md>
+v0.3.1 <v0.3.1.md>
+v0.3.0 <v0.3.0.md>
+v0.2.0 <v0.2.0.md>
+v0.1.0 <v0.1.0.md>
 :::
 
-[{badge-primary}`Driver Version|v0.3.1`](#driver-trino-v0.3.1 "Permalink") {badge-success}`Tested With|Trino 479`
+[{badge-primary}`Driver Version|v0.4.0`](#driver-trino-v0.4.0 "Permalink") {badge-secondary}`Release Date|2026-06-08` {badge-success}`Tested With|Trino 481`
 
 This driver provides access to [Trino][trino], a free and
 open-source distributed SQL query engine.
@@ -114,138 +116,309 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
   <colgroup>
     <col span="1" style="width: 25%;">
     <col span="1" style="width: 25%;">
-    <col span="1" style="width: 50%;">
+    <col span="1" style="width: 50.0%;">
   </colgroup>
   <thead>
     <tr>
-      <th>Feature</th>
-      <th colspan="2">Support</th>
+      <th colspan="2">Feature</th>
+      <th style="text-align: center;">Trino</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td rowspan="8">Bulk Ingestion</td>
       <td>Create</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Create/Append</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Replace</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Temporary Table</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Specify target catalog</td>
-      <td>❌</td>
+      <td>Target Catalog</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Specify target schema</td>
-      <td>❌</td>
+      <td>Target Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>Non-nullable fields are marked NOT NULL</td>
-      <td>❌</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
       <td rowspan="4">Catalog (GetObjects)</td>
       <td>depth=catalogs</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=db_schemas</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=tables</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
       <td>depth=columns (all)</td>
-      <td>✅</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Get Parameter Schema</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">Get Parameter Schema</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
     <tr>
-      <td>Get Table Schema</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Get Table Schema</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Prepared Statements</td>
-      <td colspan="2">✅</td>
+      <td colspan="2">Prepared Statements</td>
+      <td colspan="1" style="text-align: center;">✅</td>
     </tr>
     <tr>
-      <td>Transactions</td>
-      <td colspan="2">❌</td>
+      <td colspan="2">Transactions</td>
+      <td colspan="1" style="text-align: center;">❌</td>
     </tr>
   </tbody>
 </table>
 
 ### Types
 
-#### Trino to Arrow
-
-:::{list-table}
-:header-rows: 1
-:width: 100%
-:widths: 1 3
-
-* - Trino Type
-  - Arrow Type
-* - BIGINT
-  - int64
-* - BOOLEAN
-  - bool
-* - DATE
-  - date32[day]
-* - DECIMAL
-  - decimal64
-* - DOUBLE PRECISION
-  - double
-* - INT
-  - int32
-* - INTERVAL DAY TO SECOND
-  - month_day_nano_interval
-* - INTERVAL YEAR TO MONTH
-  - month_day_nano_interval
-* - IPADDRESS
-  - string
-* - REAL
-  - float
-* - SMALLINT
-  - int16
-* - TIME
-  - time64[us]
-* - TIMESTAMP
-  - timestamp[us]
-* - TIMESTAMP WITH TIME ZONE
-  - timestamp[us] (with time zone)
-* - UUID
-  - extension&lt;arrow.uuid&gt;
-* - VARBINARY
-  - binary
-* - VARCHAR
-  - string
-:::
-
-#### Arrow to Trino
-
+#### Database to Arrow
 
 <table class="docutils data align-default" style="width: 100%;">
 <thead>
 <tr>
-<th rowspan="2" style="text-align: center; vertical-align: middle;">Arrow Type</th>
+<th style="text-align: left; vertical-align: middle;">Database Type</th>
+<th style="text-align: center;">Trino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">
+
+BIGINT
+
+</td>
+<td style="text-align: center;">
+
+int64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+BOOLEAN
+
+</td>
+<td style="text-align: center;">
+
+bool
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DATE
+
+</td>
+<td style="text-align: center;">
+
+date32[day]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DECIMAL
+
+</td>
+<td style="text-align: center;">
+
+decimal64
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+DOUBLE PRECISION
+
+</td>
+<td style="text-align: center;">
+
+double
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INT
+
+</td>
+<td style="text-align: center;">
+
+int32
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTERVAL DAY TO SECOND
+
+</td>
+<td style="text-align: center;">
+
+month_day_nano_interval
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+INTERVAL YEAR TO MONTH
+
+</td>
+<td style="text-align: center;">
+
+month_day_nano_interval
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+IPADDRESS
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+REAL
+
+</td>
+<td style="text-align: center;">
+
+float
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+SMALLINT
+
+</td>
+<td style="text-align: center;">
+
+int16
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIME
+
+</td>
+<td style="text-align: center;">
+
+time64[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us]
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+TIMESTAMP WITH TIME ZONE
+
+</td>
+<td style="text-align: center;">
+
+timestamp[us] (with time zone)
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+UUID
+
+</td>
+<td style="text-align: center;">
+
+extension&lt;arrow.uuid&gt;
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARBINARY
+
+</td>
+<td style="text-align: center;">
+
+binary
+
+</td>
+</tr>
+<tr>
+<td style="text-align: left;">
+
+VARCHAR
+
+</td>
+<td style="text-align: center;">
+
+string
+
+</td>
+</tr>
+</tbody>
+</table>
+
+#### Arrow to Database
+
+<table class="docutils data align-default" style="width: 100%;">
+<thead>
+<tr>
+<th rowspan="3" style="text-align: left; vertical-align: middle;">Arrow Type</th>
 <th colspan="2" style="text-align: center;">Trino Type</th>
 </tr>
 <tr>
@@ -255,7 +428,7 @@ The driver also supports the Trino DSN format (see [Go Trino Client documentatio
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary
 
@@ -267,7 +440,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 binary_view
 
@@ -279,7 +452,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 bool
 
@@ -291,7 +464,7 @@ BOOLEAN
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 date32[day]
 
@@ -303,7 +476,7 @@ DATE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 decimal128
 
@@ -315,7 +488,7 @@ DECIMAL
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 double
 
@@ -327,7 +500,7 @@ DOUBLE PRECISION
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 extension&lt;arrow.uuid&gt;
 
@@ -339,7 +512,7 @@ UUID
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 fixed_size_binary
 
@@ -351,7 +524,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 float
 
@@ -363,7 +536,7 @@ REAL
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 halffloat
 
@@ -375,12 +548,12 @@ REAL
 </td>
 <td style="text-align: center;">
 
-(not tested)
+(NA/not tested)
 
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int16
 
@@ -392,7 +565,7 @@ SMALLINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int32
 
@@ -404,7 +577,7 @@ INT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 int64
 
@@ -416,7 +589,7 @@ BIGINT
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_binary
 
@@ -428,7 +601,7 @@ VARBINARY
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 large_string
 
@@ -440,7 +613,7 @@ VARCHAR
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string
 
@@ -457,7 +630,7 @@ VARCHAR
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 string_view
 
@@ -469,7 +642,7 @@ VARCHAR
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[ms]
 
@@ -481,7 +654,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time32[s]
 
@@ -493,7 +666,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[ns]
 
@@ -505,7 +678,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 time64[us]
 
@@ -517,7 +690,7 @@ TIME
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms]
 
@@ -529,7 +702,7 @@ TIMESTAMP(3)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ms] (with time zone)
 
@@ -541,7 +714,7 @@ TIMESTAMP(3) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns]
 
@@ -553,7 +726,7 @@ TIMESTAMP(9)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[ns] (with time zone)
 
@@ -565,7 +738,7 @@ TIMESTAMP(9) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s]
 
@@ -577,7 +750,7 @@ TIMESTAMP(0)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[s] (with time zone)
 
@@ -589,7 +762,7 @@ TIMESTAMP(0) WITH TIME ZONE
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us]
 
@@ -601,7 +774,7 @@ TIMESTAMP(6)
 </td>
 </tr>
 <tr>
-<td style="text-align: center;">
+<td style="text-align: left;">
 
 timestamp[us] (with time zone)
 
@@ -615,16 +788,24 @@ TIMESTAMP(6) WITH TIME ZONE
 </tbody>
 </table>
 
+## Options
+
+`trino.statement.last_query_id`
+: **Read-only.** **Type:** string.
+
+  Get the query ID of the currently executing or last executed query. This can safely be retrieved concurrently. Note that in some cases, a single query on the ADBC side may result in multiple queries on the Trino side (e.g. a bulk ingest will result in one query for each batch of rows), and so there may not be a canonical query ID as such; this option will retrieve the ID of the last query that happened to execute.
+
 ## Compatibility
 
-This driver was tested on the following versions of Trino:
+This driver was tested on:
 
-- Trino 479
+- Trino `Trino 481`
 
 ## Previous Versions
 
 To see documentation for previous versions of this driver, see the following:
 
+- [v0.3.1](./v0.3.1.md)
 - [v0.3.0](./v0.3.0.md)
 - [v0.2.0](./v0.2.0.md)
 - [v0.1.0](./v0.1.0.md)

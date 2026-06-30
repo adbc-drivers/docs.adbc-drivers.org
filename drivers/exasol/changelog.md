@@ -17,6 +17,33 @@
 
 # Changelog for Exasol Driver
 
+For full details, see the [upstream changelog](https://github.com/exasol-labs/exarrow-rs/blob/main/CHANGELOG.md).
+
+## v0.12.7 (2026-06-18)
+
+Fixes:
+
+- Preserve the schema of empty result sets
+
+## v0.12.6 (2026-06-08)
+
+Fixes:
+
+- If a nonexistent schema is specified in the connection URI, the driver will still connect instead of failing
+- `?` characters inside string literals, quoted identifiers, and comments are no longer treated as bind parameter placeholders
+- Multi-value `WHERE col IN (...)` now properly returns all matching rows
+- Apply the `query_timeout` connection parameter to all statements
+- Update dependencies with security advisories (see the [upstream changelogs](https://github.com/exasol-labs/exarrow-rs/releases) for details)
+
+## v0.12.0 (2026-04-30)
+
+New features:
+
+- Use the native TCP transport instead of WebSocket by default for improved performance
+- Improve result set parsing performance
+- Directly upload Parquet data when importing (instead of converting to CSV)
+  - Issue `OPEN SCHEMA` if a schema is present in the connection URI (`exasol://u:p@localhost:8563/my_schema`)
+
 ## v0.9.0 (2026-04-16)
 
 New features:

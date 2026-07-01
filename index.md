@@ -47,7 +47,7 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 ::::{grid-item-card}
 :link: drivers/redshift/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Amazon Redshift**
 :::{image} _static/driver_icons/color/light_mode/redshift.svg
 :class: only-light
@@ -61,26 +61,24 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/datafusion/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Apache DataFusion**
 :::{image} _static/driver_icons/color/light_mode/datafusion.svg
 :width: 24px
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/spark/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Apache Spark**
 :::{image} _static/driver_icons/color/light_mode/spark.svg
 :class: only-light
@@ -94,13 +92,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/bigquery/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **BigQuery**
 :::{image} _static/driver_icons/color/light_mode/bigquery.svg
 :class: only-light
@@ -114,13 +111,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/clickhouse/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **ClickHouse**
 :::{image} _static/driver_icons/color/light_mode/clickhouse.svg
 :class: only-light
@@ -134,13 +130,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/databricks/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Databricks**
 :::{image} _static/driver_icons/color/light_mode/databricks.svg
 :class: only-light
@@ -154,13 +149,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/quack/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **DuckDB Quack**
 :::{image} _static/driver_icons/color/light_mode/quack.svg
 :class: only-light
@@ -174,20 +168,19 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/exasol/index
 :link-type: doc
+:class-body: sd-card-center
 **Exasol**
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/mssql/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Microsoft SQL Server**
 :::{image} _static/driver_icons/color/light_mode/mssql.svg
 :class: only-light
@@ -201,13 +194,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/mysql/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **MySQL/MariaDB**
 :::{image} _static/driver_icons/color/light_mode/mysql.svg
 :class: only-light
@@ -221,20 +213,19 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/singlestore/index
 :link-type: doc
+:class-body: sd-card-center
 **SingleStore**
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/snowflake/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Snowflake**
 :::{image} _static/driver_icons/color/light_mode/snowflake.svg
 :class: only-light
@@ -248,13 +239,12 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: drivers/trino/index
 :link-type: doc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Trino**
 :::{image} _static/driver_icons/color/light_mode/trino.svg
 :class: only-light
@@ -268,7 +258,6 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 :::::
@@ -282,7 +271,7 @@ Other drivers available on dbc from across the ADBC-verse:
 
 ::::{grid-item-card}
 :link: https://duckdb.org/docs/stable/clients/adbc
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **DuckDB**
 :::{image} _static/driver_icons/color/light_mode/duckdb.svg
 :class: only-light
@@ -296,12 +285,11 @@ Other drivers available on dbc from across the ADBC-verse:
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://arrow.apache.org/adbc/current/driver/flight_sql.html
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **Flight SQL**
 :::{image} _static/driver_icons/color/light_mode/flightsql.svg
 :class: only-light
@@ -315,12 +303,11 @@ Other drivers available on dbc from across the ADBC-verse:
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://arrow.apache.org/adbc/current/driver/postgresql.html
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 
 **PostgreSQL**
 :::{image} _static/driver_icons/color/light_mode/postgresql.svg
@@ -335,12 +322,11 @@ Other drivers available on dbc from across the ADBC-verse:
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://arrow.apache.org/adbc/current/driver/sqlite.html
-:class-header: sd-card-header-with-icon
+:class-body: sd-card-with-icon
 **SQLite**
 :::{image} _static/driver_icons/color/light_mode/sqlite.svg
 :class: only-light
@@ -354,25 +340,24 @@ Other drivers available on dbc from across the ADBC-verse:
 :align: center
 :alt:
 :::
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://docs.columnar.tech/drivers/oracle
+:class-body: sd-card-center
 **Oracle Database**
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://docs.columnar.tech/drivers/sap-hana
+:class-body: sd-card-center
 **SAP HANA**
-^^^
 ::::
 
 ::::{grid-item-card}
 :link: https://docs.columnar.tech/drivers/teradata
+:class-body: sd-card-center
 **Teradata**
-^^^
 ::::
 
 :::::

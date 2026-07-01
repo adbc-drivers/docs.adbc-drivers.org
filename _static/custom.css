@@ -234,30 +234,36 @@
 }
 
 /* Customizing https://sphinx-design.readthedocs.io/en/latest/cards.html so we
-can display an icon in the title. This class is used by the class-title card
-option. */
-.sd-card-header-with-icon {
+can display an icon. This class is used by the class-body card option. */
+.sd-card-with-icon {
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
     position: relative;
 }
 
-.sd-card-header-with-icon > * {
+.sd-card-with-icon > * {
     margin: 0;
 }
 
-.sd-card-header-with-icon > :nth-child(2),
-.sd-card-header-with-icon > :nth-child(3) {
+.sd-card-with-icon > :nth-child(2),
+.sd-card-with-icon > :nth-child(3) {
     display: flex;
     justify-content: flex-end;
 }
 
 /* Override the align-center class margins on the image */
-.sd-card-header-with-icon > :nth-child(2) img,
-.sd-card-header-with-icon > :nth-child(3) img {
+.sd-card-with-icon > :nth-child(2) img,
+.sd-card-with-icon > :nth-child(3) img {
     margin-left: auto;
     margin-right: 0;
+}
+
+/* Vertically center */
+.sd-card-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 /***********************************************************************
@@ -345,11 +351,6 @@ section:has(> .driver-header-links) .md-typeset__table {
 .grid-no-padding {
     padding-left: 0;
     padding-right: 0;
-}
-
-/* For grids on the homepage: no body */
-.grid-no-body .sd-card-body {
-    padding: 0;
 }
 
 /* Vertically center text of a grid item */

@@ -19,6 +19,7 @@ hide-toc: true
 # ADBC Driver Foundry Documentation
 
 ::::{grid} 1 1 2 2
+:gutter: 2
 
 :::{grid-item}
 ```{include} _static/adbc-drivers-logo.svg
@@ -39,7 +40,7 @@ Welcome to the [ADBC Driver Foundry](https://adbc-drivers.org){target=_self} dri
 
 Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foundry. If you'd like your driver to be listed here, check out [Building Drivers](./building-drivers/index.md).
 
-:::::{grid} 1 2 4 4
+:::::{grid} 1 2 3 4
 :margin: 0
 :class-container: grid-no-padding grid-no-body
 :gutter: 2
@@ -264,7 +265,7 @@ Drivers available on [dbc](https://columnar.tech/dbc/) from the ADBC Driver Foun
 
 Other drivers available on dbc from across the ADBC-verse:
 
-:::::{grid} 1 2 4 4
+:::::{grid} 1 2 3 4
 :margin: 0
 :class-container: grid-no-padding grid-no-body
 :gutter: 2
